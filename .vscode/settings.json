@@ -1,0 +1,60 @@
+{
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "docs/docs/out/**": true,
+    "packages/*/lib/**": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "eslint.trace.server": "verbose",
+  "files.associations": {
+    "*.json": "jsonc",
+    "package.json": "json"
+  },
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "mochaExplorer.files": "tests/**/**.{test,spec}.ts",
+  "mochaExplorer.require": ["common/temp/node_modules/tsm/require"],
+  "cSpell.words": [
+    "clipanion",
+    "entrypoints",
+    "esbuild",
+    "ESBUILD",
+    "metafile",
+    "middlewares",
+    "miniflare",
+    "nextjs",
+    "nuxtjs",
+    "pinia",
+    "prebundle",
+    "prebundled",
+    "prefetch",
+    "Prefetcher",
+    "Vercel"
+  ]
+}

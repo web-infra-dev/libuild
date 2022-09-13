@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixture:plugin:svgr plugin:svgr 1`] = `
+"var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value2) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value: value2 }) : obj[key] = value2;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === \\"object\\" || typeof from === \\"function\\") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, \\"default\\", { value: mod, enumerable: true }) : target, mod));
+
+// <define:import.meta.env>
+var init_define_import_meta_env = __esm({
+  \\"<define:import.meta.env>\\"() {
+  }
+});
+
+// ../../../../common/temp/node_modules/.pnpm/object-assign@4.1.1/node_modules/object-assign/index.js
+var require_object_assign = __commonJS({
+  \\"../../../../common/temp/node_modules/.pnpm/object-assign@4.1.1/node_modules/object-assign/index.js\\"(exports, module) {
+    \\"use strict\\";
+    init_define_import_meta_env();
+    var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+    function toObject(val) {
+      if (val === null || val === void 0) {
+        throw new TypeError(\\"Object.assign cannot be called with null or undefined\\");
+      }
+      return Object(val);
+    }
+    function shouldUseNative() {
+      try {
+        if (!Object.assign) {
+          return false;
+        }
+        var test1 = new String(\\"abc\\");
+        test1[5] = \\"de\\";
+        if (Object.getOwnPropertyNames(test1)[0] === \\"5\\") {
+          return false;
+        }
+        var test2 = {};
+        for (var i = 0; i < 10; i++) {
+          test2[\\"_\\" + String.fromCharCode(i)] = i;
+        }
+        var order2 = Object.getOwnPropertyNames(test2).map(function(n) {
+          return test2[n];
+        });
+        if (order2.join(\\"\\") !== \\"0123456789\\") {
+          return false;
+        }
+        var test3 = {};
+        \\"abcdefghijklmnopqrst\\".split(\\"\\").forEach(function(letter) {
+          test3[letter] = letter;
+        });
+        if (Object.keys(Object.assign({}, test3)).join(\\"\\") !== \\"abcdefghijklmnopqrst\\") {
+          return false;
+        }
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+    module.exports = shouldUseNative() ? Object.assign : function(target, source) {
+      var from;
+      var to = toObject(target);
+      var symbols;
+      for (var s = 1; s < arguments.length; s++) {
+        from = Object(arguments[s]);
+        for (var key in from) {
+          if (hasOwnProperty.call(from, key)) {
+            to[key] = from[key];
+          }
+        }
+        if (getOwnPropertySymbols) {
+          symbols = getOwnPropertySymbols(from);
+          for (var i = 0; i < symbols.length; i++) {
+            if (propIsEnumerable.call(from, symbols[i])) {
+              to[symbols[i]] = from[symbols[i]];
+            }
+          }
+        }
+      }
+      return to;
+    };
+  }
+});
+
+// ../../../../common/temp/node_modules/.pnpm/react@17.0.2/node_modules/react/cjs/react.production.min.js
+var require_react_production_min = __commonJS({
+  \\"../../../../common/temp/node_modules/.pnpm/react@17.0.2/node_modules/react/cjs/react.production.min.js\\"(exports) {
+    \\"use strict\\";
+    init_define_import_meta_env();
+    var l = require_object_assign();
+    var n = 60103;
+    var p = 60106;
+    exports.Fragment = 60107;
+    exports.StrictMode = 60108;
+    exports.Profiler = 60114;
+    var q = 60109;
+    var r = 60110;
+    var t = 60112;
+    exports.Suspense = 60113;
+    var u = 60115;
+    var v = 60116;
+    if (typeof Symbol === \\"function\\" && Symbol.for) {
+      w = Symbol.for;
+      n = w(\\"react.element\\");
+      p = w(\\"react.portal\\");
+      exports.Fragment = w(\\"react.fragment\\");
+      exports.StrictMode = w(\\"react.strict_mode\\");
+      exports.Profiler = w(\\"react.profiler\\");
+      q = w(\\"react.provider\\");
+      r = w(\\"react.context\\");
+      t = w(\\"react.forward_ref\\");
+      exports.Suspense = w(\\"react.suspense\\");
+      u = w(\\"react.memo\\");
+      v = w(\\"react.lazy\\");
+    }
+    var w;
+    var x = typeof Symbol === \\"function\\" && Symbol.iterator;
+    function y(a) {
+      if (a === null || typeof a !== \\"object\\")
+        return null;
+      a = x && a[x] || a[\\"@@iterator\\"];
+      return typeof a === \\"function\\" ? a : null;
+    }
+    function z(a) {
+      for (var b = \\"https://reactjs.org/docs/error-decoder.html?invariant=\\" + a, c = 1; c < arguments.length; c++)
+        b += \\"&args[]=\\" + encodeURIComponent(arguments[c]);
+      return \\"Minified React error #\\" + a + \\"; visit \\" + b + \\" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\\";
+    }
+    var A = { isMounted: function() {
+      return false;
+    }, enqueueForceUpdate: function() {
+    }, enqueueReplaceState: function() {
+    }, enqueueSetState: function() {
+    } };
+    var B = {};
+    function C(a, b, c) {
+      this.props = a;
+      this.context = b;
+      this.refs = B;
+      this.updater = c || A;
+    }
+    C.prototype.isReactComponent = {};
+    C.prototype.setState = function(a, b) {
+      if (typeof a !== \\"object\\" && typeof a !== \\"function\\" && a != null)
+        throw Error(z(85));
+      this.updater.enqueueSetState(this, a, b, \\"setState\\");
+    };
+    C.prototype.forceUpdate = function(a) {
+      this.updater.enqueueForceUpdate(this, a, \\"forceUpdate\\");
+    };
+    function D() {
+    }
+    D.prototype = C.prototype;
+    function E(a, b, c) {
+      this.props = a;
+      this.context = b;
+      this.refs = B;
+      this.updater = c || A;
+    }
+    var F = E.prototype = new D();
+    F.constructor = E;
+    l(F, C.prototype);
+    F.isPureReactComponent = true;
+    var G = { current: null };
+    var H = Object.prototype.hasOwnProperty;
+    var I = { key: true, ref: true, __self: true, __source: true };
+    function J(a, b, c) {
+      var e, d = {}, k = null, h = null;
+      if (b != null)
+        for (e in b.ref !== void 0 && (h = b.ref), b.key !== void 0 && (k = \\"\\" + b.key), b)
+          H.call(b, e) && !I.hasOwnProperty(e) && (d[e] = b[e]);
+      var g = arguments.length - 2;
+      if (g === 1)
+        d.children = c;
+      else if (1 < g) {
+        for (var f = Array(g), m = 0; m < g; m++)
+          f[m] = arguments[m + 2];
+        d.children = f;
+      }
+      if (a && a.defaultProps)
+        for (e in g = a.defaultProps, g)
+          d[e] === void 0 && (d[e] = g[e]);
+      return { $$typeof: n, type: a, key: k, ref: h, props: d, _owner: G.current };
+    }
+    function K(a, b) {
+      return { $$typeof: n, type: a.type, key: b, ref: a.ref, props: a.props, _owner: a._owner };
+    }
+    function L(a) {
+      return typeof a === \\"object\\" && a !== null && a.$$typeof === n;
+    }
+    function escape(a) {
+      var b = { \\"=\\": \\"=0\\", \\":\\": \\"=2\\" };
+      return \\"$\\" + a.replace(/[=:]/g, function(a2) {
+        return b[a2];
+      });
+    }
+    var M = /\\\\/+/g;
+    function N(a, b) {
+      return typeof a === \\"object\\" && a !== null && a.key != null ? escape(\\"\\" + a.key) : b.toString(36);
+    }
+    function O(a, b, c, e, d) {
+      var k = typeof a;
+      if (k === \\"undefined\\" || k === \\"boolean\\")
+        a = null;
+      var h = false;
+      if (a === null)
+        h = true;
+      else
+        switch (k) {
+          case \\"string\\":
+          case \\"number\\":
+            h = true;
+            break;
+          case \\"object\\":
+            switch (a.$$typeof) {
+              case n:
+              case p:
+                h = true;
+            }
+        }
+      if (h)
+        return h = a, d = d(h), a = e === \\"\\" ? \\".\\" + N(h, 0) : e, Array.isArray(d) ? (c = \\"\\", a != null && (c = a.replace(M, \\"$&/\\") + \\"/\\"), O(d, b, c, \\"\\", function(a2) {
+          return a2;
+        })) : d != null && (L(d) && (d = K(d, c + (!d.key || h && h.key === d.key ? \\"\\" : (\\"\\" + d.key).replace(M, \\"$&/\\") + \\"/\\") + a)), b.push(d)), 1;
+      h = 0;
+      e = e === \\"\\" ? \\".\\" : e + \\":\\";
+      if (Array.isArray(a))
+        for (var g = 0; g < a.length; g++) {
+          k = a[g];
+          var f = e + N(k, g);
+          h += O(k, b, c, f, d);
+        }
+      else if (f = y(a), typeof f === \\"function\\")
+        for (a = f.call(a), g = 0; !(k = a.next()).done; )
+          k = k.value, f = e + N(k, g++), h += O(k, b, c, f, d);
+      else if (k === \\"object\\")
+        throw b = \\"\\" + a, Error(z(31, b === \\"[object Object]\\" ? \\"object with keys {\\" + Object.keys(a).join(\\", \\") + \\"}\\" : b));
+      return h;
+    }
+    function P(a, b, c) {
+      if (a == null)
+        return a;
+      var e = [], d = 0;
+      O(a, e, \\"\\", \\"\\", function(a2) {
+        return b.call(c, a2, d++);
+      });
+      return e;
+    }
+    function Q(a) {
+      if (a._status === -1) {
+        var b = a._result;
+        b = b();
+        a._status = 0;
+        a._result = b;
+        b.then(function(b2) {
+          a._status === 0 && (b2 = b2.default, a._status = 1, a._result = b2);
+        }, function(b2) {
+          a._status === 0 && (a._status = 2, a._result = b2);
+        });
+      }
+      if (a._status === 1)
+        return a._result;
+      throw a._result;
+    }
+    var R = { current: null };
+    function S() {
+      var a = R.current;
+      if (a === null)
+        throw Error(z(321));
+      return a;
+    }
+    var T = { ReactCurrentDispatcher: R, ReactCurrentBatchConfig: { transition: 0 }, ReactCurrentOwner: G, IsSomeRendererActing: { current: false }, assign: l };
+    exports.Children = { map: P, forEach: function(a, b, c) {
+      P(a, function() {
+        b.apply(this, arguments);
+      }, c);
+    }, count: function(a) {
+      var b = 0;
+      P(a, function() {
+        b++;
+      });
+      return b;
+    }, toArray: function(a) {
+      return P(a, function(a2) {
+        return a2;
+      }) || [];
+    }, only: function(a) {
+      if (!L(a))
+        throw Error(z(143));
+      return a;
+    } };
+    exports.Component = C;
+    exports.PureComponent = E;
+    exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = T;
+    exports.cloneElement = function(a, b, c) {
+      if (a === null || a === void 0)
+        throw Error(z(267, a));
+      var e = l({}, a.props), d = a.key, k = a.ref, h = a._owner;
+      if (b != null) {
+        b.ref !== void 0 && (k = b.ref, h = G.current);
+        b.key !== void 0 && (d = \\"\\" + b.key);
+        if (a.type && a.type.defaultProps)
+          var g = a.type.defaultProps;
+        for (f in b)
+          H.call(b, f) && !I.hasOwnProperty(f) && (e[f] = b[f] === void 0 && g !== void 0 ? g[f] : b[f]);
+      }
+      var f = arguments.length - 2;
+      if (f === 1)
+        e.children = c;
+      else if (1 < f) {
+        g = Array(f);
+        for (var m = 0; m < f; m++)
+          g[m] = arguments[m + 2];
+        e.children = g;
+      }
+      return {
+        $$typeof: n,
+        type: a.type,
+        key: d,
+        ref: k,
+        props: e,
+        _owner: h
+      };
+    };
+    exports.createContext = function(a, b) {
+      b === void 0 && (b = null);
+      a = { $$typeof: r, _calculateChangedBits: b, _currentValue: a, _currentValue2: a, _threadCount: 0, Provider: null, Consumer: null };
+      a.Provider = { $$typeof: q, _context: a };
+      return a.Consumer = a;
+    };
+    exports.createElement = J;
+    exports.createFactory = function(a) {
+      var b = J.bind(null, a);
+      b.type = a;
+      return b;
+    };
+    exports.createRef = function() {
+      return { current: null };
+    };
+    exports.forwardRef = function(a) {
+      return { $$typeof: t, render: a };
+    };
+    exports.isValidElement = L;
+    exports.lazy = function(a) {
+      return { $$typeof: v, _payload: { _status: -1, _result: a }, _init: Q };
+    };
+    exports.memo = function(a, b) {
+      return { $$typeof: u, type: a, compare: b === void 0 ? null : b };
+    };
+    exports.useCallback = function(a, b) {
+      return S().useCallback(a, b);
+    };
+    exports.useContext = function(a, b) {
+      return S().useContext(a, b);
+    };
+    exports.useDebugValue = function() {
+    };
+    exports.useEffect = function(a, b) {
+      return S().useEffect(a, b);
+    };
+    exports.useImperativeHandle = function(a, b, c) {
+      return S().useImperativeHandle(a, b, c);
+    };
+    exports.useLayoutEffect = function(a, b) {
+      return S().useLayoutEffect(a, b);
+    };
+    exports.useMemo = function(a, b) {
+      return S().useMemo(a, b);
+    };
+    exports.useReducer = function(a, b, c) {
+      return S().useReducer(a, b, c);
+    };
+    exports.useRef = function(a) {
+      return S().useRef(a);
+    };
+    exports.useState = function(a) {
+      return S().useState(a);
+    };
+    exports.version = \\"17.0.2\\";
+  }
+});
+
+// ../../../../common/temp/node_modules/.pnpm/react@17.0.2/node_modules/react/index.js
+var require_react = __commonJS({
+  \\"../../../../common/temp/node_modules/.pnpm/react@17.0.2/node_modules/react/index.js\\"(exports, module) {
+    \\"use strict\\";
+    init_define_import_meta_env();
+    if (true) {
+      module.exports = require_react_production_min();
+    } else {
+      module.exports = null;
+    }
+  }
+});
+
+// index.tsx
+init_define_import_meta_env();
+var import_react = __toESM(require_react());
+
+// svg/logo.svg
+init_define_import_meta_env();
+var React = __toESM(require_react());
+var SvgLogo = (props) => /* @__PURE__ */ React.createElement(\\"svg\\", __spreadValues({
+  xmlns: \\"http://www.w3.org/2000/svg\\",
+  viewBox: \\"0 0 841.9 595.3\\"
+}, props), /* @__PURE__ */ React.createElement(\\"g\\", {
+  fill: \\"#61DAFB\\"
+}, /* @__PURE__ */ React.createElement(\\"path\\", {
+  d: \\"M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z\\"
+}), /* @__PURE__ */ React.createElement(\\"circle\\", {
+  cx: 420.9,
+  cy: 296.5,
+  r: 45.7
+}), /* @__PURE__ */ React.createElement(\\"path\\", {
+  d: \\"M520.5 78.1z\\"
+})));
+var logo_default = \\"./logo.svg\\";
+
+// index.tsx
+var value = /* @__PURE__ */ import_react.default.createElement(SvgLogo, null);
+console.log(value);
+console.log(logo_default);
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+/** @license React v17.0.2
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+"
+`;

@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`resolve:condition exports basic:browser 1`] = `
+"// node_modules/lib1/src/index.mjs
+var value = \\"lib1 mjs\\";
+
+// entry1.ts
+console.log(value);
+"
+`;
+
+exports[`resolve:condition exports basic:browser 2`] = `
+"// node_modules/lib2/src/module.js
+var value = \\"lib2 module\\";
+
+// entry2.ts
+console.log(value);
+"
+`;
+
+exports[`resolve:condition exports basic:browser 3`] = `
+"var __getOwnPropNames = Object.getOwnPropertyNames;
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+
+// <define:import.meta.env>
+var init_define_import_meta_env = __esm({
+  \\"<define:import.meta.env>\\"() {
+  }
+});
+
+// node_modules/lib1/src/index.cjs
+var require_src = __commonJS({
+  \\"node_modules/lib1/src/index.cjs\\"(exports, module) {
+    init_define_import_meta_env();
+    module.exports.value = \\"lib1 cjs\\";
+  }
+});
+
+// entry3.ts
+init_define_import_meta_env();
+console.log(require_src().value);
+"
+`;
+
+exports[`resolve:condition exports basic:browser 4`] = `
+"// node_modules/lib3/src/browser.js
+var value = \\"browser\\";
+
+// entry4.ts
+console.log(\\"value:\\", value);
+"
+`;
+
+exports[`resolve:condition exports basic:node 1`] = `
+"// node_modules/lib1/src/index.mjs
+var value = \\"lib1 mjs\\";
+
+// entry1.ts
+console.log(value);
+"
+`;
+
+exports[`resolve:condition exports basic:node 2`] = `
+"// node_modules/lib2/src/module.js
+var value = \\"lib2 module\\";
+
+// entry2.ts
+console.log(value);
+"
+`;
+
+exports[`resolve:condition exports basic:node 3`] = `
+"var __getOwnPropNames = Object.getOwnPropertyNames;
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+
+// <define:import.meta.env>
+var init_define_import_meta_env = __esm({
+  \\"<define:import.meta.env>\\"() {
+  }
+});
+
+// node_modules/lib1/src/index.cjs
+var require_src = __commonJS({
+  \\"node_modules/lib1/src/index.cjs\\"(exports, module) {
+    init_define_import_meta_env();
+    module.exports.value = \\"lib1 cjs\\";
+  }
+});
+
+// entry3.ts
+init_define_import_meta_env();
+console.log(require_src().value);
+"
+`;
+
+exports[`resolve:condition exports basic:node 4`] = `
+"// node_modules/lib3/src/node.js
+var value = \\"node\\";
+
+// entry4.ts
+console.log(\\"value:\\", value);
+"
+`;

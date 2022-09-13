@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixture:es5 es5-output 1`] = `
+"var __async = function __async(__this, __arguments, generator) {
+  return new Promise(function (resolve, reject) {
+    var fulfilled = function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+
+    var rejected = function rejected(value) {
+      try {
+        step(generator[\\"throw\\"](value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+
+    var step = function step(x) {
+      return x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    };
+
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+}; // index.ts
+
+
+function mulAsync(a, b) {
+  return __async(this, null, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt(\\"return\\", new Promise(function (resolve, reject) {
+              resolve(a * b);
+            }));
+
+          case 1:
+          case \\"end\\":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+}
+
+mulAsync(1, 1);"
+`;

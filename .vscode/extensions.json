@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "folke.vscode-monorepo-workspace",
+    "bungcip.better-toml",
+    "hbenl.vscode-mocha-test-adapter",
+    "amour1688.ts-in-markdown"
+  ]
+}

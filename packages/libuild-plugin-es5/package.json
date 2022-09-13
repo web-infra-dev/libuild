@@ -1,0 +1,39 @@
+{
+  "name": "@modern-js/libuild-plugin-es5",
+  "version": "0.1.0",
+  "description": "libuild plugin for es5",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "esbuild --log-level=silent --bundle ./src/index.ts --platform=node --outfile=./dist/index.js --watch --sourcemap",
+    "build": "tsc && esbuild --log-level=silent --bundle ./src/index.ts --platform=node --outfile=./dist/index.js --sourcemap"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "4.4.4",
+    "esbuild": "0.14.28",
+    "@types/babel__core": "7.1.16",
+    "@babel/core": "7.15.8",
+    "@babel/helpers": "7.15.4",
+    "@babel/preset-env": "7.15.8",
+    "@babel/preset-react": "7.14.5",
+    "@babel/plugin-transform-runtime": "7.17.0",
+    "@babel/preset-typescript": "7.16.7",
+    "@modern-js/eslint-config": "workspace:*",
+    "@modern-js/libuild": "workspace:*",
+    "@modern-js/libuild-utils": "workspace:*",
+    "@modern-js/libuild-node-rig": "workspace:*",
+    "babel-plugin-polyfill-corejs3": "0.5.2",
+    "babel-plugin-polyfill-regenerator": "0.3.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.17.2",
+    "core-js": "3.21.1",
+    "regenerator-runtime": "0.13.9"
+  },
+  "files": [
+    "dist",
+    "!dist/*.map"
+  ]
+}

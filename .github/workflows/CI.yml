@@ -1,0 +1,49 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - LICENSE
+      - '**/*.gitignore'
+      - .editorconfig
+jobs:
+  setup-public:
+    name: CI
+    strategy:
+      fail-fast: false
+    runs-on: self-hosted
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Clone target repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Set node version to 12
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          check-latest: true
+          architecture: x64
+      - name: Install rush toolchain
+        run: sh ./scripts/ci.sh init
+      - name: Install dependencies
+        run: sh ./scripts/ci.sh install
+      - name: Build
+        run: sh ./scripts/ci.sh build
+      - name: Coverage
+        run: sh ./scripts/ci.sh coverage
+      - name: codecov
+        uses: codecov/codecov-action@v1.3.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          directory: coverage
+          verbose: true

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixture:format:umd format umd 1`] = `
+"(function (global, factory) {
+  if (typeof define === \\"function\\" && define.amd) {
+    define([\\"exports\\"], factory);
+  } else if (typeof exports !== \\"undefined\\") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.main = mod.exports;
+  }
+})(typeof globalThis !== \\"undefined\\" ? globalThis : typeof self !== \\"undefined\\" ? self : this, function (_exports) {
+  \\"use strict\\";
+
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.a = a;
+
+  // index.ts
+  function a() {
+    console.log(1);
+  }
+});"
+`;

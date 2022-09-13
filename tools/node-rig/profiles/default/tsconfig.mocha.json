@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "types": ["mocha", "node"],
+    "typeRoots": ["node_modules"],
+    "lib": ["DOM"],
+    "jsx": "react",
+    "baseUrl": "."
+  }
+}

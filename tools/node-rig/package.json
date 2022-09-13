@@ -1,0 +1,20 @@
+{
+  "name": "@modern-js/libuild-node-rig",
+  "version": "0.1.0",
+  "description": "A rig package for Node.js projects that build using libuild",
+  "main": "./eslint/index.js",
+  "files": [
+    "./eslint/preset",
+    "./eslint/index.js"
+  ],
+  "scripts": {
+    "build": "",
+    "_phase:build": ""
+  },
+  "devDependencies": {
+    "@types/mocha": "9.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

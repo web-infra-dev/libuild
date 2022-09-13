@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixture:unbundle unbundle 1`] = `
+"import { a } from \\"./a\\";
+console.log(a());
+"
+`;
+
+exports[`fixture:unbundle unbundle 2`] = `
+"const a = () => {
+  return 1;
+};
+export {
+  a
+};
+"
+`;

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rig-package/rig.schema.json",
+
+  /**
+   * (Required) The name of the rig package to inherit from.
+   * It should be an NPM package name with the "-rig" suffix.
+   */
+  "rigPackageName": "@modern-js/libuild-node-rig"
+}

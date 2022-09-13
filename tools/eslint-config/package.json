@@ -1,0 +1,31 @@
+{
+  "name": "@modern-js/eslint-config",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "scripts": {
+    "build": "echo success"
+  },
+  "files": [
+    "./presets",
+    "./index.js"
+  ],
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "4.9.1",
+    "@typescript-eslint/parser": "4.9.1",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-import-resolver-typescript": "2.3.0",
+    "eslint-plugin-financial": "0.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "@rushstack/eslint-patch": "1.0.9",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "prettier": "2.4.1",
+    "eslint": "7.32.0"
+  },
+  "devDependencies": {
+    "typescript": "4.4.4",
+    "@modern-js/libuild-node-rig": "workspace:*"
+  }
+}

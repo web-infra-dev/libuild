@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["ES2019"],
+    "strict": true,
+    "composite": true,
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "target": "es2015",
+    "module": "CommonJS",
+    "typeRoots": ["node_modules/@types", "types"],
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "**/*/tests"]
+}

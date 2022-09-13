@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixture:format:function format function 1`] = `
+"// index.ts
+function a() {
+  console.log(1);
+}
+export {
+  a
+};
+"
+`;

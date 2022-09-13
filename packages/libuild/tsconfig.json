@@ -1,0 +1,11 @@
+{
+  "extends": "@modern-js/libuild-node-rig/profiles/default/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "lib",
+    "rootDir": ".",
+    "module": "CommonJS",
+    "types": ["mocha", "less"]
+  },
+  "include": ["src", "test"]
+}

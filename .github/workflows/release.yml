@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release Version(canary, pre, latest)'
+        required: true
+        default: 'canary'
+      branch:
+        description: 'Release Branch(confirm release branch)'
+        required: true
+        default: 'main'
+jobs:
+  setup:
+    strategy:
+      fail-fast: false
+    name: Test
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Clone target repo
+        uses: actions/checkout@v2
+      - name: Set node version to 12
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          check-latest: true
+          architecture: x64
+      - name: Install rush toolchain
+        run: sh ./scripts/ci.sh init
+      - name: Install dependencies
+        run: sh ./scripts/ci.sh install
+      - name: Build
+        run: sh ./scripts/ci.sh build
+      - name: Release
+        run: |
+          git config --global user.email "github@users.noreply.github.com"
+          git config --global user.name "libuild"
+
+          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+          npm run release:alpha
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
