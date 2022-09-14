@@ -16,8 +16,8 @@
     "bump:major": "rush version --bump --override-bump major",
     "bump:minor": "rush version --bump --override-bump minor",
     "bump:patch": "rush version --bump --override-bump patch",
-    "release:alpha": "rush publish --set-access-level=public -b main --include-all -p -t alpha",
-    "release:latest": "rush publish -b main --include-all -p"
+    "release:alpha": "rush publish --set-access-level=publi --include-all -p -t alpha",
+    "release:latest": "rush publish --set-access-level=public --include-all -p"
   },
   "repository": {
     "type": "git",

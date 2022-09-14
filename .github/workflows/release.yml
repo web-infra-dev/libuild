@@ -4,18 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release Version(canary, pre, latest)'
+        description: 'Release Version(alpha, latest)'
         required: true
-        default: 'canary'
-      branch:
-        description: 'Release Branch(confirm release branch)'
-        required: true
-        default: 'main'
+        default: 'latest'
+        options:
+        - alpha
+        - latest
 jobs:
   setup:
     strategy:
       fail-fast: false
-    name: Test
+    name: Publish
     runs-on: [ubuntu-latest]
     steps:
       - name: Cancel Previous Runs
@@ -36,12 +35,17 @@ jobs:
         run: sh ./scripts/ci.sh install
       - name: Build
         run: sh ./scripts/ci.sh build
-      - name: Release
+      - name: Release alpha
+        if: ${{ inputs.version == 'alpha' }}
         run: |
-          git config --global user.email "github@users.noreply.github.com"
-          git config --global user.name "libuild"
-
           echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
           npm run release:alpha
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Release latest
+        if: ${{ inputs.version == 'latest' }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+          npm run release:latest
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
