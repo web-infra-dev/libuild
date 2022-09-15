@@ -1,7 +1,12 @@
 {
   "name": "@modern-js/libuild-plugin-node-polyfill",
   "version": "0.1.0",
-  "description": "libuild plugin for node polyfill",
+  "description": "A plugin for libuild includes node polyfill",
+  "keywords": [
+    "libuild",
+    "node",
+    "polyfill"
+  ],
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
