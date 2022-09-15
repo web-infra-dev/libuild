@@ -1,7 +1,15 @@
 {
   "name": "@modern-js/libuild",
   "version": "0.1.0",
-  "description": "A tool for building modern JavaScript library",
+  "description": "A tool for building modern JavaScript libraries",
+  "keywords": [
+    "modern",
+    "modern.js",
+    "javascript",
+    "library",
+    "build",
+    "tool"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "source": "src/index.ts",

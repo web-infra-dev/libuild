@@ -1,7 +1,11 @@
 {
   "name": "@modern-js/libuild-plugin-svgr",
   "version": "0.1.0",
-  "description": "libuild plugin for svgr",
+  "description": "A plugin for libuild to transform your svg to react component",
+  "keywords": [
+    "libuild",
+    "svgr"
+  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/index.d.ts",

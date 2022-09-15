@@ -1,7 +1,11 @@
 {
   "name": "@modern-js/libuild-plugin-es5",
   "version": "0.1.0",
-  "description": "libuild plugin for es5",
+  "description": "A plugin for libuild to transform your code to es5",
+  "keywords": [
+    "libuild",
+    "es5"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {

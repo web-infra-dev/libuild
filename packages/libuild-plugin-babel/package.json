@@ -1,7 +1,11 @@
 {
   "name": "@modern-js/libuild-plugin-babel",
   "version": "0.1.0",
-  "description": "libuild plugin for babel",
+  "description": "A plugin for libuild to transform your code with babel",
+  "keywords": [
+    "libuild",
+    "babel"
+  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/index.d.ts",
