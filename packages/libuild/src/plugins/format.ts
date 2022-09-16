@@ -24,7 +24,7 @@ export const formatPlugin = (): LibuildPlugin => {
             };
           }
 
-          if (format === 'cjs') {
+          if (format === 'cjs' || format === 'iife') {
             const result = await transform(code, {
               sourcemap: Boolean(compiler.config.sourceMap),
               target: compiler.config.target,

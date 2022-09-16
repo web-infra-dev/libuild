@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix iife format support",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
