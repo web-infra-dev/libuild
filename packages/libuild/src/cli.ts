@@ -22,7 +22,7 @@ export async function run(args = process.argv.slice(2)) {
   }
 }
 
-export class BuildCommand extends Clipanion.Command {
+class BuildCommand extends Clipanion.Command {
   root = Clipanion.Option.String('--root', { required: false });
 
   config = Clipanion.Option.String('-c,--config', { required: false });

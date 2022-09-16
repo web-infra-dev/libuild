@@ -1,7 +1,6 @@
 import { expectType } from 'tsd';
 
 import {
-  BuildCommand,
   defineConfig as rawDefineConfig,
   formatError as rawFormatError,
   isLibuildErrorInstance as rawIsLibuildErrorInstance,
@@ -12,9 +11,6 @@ import {
   Libuilder,
   Bundle,
 } from '../../dist';
-
-declare const buildCommand: BuildCommand;
-expectType<BuildCommand>(buildCommand);
 
 declare const defineConfig: typeof rawDefineConfig;
 expectType<typeof rawDefineConfig>(defineConfig);

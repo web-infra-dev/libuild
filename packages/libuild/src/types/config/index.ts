@@ -1,5 +1,5 @@
 import type { ImportKind, Loader } from 'esbuild';
-import { MinifyOptions as TerserMinifyOptions } from 'terser';
+import type { MinifyOptions as TerserMinifyOptions } from 'terser';
 import type { Resolve, ResolveNormalized } from './resolve';
 import type { LogLevel, ILogger } from '../logger';
 import type { LibuildPlugin } from '../builder';
