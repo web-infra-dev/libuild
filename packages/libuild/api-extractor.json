@@ -5,7 +5,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
   "extends": "@modern-js/libuild-node-rig/profiles/default/api-extractor.json",
   "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
-  "bundledPackages": ["tapable", "utility-types", "@ampproject/remappping", "sass", "esbuild", "source-map", "terser"],
+  "bundledPackages": ["tapable", "utility-types", "@ampproject/remappping", "sass", "esbuild", "source-map"],
   "apiReport": {
     "enabled": true,
     "reportFolder": "<projectFolder>/temp/"
