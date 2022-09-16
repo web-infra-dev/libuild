@@ -37,6 +37,8 @@ jobs:
         run: sh ./scripts/ci.sh init
       - name: Install dependencies
         run: sh ./scripts/ci.sh install
+      - name: Check
+        run: sh ./scripts/ci.sh check
       - name: Build
         run: sh ./scripts/ci.sh build
       - name: Coverage
