@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "upgrade esbuild to 0.15.1 to support jsx automatic",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

@@ -123,6 +123,7 @@ export class EsbuildBuilder implements IBuilderBase {
       entryNames,
       minify,
       chunkNames,
+      jsx,
     } = compiler.config;
 
     const esbuildConfig: BuildOptions = {
@@ -150,6 +151,7 @@ export class EsbuildBuilder implements IBuilderBase {
       plugins: [adapterPlugin(this.compiler)],
       minifyIdentifiers: !!minify,
       inject,
+      jsx,
     };
     try {
       this.instance = await esbuild(esbuildConfig);

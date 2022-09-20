@@ -20,6 +20,7 @@ Object {
   "input": Object {
     "main": "configFile/argv/index.ts",
   },
+  "jsx": "automatic",
   "loader": Object {},
   "logLevel": "info",
   "logger": Logger {
@@ -76,6 +77,7 @@ Object {
   "input": Object {
     "main": "configFile/default/index.ts",
   },
+  "jsx": "automatic",
   "loader": Object {},
   "logLevel": "info",
   "logger": Logger {
@@ -134,6 +136,7 @@ Object {
     "b": "merge/input/b.js",
     "main": "merge/input/index.ts",
   },
+  "jsx": "automatic",
   "loader": Object {},
   "logLevel": "info",
   "logger": Logger {
@@ -190,6 +193,7 @@ Object {
   "input": Object {
     "main": "minify-terser/custom/index.ts",
   },
+  "jsx": "automatic",
   "loader": Object {},
   "logLevel": "info",
   "logger": Logger {
@@ -246,6 +250,7 @@ Object {
   "input": Object {
     "main": "minify-terser/default/index.ts",
   },
+  "jsx": "automatic",
   "loader": Object {},
   "logLevel": "info",
   "logger": Logger {

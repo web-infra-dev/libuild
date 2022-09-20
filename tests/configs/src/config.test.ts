@@ -35,7 +35,11 @@ function removeAbsolutePath(config: BuildConfig) {
   if (config.configFile) {
     config.configFile = remove(config.configFile);
   }
-  config.input = mapValue(config.input, (value) => remove(value));
+  if (Array.isArray(config.input)) {
+    config.input = config.input.map(value => remove(value));
+  } else {
+    config.input = mapValue(config.input, (value) => remove(value));
+  }
 }
 categories.forEach(({ name, tests }) => {
   describe(`config:${name}:snapshot`, () => {

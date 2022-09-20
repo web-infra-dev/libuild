@@ -78,8 +78,10 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const chunkNames = config.chunkNames ?? entryNames;
   const format = config.format ?? 'esm';
   const clean = config.clean ?? false;
+  const jsx = config.jsx ?? 'automatic';
 
   return {
+    jsx,
     chunkNames,
     inject,
     loader,

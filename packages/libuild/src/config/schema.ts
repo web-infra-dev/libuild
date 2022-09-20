@@ -181,6 +181,9 @@ const UserConfig = {
     enum: ['node', 'browser'],
   },
   asset,
+  jsx: {
+    enum: ['automatic', 'preserve', 'transform'],
+  },
 };
 
 const CLIConfig = {

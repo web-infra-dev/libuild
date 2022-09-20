@@ -150,6 +150,11 @@ export interface UserConfig {
    * @see https://esbuild.github.io/api/#inject
    */
   inject?: string[];
+  /**
+   * @see https://esbuild.github.io/api/#jsx
+   * @default 'automatic'
+   */
+  jsx?: 'automatic' | 'preserve' | 'transform';
 }
 
 export interface CLIConfig extends UserConfig {
