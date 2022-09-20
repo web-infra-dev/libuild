@@ -6,6 +6,7 @@
     "libuild",
     "es5"
   ],
+  "repository": "modern-js-dev/libuild",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {

@@ -10,6 +10,7 @@
     "build",
     "tool"
   ],
+  "repository": "modern-js-dev/libuild",
   "license": "MIT",
   "main": "dist/index.js",
   "source": "src/index.ts",
