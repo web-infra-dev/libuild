@@ -1,0 +1,23 @@
+{
+  "name": "@modern-js/libuild",
+  "entries": [
+    {
+      "version": "0.1.1",
+      "tag": "@modern-js/libuild_v0.1.1",
+      "date": "Tue, 20 Sep 2022 08:24:02 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "upgrade tsconfig-paths-webpack-plugin to 4.0.0,upgrade terser to 5.15.0 and remove unuse export"
+          },
+          {
+            "comment": "fix iife format support"
+          },
+          {
+            "comment": "upgrade esbuild to 0.15.1 to support jsx automatic"
+          }
+        ]
+      }
+    }
+  ]
+}

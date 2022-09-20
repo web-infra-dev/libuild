@@ -1,0 +1,17 @@
+{
+  "name": "@modern-js/libuild-plugin-node-polyfill",
+  "entries": [
+    {
+      "version": "0.1.1",
+      "tag": "@modern-js/libuild-plugin-node-polyfill_v0.1.1",
+      "date": "Tue, 20 Sep 2022 08:24:02 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@modern-js/libuild\" to `0.1.1`"
+          }
+        ]
+      }
+    }
+  ]
+}
