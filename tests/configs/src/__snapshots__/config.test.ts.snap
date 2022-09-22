@@ -15,6 +15,7 @@ Object {
   "entryNames": "[name]",
   "external": Array [],
   "format": "esm",
+  "getModuleId": undefined,
   "globals": Object {},
   "inject": Array [],
   "input": Object {
@@ -57,63 +58,6 @@ Object {
 }
 `;
 
-exports[`config:configFile:snapshot default 1`] = `
-Object {
-  "asset": Object {},
-  "bundle": true,
-  "chunkNames": "[name]",
-  "clean": false,
-  "configFile": "configFile/default/libuild.config.ts",
-  "css_resolve": [Function],
-  "define": Object {
-    "import.meta.env": "{\\"NODE_ENV\\":\\"\\\\\\"production\\\\\\"\\",\\"MODE\\":\\"\\\\\\"production\\\\\\"\\"}",
-    "process.env.NODE_ENV": "\\"production\\"",
-  },
-  "entryNames": "[name]",
-  "external": Array [],
-  "format": "esm",
-  "globals": Object {},
-  "inject": Array [],
-  "input": Object {
-    "main": "configFile/default/index.ts",
-  },
-  "jsx": "automatic",
-  "loader": Object {},
-  "logLevel": "info",
-  "logger": Logger {
-    "opts": Object {
-      "level": "info",
-    },
-    "times": Map {},
-    "timesLog": Map {},
-  },
-  "metafile": false,
-  "minify": false,
-  "node_resolve": [Function],
-  "outdir": "configFile/default/default",
-  "platform": "node",
-  "plugins": Array [],
-  "resolve": Object {
-    "alias": Object {},
-    "mainFields": Array [
-      "module",
-      "browser",
-      "main",
-    ],
-    "mainFiles": Array [
-      "index",
-    ],
-    "preferRelative": false,
-  },
-  "root": "configFile/default",
-  "sourceMap": false,
-  "splitting": false,
-  "style": Object {},
-  "target": "es6",
-  "watch": false,
-}
-`;
-
 exports[`config:merge:snapshot input 1`] = `
 Object {
   "asset": Object {},
@@ -129,6 +73,7 @@ Object {
   "entryNames": "config-filename",
   "external": Array [],
   "format": "esm",
+  "getModuleId": undefined,
   "globals": Object {},
   "inject": Array [],
   "input": Object {
@@ -188,6 +133,7 @@ Object {
   "entryNames": "[name]",
   "external": Array [],
   "format": "esm",
+  "getModuleId": undefined,
   "globals": Object {},
   "inject": Array [],
   "input": Object {
@@ -245,6 +191,7 @@ Object {
   "entryNames": "[name]",
   "external": Array [],
   "format": "esm",
+  "getModuleId": undefined,
   "globals": Object {},
   "inject": Array [],
   "input": Object {

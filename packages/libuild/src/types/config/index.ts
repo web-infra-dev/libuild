@@ -155,6 +155,12 @@ export interface UserConfig {
    * @default 'automatic'
    */
   jsx?: 'automatic' | 'preserve' | 'transform';
+  /**
+   * Specify a custom callback to generate a module id with. Called as `getModuleId(moduleName)`.
+   * If falsy value is returned then the generated module id is used
+   * @only used when format is 'umd'
+   */
+  getModuleId?: (moduleName: string) => string | undefined;
 }
 
 export interface CLIConfig extends UserConfig {
@@ -168,7 +174,8 @@ export interface CLIConfig extends UserConfig {
   configFile?: string;
 }
 
-export interface BuildConfig extends Required<CLIConfig> {
+export interface BuildConfig extends Required<Omit<CLIConfig, 'getModuleId'>> {
+  getModuleId?: (moduleName: string) => string | undefined;
   logger: ILogger;
   resolve: ResolveNormalized;
   css_resolve: (id: string, dir: string) => string;

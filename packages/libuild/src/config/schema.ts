@@ -184,6 +184,9 @@ const UserConfig = {
   jsx: {
     enum: ['automatic', 'preserve', 'transform'],
   },
+  getModuleId: {
+    instanceof: 'Function',
+  },
 };
 
 const CLIConfig = {

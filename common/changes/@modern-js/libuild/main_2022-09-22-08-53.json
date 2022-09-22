@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "support getModuleId for umd",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
