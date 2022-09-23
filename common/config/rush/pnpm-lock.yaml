@@ -75,7 +75,7 @@ importers:
       chokidar: 3.5.2
       chrome-trace-event: 1.0.3
       clean-css: 5.2.2
-      clipanion: 3.2.0-rc.3
+      commander: 9.4.0
       convert-source-map: 1.8.0
       deep-eql: 4.1.0
       dotenv: 11.0.0
@@ -160,7 +160,7 @@ importers:
       chokidar: 3.5.2
       chrome-trace-event: 1.0.3
       clean-css: 5.2.2
-      clipanion: 3.2.0-rc.3
+      commander: 9.4.0
       convert-source-map: 1.8.0
       deep-eql: 4.1.0
       dotenv: 11.0.0
@@ -4862,12 +4862,6 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /clipanion/3.2.0-rc.3:
-    resolution: {integrity: sha512-Y9YUm3U3n6X6PzUBeTDVQAJMRXAwnjmmR3j+prS30xkpzs9uM2gOCSr16XD68u4yvstS4j2K/l+vTaXMJHr1LA==}
-    dependencies:
-      typanion: 3.7.1
-    dev: true
-
   /cliui/7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
     dependencies:
@@ -4929,6 +4923,11 @@ packages:
   /commander/7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
+
+  /commander/9.4.0:
+    resolution: {integrity: sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==}
+    engines: {node: ^12.20.0 || >=14}
+    dev: true
 
   /commondir/1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}

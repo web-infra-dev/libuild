@@ -102,7 +102,7 @@ export interface UserConfig {
   /**
    * Compile target
    * @see https://esbuild.github.io/api/#target
-   * @default 'es2015''
+   * @default 'es2015'
    */
   target?: string;
   /**
@@ -116,6 +116,7 @@ export interface UserConfig {
    */
   globals?: Globals;
   /**
+   * Exclude it from your build
    * Default Excluded your dependencies and peerDependencies
    */
   external?: External;

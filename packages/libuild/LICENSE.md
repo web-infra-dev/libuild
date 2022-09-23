@@ -60,9 +60,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - chalk -- MIT
 - chokidar -- MIT
 - clean-css -- MIT
-- clipanion -- MIT
 - color-convert -- MIT
 - color-name -- MIT
+- commander -- MIT
 - concat-map -- MIT
 - convert-source-map -- MIT
 - cssesc -- MIT
@@ -138,7 +138,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - to-regex-range -- MIT
 - tsconfig-paths -- MIT
 - tsconfig-paths-webpack-plugin -- MIT
-- typanion -- MIT
 - type-detect -- MIT
 - universalify -- MIT
 - uri-js -- BSD-2-Clause

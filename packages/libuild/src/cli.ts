@@ -1,49 +1,57 @@
-import * as Clipanion from 'clipanion';
 import chalk from 'chalk';
 import { catchUnhandledReject } from '@modern-js/libuild-utils';
+import { Command, Option, ParseOptions } from 'commander';
 import { Libuilder } from './core';
+import { CLIConfig } from './types';
 
-export async function run(args = process.argv.slice(2)) {
-  const cli = new Clipanion.Cli({
-    binaryLabel: 'libuild scripts',
-    binaryName: 'script',
-    binaryVersion: require('../package.json').version,
-  });
-  cli.error = (error) => error.toString();
-  cli.register(BuildCommand);
-  cli.register(Clipanion.Builtins.VersionCommand);
-
-  const exitCode = await catchUnhandledReject(cli.run(args), (err) => {
+export async function run(userArgs?: string[]) {
+  const program = new Command();
+  const { version } = require('../package.json');
+  const args = userArgs ?? process.argv;
+  const argOptions: ParseOptions = userArgs ? { from: 'user' } : { from: 'node' };
+  program
+    .name('libuild')
+    .version(version)
+    .argument('[input...]', 'Entry points.')
+    .option('-w, --watch', 'When file changed builder will rebuild under watch mode')
+    .option('--no-bundle', 'Only transform code')
+    .option('--splitting', 'Code splitting')
+    .option('--clean', 'Clean output directory before build')
+    .option('--metafile', 'Emit esbuild metafile')
+    .option('--config-file <configFile>', 'The path of config file, default by `libuild.config.ts`')
+    .option('--root <root>', 'Project root dir')
+    .option('--outdir <outdir>', 'The directory for output')
+    .option('--entry-names <entryNames>', 'The file names of the output files')
+    .option('--chunk-names <chunkNames>', 'The file names of the chunks of shared code')
+    .option('--external <external...>', 'Exclude it from your build')
+    .addOption(
+      new Option('--log-level <logLevel>', 'The level of the console log').choices([
+        'silent',
+        'error',
+        'warning',
+        'info',
+        'debug',
+        'verbose',
+      ])
+    )
+    .addOption(new Option('--source-map [sourceMap]', 'The mode of sourcemap').choices(['inline', 'external']))
+    .addOption(new Option('--format <format>', 'Module format').choices(['iife', 'umd', 'cjs', 'esm']))
+    .addOption(new Option('--minify <minify>', 'Minify JS').choices(['esbuild', 'minify']))
+    .addOption(
+      new Option('--platform <platform>', 'Generate code intended for the browser or node').choices(['node', 'browser'])
+    )
+    .addOption(new Option('--jsx <jsx>', '').choices(['automatic', 'preserve', 'transform']))
+    .action(async (input: CLIConfig['input'], options: CLIConfig) => {
+      const start = Date.now();
+      await Libuilder.run({
+        ...options,
+        input,
+      });
+      const end = Date.now() - start;
+      console.info(chalk.green(`Build completed in ${end}ms`));
+    });
+  await catchUnhandledReject(program.parseAsync(args, argOptions), (err) => {
     console.log(err);
     process.exit(1);
   });
-  if (exitCode) {
-    process.exit(exitCode);
-  }
-}
-
-class BuildCommand extends Clipanion.Command {
-  root = Clipanion.Option.String('--root', { required: false });
-
-  config = Clipanion.Option.String('-c,--config', { required: false });
-
-  watch = Clipanion.Option.Boolean('-w,--watch', { required: false });
-
-  bundle = Clipanion.Option.Boolean('--bundle');
-
-  sourceMap = Clipanion.Option.Boolean('--sourcemap');
-
-  async execute() {
-    const start = Date.now();
-    const { root, watch, config, bundle, sourceMap } = this;
-    await Libuilder.run({
-      root,
-      configFile: config,
-      watch,
-      bundle,
-      sourceMap,
-    });
-    const end = Date.now() - start;
-    console.info(chalk.green(`Build completed in ${end}ms`));
-  }
 }
