@@ -43,10 +43,10 @@ export async function run(userArgs?: string[]) {
     .addOption(new Option('--jsx <jsx>', '').choices(['automatic', 'preserve', 'transform']))
     .action(async (input: CLIConfig['input'], options: CLIConfig) => {
       const start = Date.now();
-      await Libuilder.run({
-        ...options,
-        input,
-      });
+      if (input?.length) {
+        options.input = input;
+      }
+      await Libuilder.run(options);
       const end = Date.now() - start;
       console.info(chalk.green(`Build completed in ${end}ms`));
     });
