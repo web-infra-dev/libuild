@@ -2,6 +2,21 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.1.2",
+      "tag": "@modern-js/libuild_v0.1.2",
+      "date": "Mon, 26 Sep 2022 03:44:18 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "support getModuleId for umd"
+          },
+          {
+            "comment": "support more cli options"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.1",
       "tag": "@modern-js/libuild_v0.1.1",
       "date": "Tue, 20 Sep 2022 08:24:02 GMT",
