@@ -14,6 +14,7 @@ export async function run(userArgs?: string[]) {
     .version(version)
     .argument('[input...]', 'Entry points.')
     .option('-w, --watch', 'When file changed builder will rebuild under watch mode')
+    .option('--bundle', 'Bundle code')
     .option('--no-bundle', 'Only transform code')
     .option('--splitting', 'Code splitting')
     .option('--clean', 'Clean output directory before build')
@@ -46,6 +47,7 @@ export async function run(userArgs?: string[]) {
       if (input?.length) {
         options.input = input;
       }
+      console.log(options);
       await Libuilder.run(options);
       const end = Date.now() - start;
       console.info(chalk.green(`Build completed in ${end}ms`));
