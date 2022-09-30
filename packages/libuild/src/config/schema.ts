@@ -187,6 +187,9 @@ const UserConfig = {
   getModuleId: {
     instanceof: 'Function',
   },
+  esbuildOptions: {
+    instanceof: 'Function',
+  },
 };
 
 const CLIConfig = {

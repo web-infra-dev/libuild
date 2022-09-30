@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "add esbuildOptions",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

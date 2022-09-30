@@ -47,7 +47,6 @@ export async function run(userArgs?: string[]) {
       if (input?.length) {
         options.input = input;
       }
-      console.log(options);
       await Libuilder.run(options);
       const end = Date.now() - start;
       console.info(chalk.green(`Build completed in ${end}ms`));

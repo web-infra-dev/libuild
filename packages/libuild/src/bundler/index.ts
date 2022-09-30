@@ -124,6 +124,7 @@ export class EsbuildBuilder implements IBuilderBase {
       minify,
       chunkNames,
       jsx,
+      esbuildOptions,
     } = compiler.config;
 
     const esbuildConfig: BuildOptions = {
@@ -153,8 +154,10 @@ export class EsbuildBuilder implements IBuilderBase {
       inject,
       jsx,
     };
+
+    const buildOptions = esbuildOptions(esbuildConfig);
     try {
-      this.instance = await esbuild(esbuildConfig);
+      this.instance = await esbuild(buildOptions);
       return this.instance;
     } catch (error: any) {
       await this.report(error);

@@ -1,4 +1,4 @@
-import type { ImportKind, Loader } from 'esbuild';
+import type { ImportKind, Loader, BuildOptions } from 'esbuild';
 import type { MinifyOptions as TerserMinifyOptions } from 'terser';
 import type { Resolve, ResolveNormalized } from './resolve';
 import type { LogLevel, ILogger } from '../logger';
@@ -53,6 +53,11 @@ export interface UserConfig {
    * @default 'dist'
    */
   outdir?: string;
+  /**
+   * Options for esbuild, it may disable some of the functions of libuild
+   * @experimental
+   */
+  esbuildOptions?: (options: BuildOptions) => BuildOptions;
   /**
    * @see https://esbuild.github.io/api/#entry-names
    */
