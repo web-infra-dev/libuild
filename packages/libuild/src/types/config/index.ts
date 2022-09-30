@@ -32,7 +32,7 @@ type Platform = 'node' | 'browser';
 export type Asset = {
   name?: string | ((filePath: string) => string);
   /**
-   * For image, specify the limit size to inline
+   * Specify the limit size to inline
    * @default 0
    */
   limit?: number;

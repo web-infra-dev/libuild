@@ -5,7 +5,7 @@ describe('fixture:assets', () => {
     const bundler = await getLibuilderTest({
       root: __dirname,
       asset: {
-        limit: 1000 * 1024,
+        limit: 14 * 1024,
       },
     });
     await bundler.build();
