@@ -2,5 +2,11 @@
   "extends": "@modern-js/libuild-node-rig/profiles/default/tsconfig.base.json",
   "include": [
     "src",
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
 }

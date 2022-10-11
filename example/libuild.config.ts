@@ -1,17 +1,21 @@
 import { defineConfig } from '@modern-js/libuild';
 
-export default defineConfig({
-  input: {
-    index: './src/lib.ts',
+export default defineConfig([
+  // {
+  //   resolve: {
+  //     alias: {
+  //       '@': 'src',
+  //     },
+  //   },
+  //   clean: true,
+  //   bundle: false,
+  //   outdir: 'dist/bundleless',
+  //   sourceDir: 'src/bundleless',
+  // },
+  {
+    input: ['src/bundle/lib.ts'],
+    clean: true,
+    bundle: true,
+    outdir: 'dist/bundle',
   },
-  target: 'es2020',
-  style: {
-    less: {
-      prependData: `@base-color: #c6538c;
-            .a { color: @base-color }`,
-    },
-    sass: {},
-  },
-  metafile: true,
-  clean: true,
-});
+]);
