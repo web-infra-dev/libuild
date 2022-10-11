@@ -283,7 +283,7 @@ async function normalizeOutput(compiler: ILibuilder, result: BuildResult, entryP
     if (key.endsWith('.map')) {
       continue;
     }
-    const absPath = path.resolve(compiler.config.root, key);
+    const absPath = path.resolve(root, key);
     const item = result.outputFiles?.find((x) => x.path === absPath);
     const mapping = result.outputFiles?.find(
       (x) => x.path.endsWith('.map') && x.path.replace(/\.map$/, '') === absPath

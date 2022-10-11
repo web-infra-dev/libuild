@@ -32,6 +32,7 @@ function removeAbsolutePath(config: BuildConfig) {
   const remove = (nowPath: string) => path.relative(__dirname, nowPath);
   config.root = remove(config.root);
   config.outdir = remove(config.outdir);
+  config.sourceDir = remove(config.sourceDir);
   if (config.configFile) {
     config.configFile = remove(config.configFile);
   }

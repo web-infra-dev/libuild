@@ -30,6 +30,8 @@ type External = (string | RegExp)[];
 type Platform = 'node' | 'browser';
 
 export type Asset = {
+  outdir?: string;
+  rebase?: boolean;
   name?: string | ((filePath: string) => string);
   /**
    * Specify the limit size to inline
@@ -44,10 +46,19 @@ export interface UserConfig {
    */
   bundle?: boolean;
   /**
-   * Entry points.
+   * Input to the bundling algorithm.
+   *
+   * Only valid when bundle is 'true'
    * @default { index: './src/index.ts '}
    */
   input?: Input;
+  /**
+   * The directory for source.
+   *
+   * Only valid when bundle is 'false', it will transform all files in sourceDir
+   * @default 'src'
+   */
+  sourceDir?: string;
   /**
    * The directory for output
    * @default 'dist'

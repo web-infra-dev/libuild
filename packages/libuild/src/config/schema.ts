@@ -1,6 +1,12 @@
 const asset = {
   type: 'object',
   properties: {
+    outdir: {
+      typeof: 'string',
+    },
+    rebase: {
+      typeof: 'boolean',
+    },
     name: {
       typeof: ['string', 'function'],
     },
@@ -94,6 +100,12 @@ const UserConfig = {
   bundle: {
     type: 'boolean',
   },
+  inject: {
+    type: 'array',
+  },
+  loader: {
+    type: 'object',
+  },
   input: {
     anyOf: [
       {
@@ -103,6 +115,9 @@ const UserConfig = {
         type: 'object',
       },
     ],
+  },
+  sourceDir: {
+    type: 'string',
   },
   outdir: {
     type: 'string',
@@ -198,9 +213,6 @@ const CLIConfig = {
   },
   configFile: {
     type: 'string',
-  },
-  watch: {
-    type: 'boolean',
   },
 };
 

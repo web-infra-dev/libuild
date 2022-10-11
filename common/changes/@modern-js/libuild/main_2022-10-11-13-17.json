@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "improve support for bundleless",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

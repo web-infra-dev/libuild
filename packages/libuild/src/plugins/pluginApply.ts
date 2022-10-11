@@ -35,5 +35,11 @@ export async function pluginApply(config: BuildConfig, compiler: ILibuilder) {
     metaFilePlugin().apply(compiler);
   }
 
+  if (!config.bundle) {
+    const { redirectPlugin } = await import('./redirect');
+
+    redirectPlugin().apply(compiler);
+  }
+
   assetsPlugin().apply(compiler);
 }

@@ -1,4 +1,4 @@
-import path from 'path';
+import { join, relative, dirname } from 'path';
 import { Plugin } from 'postcss';
 import { ILibuilder } from '../../types';
 import { rewriteCssUrls } from './utils';
@@ -13,7 +13,7 @@ export const postcssUrlPlugin = (options: { entryPath: string; compilation: ILib
   options = options || ({} as any);
 
   return {
-    postcssPlugin: 'speedy-postcss-url',
+    postcssPlugin: 'libuild-postcss-url',
     async Declaration(decl) {
       const isProcessed = (decl as any)[Processed];
 
@@ -26,11 +26,12 @@ export const postcssUrlPlugin = (options: { entryPath: string; compilation: ILib
           !isProcessed
         ) {
           let filePath = URL;
-          filePath = options.compilation.config.css_resolve(URL, path.dirname(options.entryPath));
-          const fileUrl =  await getAssetContents.apply(options.compilation, [filePath]);
-
+          const { css_resolve, outdir, sourceDir } = options.compilation.config;
+          filePath = css_resolve(URL, dirname(options.entryPath));
+          const rebaseFrom = join(outdir, relative(sourceDir, options.entryPath));
+          const fileUrl = await getAssetContents.apply(options.compilation, [filePath, rebaseFrom]);
           (decl as any)[Processed] = true;
-          return fileUrl
+          return fileUrl;
         }
         return URL;
       });

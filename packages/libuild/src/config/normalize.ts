@@ -74,6 +74,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const minify = config.minify ?? false;
   const splitting = config.splitting ?? false;
   const outdir = path.resolve(root, config.outdir ?? DEFAULT_OUTDIR);
+  const sourceDir = path.resolve(root, config.sourceDir ?? 'src');
   const entryNames = config.entryNames ?? (bundle ? '[name]' : '[dir]/[name]');
   const chunkNames = config.chunkNames ?? entryNames;
   const format = config.format ?? 'esm';
@@ -120,6 +121,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     globals,
     watch,
     outdir,
+    sourceDir,
     minify,
     splitting,
     entryNames,

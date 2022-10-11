@@ -52,7 +52,7 @@ export const postcssTransformer = async (
       entryPath,
       compilation,
     }),
-    ...plugins
+    ...plugins,
   ];
   const isModule = cssModuleRE.test(entryPath);
   if (isModule) {

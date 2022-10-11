@@ -1,5 +1,5 @@
-import path from 'path';
-import { promises as fs } from 'fs';
+import path, { relative } from 'path';
+import fs from 'fs';
 import { createHash } from 'crypto';
 import { resolvePathAndQuery } from '@modern-js/libuild-utils';
 import { LibuildPlugin, ILibuilder, Asset } from '../types';
@@ -65,13 +65,22 @@ function encodeSVG(buffer: Buffer) {
   );
 }
 
-export async function getAssetContents(this: ILibuilder, assetPath: string) {
+/**
+ *
+ * @param this Compiler
+ * @param assetPath Absolute path of the asset
+ * @param rebaseFrom Absolute path of the file which import asset
+ * @returns dataurl or path
+ */
+export async function getAssetContents(this: ILibuilder, assetPath: string, rebaseFrom?: string) {
   const DEFAULT_INLINE_LIMIT = 0;
-  const fileContent = await fs.readFile(assetPath);
+  const fileContent = await fs.promises.readFile(assetPath);
   const limit = this.config.asset.limit ?? DEFAULT_INLINE_LIMIT;
-  const assetName = this.config.asset.name ?? 'assets/[name].[hash].[ext]';
+  const outdir = this.config.asset.outdir ?? 'assets';
+  const rebase = this.config.asset.rebase ?? false;
+  const assetName = this.config.asset.name ?? '[name].[hash].[ext]';
   const publicPath = this.config.asset.publicPath ?? '';
-  if (fileContent.length < limit) {
+  if (fileContent.length < limit && !rebase) {
     // inline base64
     const mimetype = (await import('mime-types')).default.lookup(assetPath);
     const isSVG = mimetype === 'image/svg+xml';
@@ -80,14 +89,20 @@ export async function getAssetContents(this: ILibuilder, assetPath: string) {
     return `data:${mimetype}${encoding},${data}`;
   }
   const outputFileName = getOutputFileName(assetPath, fileContent, assetName);
-  const outputFilePath = path.resolve(this.config.outdir, outputFileName);
-  await this.emitAsset(outputFilePath, {
+  const outputFilePath = path.join(this.config.outdir, outdir, outputFileName);
+  this.emitAsset(outputFilePath, {
     type: 'asset',
     fileName: outputFilePath,
     contents: fileContent,
     originalFileName: assetPath,
   });
-  const filePath = (typeof publicPath === 'function' ? publicPath(assetPath) : publicPath) + outputFileName;
+  if (rebaseFrom && rebase) {
+    const relativePath = relative(rebaseFrom, outputFilePath);
+    return relativePath;
+  }
+  const filePath = `${
+    typeof publicPath === 'function' ? publicPath(assetPath) : publicPath
+  }${outdir}/${outputFileName}`;
   return filePath;
 }
 

@@ -4,7 +4,6 @@ describe('fixture:unbundle', () => {
   it('unbundle', async () => {
     const bundler = await getLibuilderTest({
       root: __dirname,
-      input: ['./index.ts', './a.ts'],
       bundle: false,
     });
     await bundler.build();

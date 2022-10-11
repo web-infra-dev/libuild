@@ -28,7 +28,7 @@
     "build:local": "node -r tsm scripts/build.ts",
     "prepublishOnly": "npm run build",
     "typecheck": "tsc -b tsconfig.build.json",
-    "watch": "npm run build:local -- --watch",
+    "watch": "npm run typecheck && npm run build:local -- --watch",
     "test": "tsd && mocha"
   },
   "dependencies": {
@@ -111,7 +111,9 @@
     "typescript": "4.4.4",
     "utility-types": "3.10.0",
     "yargs": "17.2.1",
-    "commander": "9.4.0"
+    "commander": "9.4.0",
+    "magic-string": "0.26.4",
+    "globby": "13.1.2"
   },
   "sideEffects": false,
   "tsd": {

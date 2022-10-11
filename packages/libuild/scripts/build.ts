@@ -240,9 +240,6 @@ ${dependencies.map((dependency) => `- ${dependency.packageJson.name} -- ${depend
     ].filter(Boolean) as Plugin[],
   });
 
-  if (args.watch) {
-    return;
-  }
   // extract types
   const apiExtractorJsonPath: string = path.join(__dirname, '../api-extractor.json');
   const extractorConfig = ExtractorConfig.loadFileAndPrepare(apiExtractorJsonPath);
