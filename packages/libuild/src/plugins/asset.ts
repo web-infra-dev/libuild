@@ -5,7 +5,7 @@ import { resolvePathAndQuery } from '@modern-js/libuild-utils';
 import { LibuildPlugin, ILibuilder, Asset } from '../types';
 
 const IMAGE_REGEXP = /\.png$|\.jpe?g$|\.gif$|\.webp$/;
-const assetExt = [
+export const assetExt = [
   '.svg',
   '.png',
   '.jpg',

@@ -8,7 +8,7 @@ import { init, parse } from 'es-module-lexer';
 import type { ImportSpecifier } from 'es-module-lexer';
 import MagicString from 'magic-string';
 import { ILibuilder, LibuildPlugin } from '../types';
-import { getAssetContents } from './asset';
+import { getAssetContents, assetExt } from './asset';
 
 function normalizeSlashes(file: string) {
   return file.split(win32.sep).join('/');
@@ -33,14 +33,14 @@ async function redirectImport(
     imports.map(async (targetImport) => {
       // redirect asset path
       // import xxx from './xxx.svg';
-      if (targetImport.n!.endsWith('.png') || targetImport.n!.endsWith('.svg')) {
+      if (assetExt.filter((ext) => targetImport.n!.endsWith(ext)).length) {
         const absPath = resolve(dirname(filePath), targetImport.n!);
         const relativePath = await getAssetContents.apply(compiler, [absPath, outputPath]);
         const relativeImportPath = normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
         str.overwrite(targetImport.s, targetImport.e, `${relativeImportPath}`);
         return;
       }
-
+      // redirect alias
       let absoluteImportPath = '';
       for (const alias of Object.keys(aliasRecord)) {
         // prefix

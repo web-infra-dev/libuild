@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix redirect assets path",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
