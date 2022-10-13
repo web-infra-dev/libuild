@@ -8,7 +8,7 @@ declare module '*.svg' {
   export default src;
 }
 
-declare module '*.module.sass' {
+declare module '*.module.less' {
   const classes: CSSModuleClasses;
   export default classes;
 }
