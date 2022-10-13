@@ -1,7 +1,7 @@
 import { getLibuilderTest } from '@modern-js/libuild-test-toolkit';
 
 describe('fixture:less', function () {
-  it('prependData', async () => {
+  it('additionalData', async () => {
     const bundler = await getLibuilderTest({
       root: __dirname,
       input: {
@@ -9,7 +9,7 @@ describe('fixture:less', function () {
       },
       style: {
         less: {
-          prependData: `@base-color: #c6538c;`,
+          additionalData: `@base-color: #c6538c;`,
         },
       },
     });

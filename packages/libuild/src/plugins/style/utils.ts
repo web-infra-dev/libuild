@@ -13,17 +13,26 @@ const cache: Record<string, any> = {};
  * @param root
  * @returns
  */
-export function loadProcessor(lang: string, root: string) {
+export function loadProcessor(lang: string, root: string, implementation?: object | string) {
   if (cache[lang]) {
     return cache[lang];
   }
   try {
+    if (typeof implementation === 'string') {
+      console.log(implementation, 'string');
+      return (cache[lang] = require(implementation));
+    }
+    if (typeof implementation === 'object') {
+      console.log(implementation, 'object');
+      return (cache[lang] = implementation);
+    }
+    console.log(implementation, 'undefined');
     const loadPath = require.resolve(lang, {
       paths: [root],
     });
     return (cache[lang] = require(loadPath));
   } catch (err) {
-    throw new Error(`${lang} not installed, please install it`);
+    throw new Error(`${lang} require failed, please install it or use implemention`);
   }
 }
 

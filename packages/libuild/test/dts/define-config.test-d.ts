@@ -76,10 +76,10 @@ declare const VALID_USER_CONFIG_LIST: [
   {
     style: {
       less: {
-        prependData: '';
+        additionalData: '';
       };
       sass: {
-        prependData: '';
+        additionalData: '';
       };
       postcss: {
         processOptions: {};

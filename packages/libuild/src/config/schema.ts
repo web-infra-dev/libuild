@@ -24,29 +24,32 @@ const style = {
     less: {
       type: 'object',
       properties: {
-        prependData: {
+        additionalData: {
           typeof: ['string', 'function'],
         },
+        lessOptions: {
+          type: 'object',
+        },
+        implementation: {
+          typeof: ['string', 'object'],
+        },
       },
-      additionalProperties: true,
+      additionalProperties: false,
     },
     sass: {
       type: 'object',
       properties: {
-        prependData: {
+        additionalData: {
           typeof: ['string', 'function'],
         },
-      },
-      additionalProperties: true,
-    },
-    scss: {
-      type: 'object',
-      properties: {
-        prependData: {
-          typeof: ['string', 'function'],
+        sassOptions: {
+          type: 'object',
+        },
+        implementation: {
+          typeof: ['string', 'object'],
         },
       },
-      additionalProperties: true,
+      additionalProperties: false,
     },
     postcss: {
       type: 'object',

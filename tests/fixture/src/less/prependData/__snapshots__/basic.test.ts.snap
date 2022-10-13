@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fixture:less prependData 1`] = `
+exports[`fixture:less additionalData 1`] = `
 "/* basic.less */
 .a {
   color: #c6538c;

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "support less and sass custom implementation and adjust less and sass properties",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

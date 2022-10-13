@@ -7,12 +7,13 @@ import { PreprocessRender } from './transformStyle';
 export const sassRender: PreprocessRender = async function (
   this: ILibuilder,
   content: string,
-  originPath: string,
+  _: string,
   stdinDir: string,
   options: Style['sass'],
-  resolvePathMap: Map<string, string>
+  resolvePathMap: Map<string, string>,
+  implementation?: object | string
 ) {
-  const sass = await loadProcessor('sass', this.config.root);
+  const sass = await loadProcessor('sass', this.config.root, implementation);
   return new Promise((resolve, reject) => {
     sass.render(
       {

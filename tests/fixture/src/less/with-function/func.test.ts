@@ -10,7 +10,9 @@ describe('fixture:less:function', function () {
       },
       style: {
         less: {
-          javascriptEnabled: true,
+          lessOptions: {
+            javascriptEnabled: true,
+          },
         },
       },
     });

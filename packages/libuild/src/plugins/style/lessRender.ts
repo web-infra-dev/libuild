@@ -8,9 +8,11 @@ export const lessRender: PreprocessRender = async function (
   content: string,
   originPath: string,
   stdinDir: string,
-  options: Less.Options
+  options: Less.Options,
+  _: Map<string, string>,
+  implementation?: object | string
 ) {
-  const less = await loadProcessor('less', this.config.root);
+  const less = await loadProcessor('less', this.config.root, implementation);
   const result = {
     ...(await less.render(content, {
       relativeUrls: true,

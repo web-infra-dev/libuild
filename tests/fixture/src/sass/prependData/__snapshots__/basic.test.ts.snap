@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fixture:sass prependData 1`] = `
+exports[`fixture:sass additionalData 1`] = `
 "/* basic.scss */
 .alert {
   border: 1px solid rgba(198, 83, 140, 0.88);

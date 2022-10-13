@@ -41,17 +41,20 @@ export async function transformStyle(this: ILibuilder, source: Source) {
   if (!lang) {
     throw new LibuildError('UNSUPPORTED_CSS_LANG', `not supported css lang${lang}`);
   }
-  const options = this.config.style[lang as 'less' | 'sass' | 'scss'];
+  const { less, sass } = this.config.style;
+  const options = lang === 'less' ? less?.lessOptions : sass?.sassOptions;
+  const additionalData = lang === 'less' ? less?.additionalData : sass?.additionalData;
+  const implementation = lang === 'less' ? less?.implementation : sass?.implementation;
   const preprocessRender = renderMap[lang];
   const { originalFilePath } = resolvePathAndQuery(source.path);
   const stdinDir = path.dirname(originalFilePath);
 
   const resolvePathMap = new Map<string, string>();
   let content = '';
-  if (typeof options?.prependData === 'string') {
-    content = `${options.prependData}\n`;
-  } else if (typeof options?.prependData === 'function') {
-    content = `${options.prependData(originalFilePath)}\n`;
+  if (typeof additionalData === 'string') {
+    content = `${additionalData}\n`;
+  } else if (typeof additionalData === 'function') {
+    content = `${additionalData(originalFilePath)}\n`;
   }
   content += source.code;
 
@@ -61,6 +64,7 @@ export async function transformStyle(this: ILibuilder, source: Source) {
     stdinDir,
     options,
     resolvePathMap,
+    implementation,
   ]);
   const css = renderResult.css.toString();
   const { css: cssResult, modules } = await postcssTransformer(css ?? '', originalFilePath, this);

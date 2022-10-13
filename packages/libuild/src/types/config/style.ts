@@ -9,17 +9,18 @@ export type PostcssOptions = {
 
 export type { sassOptions };
 
-type PrependData = string | ((filePath: string) => string);
+type AdditionalData = string | ((filePath: string) => string);
 
 export interface Style {
-  sass?: sassOptions & {
-    prependData?: PrependData;
+  sass?: {
+    additionalData?: AdditionalData;
+    implementation?: object | string;
+    sassOptions?: sassOptions;
   };
-  scss?: sassOptions & {
-    prependData?: PrependData;
-  };
-  less?: Less.Options & {
-    prependData?: PrependData;
+  less?: {
+    additionalData?: AdditionalData;
+    implementation?: object | string;
+    lessOptions?: Less.Options;
   };
   postcss?: PostcssOptions;
   cleanCss?: CleanCss.OptionsOutput | boolean;
