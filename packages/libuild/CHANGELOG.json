@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.2.0",
+      "tag": "@modern-js/libuild_v0.2.0",
+      "date": "Thu, 13 Oct 2022 12:46:42 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "support less and sass custom implementation and adjust less and sass properties"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.3",
       "tag": "@modern-js/libuild_v0.1.3",
       "date": "Wed, 12 Oct 2022 03:51:07 GMT",

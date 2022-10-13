@@ -1,6 +1,6 @@
 {
   "name": "@modern-js/libuild-plugin-es5",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A plugin for libuild to transform your code to es5",
   "keywords": [
     "libuild",
