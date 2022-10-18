@@ -22,6 +22,7 @@ export async function run(userArgs?: string[]) {
     .option('--config-file <configFile>', 'The path of config file, default by `libuild.config.ts`')
     .option('--root <root>', 'Project root dir')
     .option('--outdir <outdir>', 'The directory for output')
+    .option('--source-dir <sourceDir>', 'The directory for source')
     .option('--entry-names <entryNames>', 'The file names of the output files')
     .option('--chunk-names <chunkNames>', 'The file names of the chunks of shared code')
     .option('--external <external...>', 'Exclude it from your build')
@@ -35,7 +36,7 @@ export async function run(userArgs?: string[]) {
         'verbose',
       ])
     )
-    .addOption(new Option('--source-map [sourceMap]', 'The mode of sourcemap').choices(['inline', 'external']))
+    .addOption(new Option('--source-map [sourceMap]', 'The mode of sourceMap').choices(['inline', 'external']))
     .addOption(new Option('--format <format>', 'Module format').choices(['iife', 'umd', 'cjs', 'esm']))
     .addOption(new Option('--minify <minify>', 'Minify JS').choices(['esbuild', 'minify']))
     .addOption(

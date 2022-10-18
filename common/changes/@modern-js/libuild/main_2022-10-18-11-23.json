@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "add cli option --source-dir",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
