@@ -19,14 +19,11 @@ export function loadProcessor(lang: string, root: string, implementation?: objec
   }
   try {
     if (typeof implementation === 'string') {
-      console.log(implementation, 'string');
       return (cache[lang] = require(implementation));
     }
     if (typeof implementation === 'object') {
-      console.log(implementation, 'object');
       return (cache[lang] = implementation);
     }
-    console.log(implementation, 'undefined');
     const loadPath = require.resolve(lang, {
       paths: [root],
     });

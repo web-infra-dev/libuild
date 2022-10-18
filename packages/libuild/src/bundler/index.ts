@@ -210,7 +210,9 @@ export class EsbuildBuilder implements IBuilderBase {
 
   async reBuild(paths: string[]) {
     const { instance, compiler } = this;
-
+    if (paths.length > 0) {
+      compiler.config.logger.info(`${chalk.underline(paths.join(' '))} changed`);
+    }
     try {
       const start = Date.now();
       compiler.clearErrors();

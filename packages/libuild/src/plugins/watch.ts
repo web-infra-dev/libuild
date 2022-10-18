@@ -28,9 +28,6 @@ export const watchPlugin = (): LibuildPlugin => {
             batchedPaths.push(...paths);
           } else if (compiler.compilation.shouldRebuild(paths)) {
             running = true;
-            if (paths.length > 0) {
-              compiler.config.logger.info(`${chalk.underline(paths.join(' '))} changed`);
-            }
             compiler.hooks.watchChange.call(paths);
             await compiler.compilation.reBuild(paths);
             running = false;
