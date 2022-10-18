@@ -384,31 +384,36 @@
       "packageName": "@modern-js/libuild-plugin-babel",
       "projectFolder": "packages/libuild-plugin-babel",
       "reviewCategory": "library",
-      "versionPolicyName": "fixed"
+      "versionPolicyName": "fixed",
+      "cyclicDependencyProjects": ["@modern-js/libuild"]
     },
     {
       "packageName": "@modern-js/libuild-plugin-babel-preset",
       "projectFolder": "packages/libuild-plugin-babel-preset",
       "reviewCategory": "library",
-      "versionPolicyName": "fixed"
+      "versionPolicyName": "fixed",
+      "cyclicDependencyProjects": ["@modern-js/libuild"]
     },
     {
       "packageName": "@modern-js/libuild-plugin-es5",
       "projectFolder": "packages/libuild-plugin-es5",
       "reviewCategory": "library",
-      "versionPolicyName": "fixed"
+      "versionPolicyName": "fixed",
+      "cyclicDependencyProjects": ["@modern-js/libuild"]
     },
     {
       "packageName": "@modern-js/libuild-plugin-node-polyfill",
       "projectFolder": "packages/libuild-plugin-node-polyfill",
       "reviewCategory": "library",
-      "versionPolicyName": "fixed"
+      "versionPolicyName": "fixed",
+      "cyclicDependencyProjects": ["@modern-js/libuild"]
     },
     {
       "packageName": "@modern-js/libuild-plugin-svgr",
       "projectFolder": "packages/libuild-plugin-svgr",
       "versionPolicyName": "fixed",
-      "reviewCategory": "library"
+      "reviewCategory": "library",
+      "cyclicDependencyProjects": ["@modern-js/libuild"]
     },
     {
       "packageName": "@modern-js/libuild-example",
