@@ -14,7 +14,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc && libuild",
-    "watch": "libuild -w --sourcemap"
+    "watch": "libuild -w"
   },
   "dependencies": {
     "assert": "2.0.0",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@modern-js/eslint-config": "workspace:*",
-    "@modern-js/libuild": "workspace:*",
+    "@modern-js/libuild": "^0.1.0",
     "@modern-js/libuild-node-rig": "workspace:*",
     "typescript": "4.4.4",
     "eslint": "7.32.0"
