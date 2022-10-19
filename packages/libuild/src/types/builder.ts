@@ -1,9 +1,10 @@
 import type { Metafile, OnResolveArgs, OnLoadArgs, OnResolveResult, OnLoadResult, BuildOptions } from 'esbuild';
 import { AsyncSeriesBailHook, AsyncSeriesHook, AsyncSeriesWaterfallHook, SyncHook } from 'tapable';
-import { ImportKind, Loader } from 'esbuild';
+import { ImportKind } from 'esbuild';
 import { CLIConfig, BuildConfig } from './config';
 import { Callback } from './callback';
-import { LibuildErrorInstance, LibuildErrorParams, LibuildErrorsData } from './error';
+import { LibuildErrorInstance, LibuildErrorParams } from './error';
+import { LibuildFailureError } from '../error';
 
 export interface ILibuilderHooks {
   /**
@@ -33,7 +34,7 @@ export interface ILibuilderHooks {
   /**
    * After esbuild onEnd, also called by watchChange
    */
-  endCompilation: AsyncSeriesHook<[LibuildErrorsData]>;
+  endCompilation: AsyncSeriesHook<[LibuildFailureError]>;
   /**
    * Post processing for assets
    */
@@ -105,7 +106,7 @@ export interface ILibuilder {
   report(error: any): void;
   throw(message: string, option: LibuildErrorParams): void;
   printErrors(): void;
-  getErrors(): LibuildErrorsData;
+  getErrors(): LibuildFailureError;
   clearErrors(): void;
   removeError(...errors: LibuildErrorInstance[]): void;
 }

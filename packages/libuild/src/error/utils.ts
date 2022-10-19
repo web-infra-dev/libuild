@@ -4,15 +4,15 @@ import stripAnsi from 'strip-ansi';
 import { parse as stackParse } from 'stack-trace';
 import {
   LibuildErrorInstance,
-  LibuildErrorsData,
   LogLevel,
   ErrorLevel,
   EsbuildError,
   LibuildErrorParams,
+  IConfigLoaderMessage,
 } from '../types';
+import { LibuildFailureError } from './failure';
 import { LibuildError } from './error';
 import { ErrorCode } from '../constants/error';
-import type { IConfigLoaderMessage } from '../types';
 
 /**
  * we can't use instanceof LibuildError, because it may not be an singleton class
@@ -75,42 +75,11 @@ export function insertSpace(rawLines: string, line: number, width: number) {
   return lines.join('\n');
 }
 
-export function printErrors({ errors, warnings }: LibuildErrorsData, logLevel: LogLevel = 'error') {
-  const onlyError = logLevel === 'error';
-
-  if (logLevel === 'silent') {
-    return '';
-  }
-
-  if ((onlyError && errors.length === 0) || (!onlyError && errors.length === 0 && warnings.length === 0)) {
-    return '';
-  }
-
-  const msgs: string[] = [];
-
-  if (onlyError) {
-    msgs.push(`Build failed with ${errors.length} error:`, ...errors.map((item) => item.toString()), '');
-  } else {
-    const title =
-      errors.length === 0
-        ? `Build succuss with ${warnings.length} warning:`
-        : `Build failed with ${errors.length} error, ${warnings.length} warning:`;
-
-    msgs.push(title, ...errors.map((item) => item.toString()), ...warnings.map((item) => item.toString()), '');
-  }
-
-  return msgs.join('\n\n');
-}
-
-export function warpErrors(errors: LibuildError[], logLevel: LogLevel = 'error'): LibuildErrorsData {
-  const data: LibuildErrorsData = {
-    errors: errors.filter((item) => item.level === 'Error'),
-    warnings: errors.filter((item) => item.level === 'Warn'),
-  };
-
-  data.toString = () => printErrors(data, logLevel);
-
-  return data;
+export function warpErrors(libuildErrors: LibuildError[], logLevel: LogLevel = 'error'): LibuildFailureError {
+  const warnings = libuildErrors.filter((item) => item.level === 'Warn');
+  const errors = libuildErrors.filter((item) => item.level === 'Error');
+  const error = new LibuildFailureError(errors, warnings, logLevel);
+  return error;
 }
 
 function isEsbuildError(err: any): err is EsbuildError {

@@ -78,11 +78,6 @@ export interface LibuildErrorInstance {
   setCodeFrame(opt: CodeFrameOption): void;
 }
 
-export interface LibuildErrorsData {
-  errors: LibuildErrorInstance[];
-  warnings: LibuildErrorInstance[];
-}
-
 export type LibuildErrorParams = Omit<
   LibuildErrorInstance,
   'code' | 'message' | 'path' | 'setControllerOption' | 'setCodeFrame' | 'toOverlayPayload'
