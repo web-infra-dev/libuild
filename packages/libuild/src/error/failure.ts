@@ -1,6 +1,6 @@
 import { LibuildErrorInstance } from '../types';
 
-export class LibuildFailureError extends Error {
+export class LibuildFailure extends Error {
   readonly errors: LibuildErrorInstance[];
 
   readonly warnings: LibuildErrorInstance[];
@@ -38,7 +38,6 @@ export class LibuildFailureError extends Error {
 
       msgs.push(title, ...errors.map((item) => item.toString()), ...warnings.map((item) => item.toString()), '');
     }
-
     return msgs.join('\n\n');
   }
 }

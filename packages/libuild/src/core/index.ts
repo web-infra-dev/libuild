@@ -1,7 +1,7 @@
 import * as tapable from 'tapable';
 import { FSWatcher } from 'chokidar';
 
-import { LibuildError, warpErrors, LibuildFailureError } from '../error';
+import { LibuildError, warpErrors, LibuildFailure } from '../error';
 import {
   CLIConfig,
   BuildConfig,
@@ -109,7 +109,7 @@ export class Libuilder implements ILibuilder {
       transform: createTransformHook(this),
       processAsset: createProcessAssetHook(this),
       processAssets: new tapable.AsyncSeriesHook<[Map<string, Chunk>, LibuildManifest]>(['chunks', 'manifest']),
-      endCompilation: new tapable.AsyncSeriesHook<[LibuildFailureError]>(['errors']),
+      endCompilation: new tapable.AsyncSeriesHook<[LibuildFailure]>(['errors']),
       watchChange: new tapable.SyncHook<[string[]]>(['id']),
       done: new tapable.AsyncSeriesHook<[]>([]),
       shutdown: new tapable.AsyncSeriesHook<[]>(),
@@ -218,7 +218,7 @@ export class Libuilder implements ILibuilder {
     }
   }
 
-  getErrors(): LibuildFailureError {
+  getErrors(): LibuildFailure {
     const data = this.errors.slice();
 
     return warpErrors(data, this.config?.logLevel);

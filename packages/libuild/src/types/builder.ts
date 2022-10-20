@@ -4,7 +4,7 @@ import { ImportKind } from 'esbuild';
 import { CLIConfig, BuildConfig } from './config';
 import { Callback } from './callback';
 import { LibuildErrorInstance, LibuildErrorParams } from './error';
-import { LibuildFailureError } from '../error';
+import { LibuildFailure } from '../error';
 
 export interface ILibuilderHooks {
   /**
@@ -34,7 +34,7 @@ export interface ILibuilderHooks {
   /**
    * After esbuild onEnd, also called by watchChange
    */
-  endCompilation: AsyncSeriesHook<[LibuildFailureError]>;
+  endCompilation: AsyncSeriesHook<[LibuildFailure]>;
   /**
    * Post processing for assets
    */
@@ -106,7 +106,7 @@ export interface ILibuilder {
   report(error: any): void;
   throw(message: string, option: LibuildErrorParams): void;
   printErrors(): void;
-  getErrors(): LibuildFailureError;
+  getErrors(): LibuildFailure;
   clearErrors(): void;
   removeError(...errors: LibuildErrorInstance[]): void;
 }

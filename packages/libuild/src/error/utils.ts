@@ -10,7 +10,7 @@ import {
   LibuildErrorParams,
   IConfigLoaderMessage,
 } from '../types';
-import { LibuildFailureError } from './failure';
+import { LibuildFailure } from './failure';
 import { LibuildError } from './error';
 import { ErrorCode } from '../constants/error';
 
@@ -75,10 +75,10 @@ export function insertSpace(rawLines: string, line: number, width: number) {
   return lines.join('\n');
 }
 
-export function warpErrors(libuildErrors: LibuildError[], logLevel: LogLevel = 'error'): LibuildFailureError {
+export function warpErrors(libuildErrors: LibuildError[], logLevel: LogLevel = 'error'): LibuildFailure {
   const warnings = libuildErrors.filter((item) => item.level === 'Warn');
   const errors = libuildErrors.filter((item) => item.level === 'Error');
-  const error = new LibuildFailureError(errors, warnings, logLevel);
+  const error = new LibuildFailure(errors, warnings, logLevel);
   return error;
 }
 

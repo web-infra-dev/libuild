@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { warpErrors } from '@modern-js/libuild';
 import { expect, getLibuilderTest } from '@modern-js/libuild-test-toolkit';
 
 const PASS_PREFIX = '_';
@@ -26,13 +25,11 @@ describe('errors', () => {
       try {
         const bundler = await getLibuilderTest({
           root: caseDirPath,
-          logLevel: 'silent',
         });
         await bundler.build();
       } catch (err: any) {
         const errString = err.toString();
-
-        expect(errString.includes('Build failed with 1 error, 0 warning')).to.be.true;
+        expect(errString.includes('Build failed with 1 error')).to.be.true;
         expect(errString.includes(errMsg.msg)).to.be.true;
         expect(err.errors.length).equal(1);
       }
