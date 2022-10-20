@@ -52,8 +52,8 @@ export async function run(userArgs?: string[]) {
       const end = Date.now() - start;
       console.info(chalk.green(`Build completed in ${end}ms`));
     });
-  await catchUnhandledReject(program.parseAsync(args, argOptions), (err) => {
-    console.log(err);
+  await catchUnhandledReject(program.parseAsync(args, argOptions), (err: Error) => {
+    console.log(err.toString());
     process.exit(1);
   });
 }

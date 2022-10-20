@@ -4,12 +4,11 @@ import {
   defineConfig as rawDefineConfig,
   formatError as rawFormatError,
   isLibuildErrorInstance as rawIsLibuildErrorInstance,
-  printErrors as rawPrintError,
+  warpErrors as rawPrintError,
   loadConfig as rawLoadConfig,
   run as rawRun,
   LibuildError,
   Libuilder,
-  Bundle,
 } from '../../dist';
 
 declare const defineConfig: typeof rawDefineConfig;
@@ -35,6 +34,3 @@ expectType<Libuilder>(libuildBundler);
 
 declare const libuildError: LibuildError;
 expectType<LibuildError>(libuildError);
-
-declare const bundle: Bundle;
-expectType<Bundle>(bundle);

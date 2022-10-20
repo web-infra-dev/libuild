@@ -1,7 +1,7 @@
 import * as tapable from 'tapable';
 import { FSWatcher } from 'chokidar';
 
-import { LibuildError, warpErrors } from '../error';
+import { LibuildError, warpErrors, LibuildFailure } from '../error';
 import {
   CLIConfig,
   BuildConfig,
@@ -18,7 +18,6 @@ import {
   BuilderResolveOptions,
   ILibuilderStage,
   ILibuilderHooks,
-  LibuildErrorsData,
   IBuilderBase,
   LibuildErrorParams,
 } from '../types';
@@ -31,11 +30,6 @@ import { TransformContext } from './transform';
 import { SourcemapContext } from './sourcemap';
 import { EsbuildBuilder } from '../bundler';
 import { loadEnv } from '../utils';
-
-export interface Bundle {
-  path: string;
-  content: string;
-}
 
 export class Libuilder implements ILibuilder {
   compilation!: IBuilderBase;
@@ -115,7 +109,7 @@ export class Libuilder implements ILibuilder {
       transform: createTransformHook(this),
       processAsset: createProcessAssetHook(this),
       processAssets: new tapable.AsyncSeriesHook<[Map<string, Chunk>, LibuildManifest]>(['chunks', 'manifest']),
-      endCompilation: new tapable.AsyncSeriesHook<[LibuildErrorsData]>(['errors']),
+      endCompilation: new tapable.AsyncSeriesHook<[LibuildFailure]>(['errors']),
       watchChange: new tapable.SyncHook<[string[]]>(['id']),
       done: new tapable.AsyncSeriesHook<[]>([]),
       shutdown: new tapable.AsyncSeriesHook<[]>(),
@@ -224,7 +218,7 @@ export class Libuilder implements ILibuilder {
     }
   }
 
-  getErrors(): LibuildErrorsData {
+  getErrors(): LibuildFailure {
     const data = this.errors.slice();
 
     return warpErrors(data, this.config?.logLevel);

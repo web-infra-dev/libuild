@@ -1,19 +1,5 @@
 export { Message as EsbuildError } from 'esbuild';
 
-export interface Position {
-  line: number;
-  column: number;
-}
-export interface Range {
-  start: Position;
-  end: Position;
-}
-
-export interface OffsetRange {
-  start: number;
-  end: number;
-}
-
 export enum ErrorLevel {
   Ignore,
   Warn,
@@ -76,11 +62,6 @@ export interface LibuildErrorInstance {
   referenceUrl?: string;
   setControllerOption(opt: ControllerOption): void;
   setCodeFrame(opt: CodeFrameOption): void;
-}
-
-export interface LibuildErrorsData {
-  errors: LibuildErrorInstance[];
-  warnings: LibuildErrorInstance[];
 }
 
 export type LibuildErrorParams = Omit<
