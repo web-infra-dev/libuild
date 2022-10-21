@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "add `await` for style compile",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
