@@ -130,7 +130,7 @@ export class EsbuildBuilder implements IBuilderBase {
           bundle: true,
           entryNames: '[dir]/[name]',
         });
-        childCompiler.build();
+        await childCompiler.build();
       }
     }
 
