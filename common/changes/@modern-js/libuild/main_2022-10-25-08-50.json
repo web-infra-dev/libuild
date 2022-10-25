@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "add log about esbuild warn and change error code",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

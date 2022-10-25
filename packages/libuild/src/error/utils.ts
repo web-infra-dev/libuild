@@ -96,7 +96,7 @@ function clearStack(str: string) {
 
 function transformEsbuildError(err: any, opt?: LibuildErrorParams) {
   if (isEsbuildError(err)) {
-    const errorCode = opt?.code ?? 'ESBUILD_ERROR';
+    const errorCode = opt?.code ?? ErrorCode.ESBUILD_ERROR;
     const libuildError =
       typeof err.detail === 'object'
         ? LibuildError.from(err.detail)

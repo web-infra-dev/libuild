@@ -51,7 +51,6 @@ export class EsbuildBuilder implements IBuilderBase {
 
   private parseError(err: any) {
     const infos: LibuildError[] = [];
-    const code = ErrorCode.ESBUILD_BUNDLE_FAILED;
     const parseDetail = (item: any) => {
       if (item.detail) {
         return this.parseError(item.detail);
@@ -66,7 +65,7 @@ export class EsbuildBuilder implements IBuilderBase {
               parseDetail(item) ??
               LibuildError.from(item, {
                 level: 'Error',
-                code,
+                code: ErrorCode.ESBUILD_ERROR,
               })
             );
           })
@@ -82,7 +81,7 @@ export class EsbuildBuilder implements IBuilderBase {
               parseDetail(item) ??
               LibuildError.from(item, {
                 level: 'Warn',
-                code,
+                code: ErrorCode.ESBUILD_WARN,
               })
             );
           })
@@ -186,7 +185,9 @@ export class EsbuildBuilder implements IBuilderBase {
     const buildOptions = esbuildOptions(esbuildConfig);
     try {
       this.instance = await esbuild(buildOptions);
-      return this.instance;
+      if (this.instance.warnings.length) {
+        this.report(this.instance);
+      }
     } catch (error: any) {
       await this.report(error);
 
