@@ -67,9 +67,9 @@ export async function transformStyle(this: ILibuilder, source: Source) {
     implementation,
   ]);
   const css = renderResult.css.toString();
-  const { css: cssResult, modules } = await postcssTransformer(css ?? '', originalFilePath, this);
+  const { code, loader } = await postcssTransformer(css ?? '', originalFilePath, this);
   return {
-    contents: cssResult,
-    modules,
+    code,
+    loader,
   };
 }

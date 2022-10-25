@@ -1,7 +1,8 @@
 import { resolvePathAndQuery, isStyleExt } from '@modern-js/libuild-utils';
 import { readFileSync } from 'fs';
+import { identifier } from 'safe-identifier';
 import { Source, LibuildPlugin } from '../../types';
-import { getHash } from './utils';
+import { getCssModuleContents } from './postcssTransformer';
 import { transformStyle } from './transformStyle';
 
 export const cssPlugin = (): LibuildPlugin => {
@@ -10,13 +11,13 @@ export const cssPlugin = (): LibuildPlugin => {
   return {
     name: pluginName,
     apply(compiler) {
-      const moduleCache: Record<string, string> = {};
       compiler.hooks.load.tapPromise(pluginName, async (args) => {
         if (isStyleExt(args.path)) {
           const { originalFilePath, query } = resolvePathAndQuery(args.path);
           if (query.css_virtual) {
+            const contents = getCssModuleContents(originalFilePath)!;
             return {
-              contents: moduleCache[originalFilePath],
+              contents,
               loader: 'css',
             };
           }
@@ -29,31 +30,22 @@ export const cssPlugin = (): LibuildPlugin => {
       compiler.hooks.transform.tapPromise(pluginName, async (source): Promise<Source> => {
         if (isStyleExt(source.path)) {
           const { query } = resolvePathAndQuery(source.path);
-          if (query[cssVirtual]) {
-            return {
-              code: source.code,
-              loader: 'css',
-              path: source.path,
-            };
+          let { code, loader = 'css' } = source;
+          if (!query[cssVirtual]) {
+            ({ code, loader } = await transformStyle.apply(compiler, [source]));
           }
-          const { contents, modules } = await transformStyle.apply(compiler, [source]);
-          if (Object.values(modules).length) {
-            // add hash query for same path, let esbuild cache invalid
-            const code = `
-import "${source.path}?css_virtual&hash=${getHash(contents, 'utf-8')}";
-export default ${JSON.stringify(modules)}`;
-            moduleCache[source.path] = contents;
-            return {
-              ...source,
-              code,
-              loader: 'js',
-            };
+          if (compiler.config.style.inject && loader === 'css') {
+            const styleInjectPath = require.resolve('style-inject/dist/style-inject.es').replace(/[\\/]+/g, '/');
+            const cssVariableName = identifier('css', true);
+            code = `var ${cssVariableName} = ${JSON.stringify(
+              code
+            )};\nimport styleInject from '${styleInjectPath}';\nstyleInject(${cssVariableName});`;
+            loader = 'js';
           }
-
           return {
             ...source,
-            code: contents,
-            loader: 'css',
+            code,
+            loader,
           };
         }
         return source;

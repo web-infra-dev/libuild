@@ -35,17 +35,22 @@ async function loadPostcssConfig(root: string, postcssOptions: Style['postcss'])
 }
 const cssLangs = `\\.(css|less|sass|scss|styl|stylus|pcss|postcss)($|\\?)`;
 const cssModuleRE = new RegExp(`\\.module${cssLangs}`);
+const cssModuleContentsMap: Map<string, string> = new Map();
+
+export const getCssModuleContents = (originalFilePath: string) => {
+  return cssModuleContentsMap.get(originalFilePath);
+};
+
 export const postcssTransformer = async (
   css: string,
   entryPath: string,
   compilation: ILibuilder
 ): Promise<{
-  css: string;
-  modules: Record<string, string>;
+  code: string;
+  loader: 'js' | 'css';
 }> => {
   const postcssConfig = await loadPostcssConfig(compilation.config.root, compilation.config.style.postcss);
-  const plugins = postcssConfig.plugins ?? [];
-  const processOptions = postcssConfig?.processOptions ?? {};
+  const { autoModules = true, plugins = [], processOptions = {} } = postcssConfig;
   let modules: Record<string, string> = {};
   const finalPlugins = [
     postcssUrlPlugin({
@@ -54,7 +59,8 @@ export const postcssTransformer = async (
     }),
     ...plugins,
   ];
-  const isModule = cssModuleRE.test(entryPath);
+  const isModule =
+    typeof autoModules === 'boolean' ? autoModules && cssModuleRE.test(entryPath) : autoModules.test(entryPath);
   if (isModule) {
     finalPlugins.push(
       (await import('postcss-modules')).default({
@@ -71,12 +77,20 @@ export const postcssTransformer = async (
       })
     );
   }
-  const { css: output } = await postcss(finalPlugins).process(css, {
+  let loader: 'js' | 'css' = 'css';
+  let { css: code } = await postcss(finalPlugins).process(css, {
     from: entryPath,
     ...processOptions,
   });
+  if (Object.values(modules).length) {
+    // add hash query for same path, let esbuild cache invalid
+    cssModuleContentsMap.set(entryPath, code);
+    code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(modules)}`;
+    loader = 'js';
+  }
+
   return {
-    css: output,
-    modules,
+    code,
+    loader,
   };
 };
