@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix asset error path in bundleless mode",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
