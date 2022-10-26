@@ -25,7 +25,7 @@ async function redirectImport(
   imports: readonly ImportSpecifier[],
   aliasRecord: Record<string, string>,
   filePath: string,
-  outputPath: string
+  outputDir: string
 ): Promise<MagicString> {
   const str: MagicString = new MagicString(code);
 
@@ -35,8 +35,7 @@ async function redirectImport(
       // import xxx from './xxx.svg';
       if (assetExt.filter((ext) => targetImport.n!.endsWith(ext)).length) {
         const absPath = resolve(dirname(filePath), targetImport.n!);
-        const relativePath = await getAssetContents.apply(compiler, [absPath, outputPath]);
-        const relativeImportPath = normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
+        const relativeImportPath = await getAssetContents.apply(compiler, [absPath, outputDir]);
         str.overwrite(targetImport.s, targetImport.e, `${relativeImportPath}`);
         return;
       }
@@ -114,10 +113,10 @@ export const redirectPlugin = (): LibuildPlugin => {
           }
           return result;
         }, {});
-        const { sourceDir, outdir } = compiler.config;
-        const basePath = relative(sourceDir, id);
-        const outputPath = join(outdir, basePath);
-        const str = await redirectImport(compiler, code, imports, alias, id, outputPath);
+        const { outbase, outdir } = compiler.config;
+        const basePath = relative(outbase, id);
+        const outputDir = dirname(join(outdir, basePath));
+        const str = await redirectImport(compiler, code, imports, alias, id, outputDir);
         return {
           ...args,
           code: str.toString(),

@@ -31,6 +31,9 @@ type Platform = 'node' | 'browser';
 
 export type Asset = {
   outdir?: string;
+  /**
+   * rebase relative url, default is true in bundle mode.
+   */
   rebase?: boolean;
   name?: string | ((filePath: string) => string);
   /**
@@ -64,6 +67,11 @@ export interface UserConfig {
    * @default 'dist'
    */
   outdir?: string;
+  /**
+   * @see https://esbuild.github.io/api/#outbase
+   * @default 'src'
+   */
+  outbase?: string;
   /**
    * Options for esbuild, it may disable some of the functions of libuild
    * @experimental

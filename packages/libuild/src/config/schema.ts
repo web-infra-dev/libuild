@@ -138,6 +138,9 @@ const UserConfig = {
   outdir: {
     type: 'string',
   },
+  outbase: {
+    type: 'string',
+  },
   entryNames: {
     type: 'string',
   },

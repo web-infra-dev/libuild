@@ -1,6 +1,7 @@
 import { deepMerge } from '@modern-js/libuild-utils';
 import postcss from 'postcss';
 import postcssrc from 'postcss-load-config';
+import path from 'path';
 import { DEFAULT_NODE_ENV } from '../../constants/config';
 import { ILibuilder, PostcssOptions, Style } from '../../types';
 import { postcssUrlPlugin } from './postcssUrlPlugin';
@@ -83,10 +84,28 @@ export const postcssTransformer = async (
     ...processOptions,
   });
   if (Object.values(modules).length) {
-    // add hash query for same path, let esbuild cache invalid
-    cssModuleContentsMap.set(entryPath, code);
-    code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(modules)}`;
-    loader = 'js';
+    if (compilation.config.bundle) {
+      // add hash query for same path, let esbuild cache invalid
+      cssModuleContentsMap.set(entryPath, code);
+      code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(
+        modules
+      )}`;
+      loader = 'js';
+    } else {
+      const relativeDir = path.relative(compilation.config.outbase, path.dirname(entryPath));
+      const outputDir = path.resolve(compilation.config.outdir, relativeDir);
+      const sourceExt = path.extname(entryPath);
+      const basename = path.basename(entryPath, sourceExt);
+      const outputPath = path.resolve(outputDir, `${basename}.js`);
+      const jsContents = `export default ${JSON.stringify(modules)}`;
+      compilation.emitAsset(outputPath, {
+        type: 'chunk',
+        contents: jsContents,
+        fileName: outputPath,
+        entryPoint: entryPath,
+        isEntry: true,
+      });
+    }
   }
 
   return {

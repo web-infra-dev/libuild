@@ -8,8 +8,6 @@ describe('fixture:cli', () => {
     await run(['--no-bundle', `--root=${__dirname}`, '--metafile', '--source-map', '--clean']);
     // arguments
     expect(fs.existsSync(path.resolve(__dirname, 'dist/index.js'))).to.be.true;
-    // no-boolean
-    expect(fs.existsSync(path.resolve(__dirname, 'dist/a.js'))).to.be.true;
     // boolean
     expect(fs.existsSync(path.resolve(__dirname, 'dist/index.js.map'))).to.be.true;
     const hasMetaFile =

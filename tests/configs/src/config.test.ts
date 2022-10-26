@@ -33,6 +33,7 @@ function removeAbsolutePath(config: BuildConfig) {
   config.root = remove(config.root);
   config.outdir = remove(config.outdir);
   config.sourceDir = remove(config.sourceDir);
+  config.outbase = remove(config.outbase);
   if (config.configFile) {
     config.configFile = remove(config.configFile);
   }

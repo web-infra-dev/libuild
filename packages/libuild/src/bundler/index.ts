@@ -1,14 +1,12 @@
 import { LogLevel as esbuildLogLevel, BuildResult, BuildOptions, BuildInvalidate, build as esbuild } from 'esbuild';
 import * as path from 'path';
 import chalk from 'chalk';
-import { globby } from 'globby';
 import { getLogLevel } from '../logger';
 import { LibuildError } from '../error';
 import { Callback, ILibuilder, BuildConfig, IBuilderBase } from '../types';
 import { adapterPlugin } from './adapter';
 import { jsExtensions } from '../core/resolve';
 import { ErrorCode } from '../constants/error';
-import { Libuilder } from '../core';
 
 function convertLogLevel(level: BuildConfig['logLevel']): esbuildLogLevel {
   if (getLogLevel(level) < getLogLevel('debug')) {
@@ -107,31 +105,7 @@ export class EsbuildBuilder implements IBuilderBase {
     // }
 
     const { compiler } = this;
-    const { bundle, sourceDir } = compiler.config;
-    // bundleless
-    if (!bundle) {
-      const jsFiles = await globby(sourceDir, {
-        expandDirectories: {
-          extensions: ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs'],
-        },
-      });
-      const cssFiles = await globby(sourceDir, {
-        expandDirectories: {
-          extensions: ['css', 'sass', 'scss', 'less'],
-        },
-      });
-      compiler.config.input = jsFiles;
-      compiler.config.asset.rebase = true;
-      if (cssFiles.length) {
-        const childCompiler = await Libuilder.create({
-          ...compiler.config,
-          input: cssFiles,
-          bundle: true,
-          entryNames: '[dir]/[name]',
-        });
-        await childCompiler.build();
-      }
-    }
+    const { bundle } = compiler.config;
 
     const {
       input,
@@ -146,6 +120,7 @@ export class EsbuildBuilder implements IBuilderBase {
       root,
       splitting,
       outdir,
+      outbase,
       entryNames,
       minify,
       chunkNames,
@@ -173,7 +148,7 @@ export class EsbuildBuilder implements IBuilderBase {
       write: false,
       logLevel: convertLogLevel(logLevel),
       outdir,
-      outbase: sourceDir,
+      outbase,
       entryNames,
       chunkNames,
       plugins: [adapterPlugin(this.compiler)],

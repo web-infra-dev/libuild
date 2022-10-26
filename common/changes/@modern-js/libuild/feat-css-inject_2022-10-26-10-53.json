@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": " support outbase and deprecated sourceDir, to improve build when bundle is false",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

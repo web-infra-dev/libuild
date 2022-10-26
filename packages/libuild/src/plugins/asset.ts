@@ -77,7 +77,7 @@ export async function getAssetContents(this: ILibuilder, assetPath: string, reba
   const fileContent = await fs.promises.readFile(assetPath);
   const limit = this.config.asset.limit ?? DEFAULT_INLINE_LIMIT;
   const outdir = this.config.asset.outdir ?? 'assets';
-  const rebase = this.config.asset.rebase ?? false;
+  const rebase = this.config.asset.rebase ?? !this.config.bundle;
   const assetName = this.config.asset.name ?? '[name].[hash].[ext]';
   const publicPath = this.config.asset.publicPath ?? '';
   if (fileContent.length < limit && !rebase) {
