@@ -13,33 +13,31 @@ export async function pluginApply(config: BuildConfig, compiler: ILibuilder) {
     cleanPlugin().apply(compiler);
   }
 
-  resolvePlugin().apply(compiler);
-
-  writeFilePlugin().apply(compiler);
-
   if (config.watch) {
     const { watchPlugin } = await import('./watch');
     watchPlugin().apply(compiler);
   }
-  minifyPlugin().apply(compiler);
 
-  formatPlugin().apply(compiler);
+  resolvePlugin().apply(compiler);
 
+  assetsPlugin().apply(compiler);
   cssPlugin().apply(compiler);
-
-  minifyCssPlugin().apply(compiler);
-
-  if (config.metafile) {
-    const { metaFilePlugin } = await import('./metafile');
-
-    metaFilePlugin().apply(compiler);
-  }
 
   if (!config.bundle) {
     const { redirectPlugin } = await import('./redirect');
 
     redirectPlugin().apply(compiler);
   }
+  minifyPlugin().apply(compiler);
 
-  assetsPlugin().apply(compiler);
+  formatPlugin().apply(compiler);
+
+  minifyCssPlugin().apply(compiler);
+
+  writeFilePlugin().apply(compiler);
+  if (config.metafile) {
+    const { metaFilePlugin } = await import('./metafile');
+
+    metaFilePlugin().apply(compiler);
+  }
 }

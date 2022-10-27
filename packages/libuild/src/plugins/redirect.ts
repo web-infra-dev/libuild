@@ -87,8 +87,9 @@ export const redirectPlugin = (): LibuildPlugin => {
   return {
     name: pluginName,
     apply(compiler) {
-      compiler.hooks.transform.tapPromise(pluginName, async (args) => {
-        const { code, path: id } = args;
+      compiler.hooks.processAsset.tapPromise(pluginName, async (args) => {
+        if (args.type === 'asset') return args;
+        const { contents: code, fileName, entryPoint: id } = args;
         const { alias: originalAlias } = compiler.config.resolve;
         if (!code || !scriptsFilter(id)) {
           return args;
@@ -113,13 +114,11 @@ export const redirectPlugin = (): LibuildPlugin => {
           }
           return result;
         }, {});
-        const { outbase, outdir } = compiler.config;
-        const basePath = relative(outbase, dirname(id));
-        const outputDir = join(outdir, basePath);
-        const str = await redirectImport(compiler, code, imports, alias, id, outputDir);
+
+        const str = await redirectImport(compiler, code, imports, alias, id!, dirname(fileName));
         return {
           ...args,
-          code: str.toString(),
+          contents: str.toString(),
           map: str.generateMap({
             hires: true,
             includeContent: true,
