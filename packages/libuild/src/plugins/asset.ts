@@ -34,7 +34,8 @@ export const assetsPlugin = (): LibuildPlugin => {
       compiler.hooks.load.tapPromise(pluginName, async (args) => {
         if (assetExt.find((ext) => ext === path.extname(args.path))) {
           const { originalFilePath } = resolvePathAndQuery(args.path);
-          const contents = await getAssetContents.apply(compiler, [originalFilePath]);
+          const rebaseFrom = compiler.config.asset.outdir ?? 'assets';
+          const contents = await getAssetContents.apply(compiler, [originalFilePath, rebaseFrom]);
           return {
             contents,
             loader: 'text',
