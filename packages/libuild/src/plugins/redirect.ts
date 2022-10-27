@@ -114,8 +114,8 @@ export const redirectPlugin = (): LibuildPlugin => {
           return result;
         }, {});
         const { outbase, outdir } = compiler.config;
-        const basePath = relative(outbase, id);
-        const outputDir = dirname(join(outdir, basePath));
+        const basePath = relative(outbase, dirname(id));
+        const outputDir = join(outdir, basePath);
         const str = await redirectImport(compiler, code, imports, alias, id, outputDir);
         return {
           ...args,

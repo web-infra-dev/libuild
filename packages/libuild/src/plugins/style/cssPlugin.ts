@@ -34,7 +34,8 @@ export const cssPlugin = (): LibuildPlugin => {
           if (!query[cssVirtual]) {
             ({ code, loader } = await transformStyle.apply(compiler, [source]));
           }
-          if (compiler.config.style.inject && loader === 'css') {
+          const { style, bundle } = compiler.config;
+          if (style.inject && bundle && loader === 'css') {
             const styleInjectPath = require.resolve('style-inject/dist/style-inject.es').replace(/[\\/]+/g, '/');
             const cssVariableName = identifier('css', true);
             code = `var ${cssVariableName} = ${JSON.stringify(
