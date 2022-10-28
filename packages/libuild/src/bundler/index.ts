@@ -105,10 +105,9 @@ export class EsbuildBuilder implements IBuilderBase {
     // }
 
     const { compiler } = this;
-    const { bundle } = compiler.config;
-
     const {
       input,
+      bundle,
       define,
       target,
       sourceMap,

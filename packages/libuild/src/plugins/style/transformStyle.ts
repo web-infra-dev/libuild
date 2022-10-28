@@ -7,7 +7,7 @@ import { postcssTransformer } from './postcssTransformer';
 import { lessRender } from './lessRender';
 import { sassRender } from './sassRender';
 
-const cssLangs = `\\.(css|less|sass|scss|styl|stylus|pcss|postcss)($|\\?)`;
+const cssLangs = `\\.(css|less|sass|scss)($|\\?)`;
 const cssLangRE = new RegExp(cssLangs);
 
 const cssRender: PreprocessRender = async function (this: ILibuilder, content: string) {

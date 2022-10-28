@@ -122,6 +122,7 @@ importers:
       postcss: 8.4.6
       source-map: 0.7.3
       source-map-support: 0.5.20
+      style-inject: 0.3.0
       terser: 5.15.0
     devDependencies:
       '@ampproject/remapping': 1.0.2
@@ -191,7 +192,6 @@ importers:
       semver: 7.3.5
       stack-trace: 1.0.0-pre1
       strip-ansi: 7.0.1
-      style-inject: 0.3.0
       tapable: 2.2.1
       tsconfig-paths-webpack-plugin: 4.0.0
       tsd: 0.19.1
@@ -9719,7 +9719,7 @@ packages:
 
   /style-inject/0.3.0:
     resolution: {integrity: sha512-IezA2qp+vcdlhJaVm5SOdPPTUu0FCEqfNSli2vRuSIBbu5Nq5UvygTk/VzeCqfLz2Atj3dVII5QBKGZRZ0edzw==}
-    dev: true
+    dev: false
 
   /stylus-type-utils/0.0.3_stylus@0.32.1:
     resolution: {integrity: sha512-E1yoznMW1fFSm2OUF+oEp41KWSXoTYPEBgpRVAASVPG45mrnCZzs7qmA+0bjegJ9vLRPoYeX38mU3RJFk6BphQ==}

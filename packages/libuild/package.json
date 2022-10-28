@@ -37,6 +37,7 @@
     "postcss": "8.4.6",
     "source-map": "0.7.3",
     "source-map-support": "0.5.20",
+    "style-inject": "0.3.0",
     "terser": "5.15.0"
   },
   "devDependencies": {
@@ -114,7 +115,6 @@
     "commander": "9.4.0",
     "magic-string": "0.26.4",
     "globby": "13.1.2",
-    "style-inject": "0.3.0",
     "safe-identifier": "0.4.2"
   },
   "sideEffects": false,

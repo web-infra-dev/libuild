@@ -10,12 +10,10 @@ export default defineConfig([
     clean: true,
     bundle: false,
     input: ['src/bundleless/*'],
-    metafile: true,
   },
   {
     input: ['src/bundle/lib.ts'],
     clean: true,
     bundle: true,
-    entryNames: '[dir]/[name]',
   },
 ]);

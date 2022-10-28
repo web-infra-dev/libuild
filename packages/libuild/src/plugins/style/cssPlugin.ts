@@ -2,7 +2,6 @@ import { resolvePathAndQuery, isStyleExt } from '@modern-js/libuild-utils';
 import { readFileSync } from 'fs';
 import { identifier } from 'safe-identifier';
 import { Source, LibuildPlugin } from '../../types';
-import { getCssModuleContents } from './postcssTransformer';
 import { transformStyle } from './transformStyle';
 
 export const cssPlugin = (): LibuildPlugin => {
@@ -15,7 +14,7 @@ export const cssPlugin = (): LibuildPlugin => {
         if (isStyleExt(args.path)) {
           const { originalFilePath, query } = resolvePathAndQuery(args.path);
           if (query.css_virtual) {
-            const contents = getCssModuleContents(originalFilePath)!;
+            const contents = compiler.virtualModule.get(originalFilePath)!;
             return {
               contents,
               loader: 'css',

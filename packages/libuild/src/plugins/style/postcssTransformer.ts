@@ -34,12 +34,11 @@ async function loadPostcssConfig(root: string, postcssOptions: Style['postcss'])
   }
   return options;
 }
-const cssLangs = `\\.(css|less|sass|scss|styl|stylus|pcss|postcss)($|\\?)`;
+const cssLangs = `\\.(css|less|sass|scss)($|\\?)`;
 const cssModuleRE = new RegExp(`\\.module${cssLangs}`);
-const cssModuleContentsMap: Map<string, string> = new Map();
 
-export const getCssModuleContents = (originalFilePath: string) => {
-  return cssModuleContentsMap.get(originalFilePath);
+export const isCssModule = (filePath: string, autoModules: Required<PostcssOptions>['autoModules']) => {
+  return typeof autoModules === 'boolean' ? autoModules && cssModuleRE.test(filePath) : autoModules.test(filePath);
 };
 
 export const postcssTransformer = async (
@@ -60,9 +59,7 @@ export const postcssTransformer = async (
     }),
     ...plugins,
   ];
-  const isModule =
-    typeof autoModules === 'boolean' ? autoModules && cssModuleRE.test(entryPath) : autoModules.test(entryPath);
-  if (isModule) {
+  if (isCssModule(entryPath, autoModules)) {
     finalPlugins.push(
       (await import('postcss-modules')).default({
         generateScopedName(name: string, filename: string, css: string) {
@@ -84,28 +81,10 @@ export const postcssTransformer = async (
     ...processOptions,
   });
   if (Object.values(modules).length) {
-    if (compilation.config.bundle) {
-      // add hash query for same path, let esbuild cache invalid
-      cssModuleContentsMap.set(entryPath, code);
-      code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(
-        modules
-      )}`;
-      loader = 'js';
-    } else {
-      const relativeDir = path.relative(compilation.config.outbase, path.dirname(entryPath));
-      const outputDir = path.resolve(compilation.config.outdir, relativeDir);
-      const sourceExt = path.extname(entryPath);
-      const basename = path.basename(entryPath, sourceExt);
-      const outputPath = path.resolve(outputDir, `${basename}.js`);
-      const jsContents = `export default ${JSON.stringify(modules)}`;
-      compilation.emitAsset(outputPath, {
-        type: 'chunk',
-        contents: jsContents,
-        fileName: outputPath,
-        entryPoint: entryPath,
-        isEntry: true,
-      });
-    }
+    // add hash query for same path, let esbuild cache invalid
+    compilation.virtualModule.set(entryPath, code);
+    code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(modules)}`;
+    loader = 'js';
   }
 
   return {
