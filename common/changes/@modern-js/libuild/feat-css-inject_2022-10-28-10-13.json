@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "improve redirect plugin and rebase logic",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
