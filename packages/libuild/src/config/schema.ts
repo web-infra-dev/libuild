@@ -60,11 +60,24 @@ const style = {
         processOptions: {
           type: 'object',
         },
+        autoModules: {
+          anyOf: [
+            {
+              instanceof: 'RegExp',
+            },
+            {
+              typeof: 'boolean',
+            },
+          ],
+        },
       },
       additionalProperties: false,
     },
     cleanCss: {
       typeof: ['boolean', 'object'],
+    },
+    inject: {
+      typeof: 'boolean',
     },
   },
   additionalProperties: false,
@@ -123,6 +136,9 @@ const UserConfig = {
     type: 'string',
   },
   outdir: {
+    type: 'string',
+  },
+  outbase: {
     type: 'string',
   },
   entryNames: {

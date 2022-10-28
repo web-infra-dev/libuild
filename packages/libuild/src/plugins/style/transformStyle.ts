@@ -7,7 +7,7 @@ import { postcssTransformer } from './postcssTransformer';
 import { lessRender } from './lessRender';
 import { sassRender } from './sassRender';
 
-const cssLangs = `\\.(css|less|sass|scss|styl|stylus|pcss|postcss)($|\\?)`;
+const cssLangs = `\\.(css|less|sass|scss)($|\\?)`;
 const cssLangRE = new RegExp(cssLangs);
 
 const cssRender: PreprocessRender = async function (this: ILibuilder, content: string) {
@@ -67,9 +67,9 @@ export async function transformStyle(this: ILibuilder, source: Source) {
     implementation,
   ]);
   const css = renderResult.css.toString();
-  const { css: cssResult, modules } = await postcssTransformer(css ?? '', originalFilePath, this);
+  const { code, loader } = await postcssTransformer(css ?? '', originalFilePath, this);
   return {
-    contents: cssResult,
-    modules,
+    code,
+    loader,
   };
 }

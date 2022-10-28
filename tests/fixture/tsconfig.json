@@ -1,3 +1,3 @@
 {
-  "extends": "@modern-js/libuild-node-rig/profiles/default/tsconfig.mocha.json"
+  "extends": "@modern-js/libuild-node-rig/profiles/default/tsconfig.mocha.json",
 }

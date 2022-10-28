@@ -9,13 +9,11 @@ export default defineConfig([
     },
     clean: true,
     bundle: false,
-    outdir: 'dist/bundleless',
-    sourceDir: 'src/bundleless',
+    input: ['src/bundleless/*'],
   },
   {
     input: ['src/bundle/lib.ts'],
     clean: true,
     bundle: true,
-    outdir: 'dist/bundle',
   },
 ]);

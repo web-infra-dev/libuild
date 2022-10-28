@@ -1,7 +1,8 @@
 import path from 'path';
 import { mapValue } from '@modern-js/libuild-utils';
+import { globby } from 'globby';
 import { createLogger } from '../logger';
-import { DEFAULT_CONFIG_FILE_NAME, DEFAULT_OUTDIR } from '../constants/config';
+import { DEFAULT_CONFIG_FILE_NAME, DEFAULT_OUTBASE, DEFAULT_OUTDIR } from '../constants/config';
 import { createResolver, cssExtensions, jsExtensions } from '../core/resolve';
 import { CLIConfig, BuildConfig, LibuildPlugin, ResolveNormalized } from '../types';
 import { getClientEnvironment, LibuildEnvName, getAllDeps } from '../utils';
@@ -23,7 +24,13 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   };
   let input: BuildConfig['input'];
   if (Array.isArray(config.input)) {
-    input = config.input.map(resolveInputPath);
+    const jsFiles = await globby(config.input, {
+      expandDirectories: {
+        extensions: ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs', 'css', 'sass', 'scss', 'less'],
+      },
+      cwd: root,
+    });
+    input = jsFiles;
   } else {
     input = mapValue(config.input ?? defaultInput, resolveInputPath);
   }
@@ -74,6 +81,8 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const minify = config.minify ?? false;
   const splitting = config.splitting ?? false;
   const outdir = path.resolve(root, config.outdir ?? DEFAULT_OUTDIR);
+  const outbase = path.resolve(root, config.outbase ?? DEFAULT_OUTBASE);
+
   const sourceDir = path.resolve(root, config.sourceDir ?? 'src');
   const entryNames = config.entryNames ?? (bundle ? '[name]' : '[dir]/[name]');
   const chunkNames = config.chunkNames ?? entryNames;
@@ -121,6 +130,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     globals,
     watch,
     outdir,
+    outbase,
     sourceDir,
     minify,
     splitting,

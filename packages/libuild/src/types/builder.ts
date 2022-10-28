@@ -91,7 +91,7 @@ export interface ILibuilder {
   config: BuildConfig;
   plugins: LibuildPlugin[];
   outputChunk: Map<string, Chunk>;
-
+  virtualModule: Map<string, string>;
   init(config: CLIConfig): Promise<void>;
   build(): Promise<void>;
   close(callBack?: Callback): Promise<void>;

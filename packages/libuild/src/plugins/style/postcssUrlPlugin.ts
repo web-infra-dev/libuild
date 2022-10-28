@@ -26,9 +26,9 @@ export const postcssUrlPlugin = (options: { entryPath: string; compilation: ILib
           !isProcessed
         ) {
           let filePath = URL;
-          const { css_resolve, outdir, sourceDir } = options.compilation.config;
+          const { css_resolve, outdir, outbase, bundle } = options.compilation.config;
           filePath = css_resolve(URL, dirname(options.entryPath));
-          const rebaseFrom = join(outdir, relative(sourceDir, options.entryPath));
+          const rebaseFrom = bundle ? outdir : join(outdir, relative(outbase, dirname(options.entryPath)));
           const fileUrl = await getAssetContents.apply(options.compilation, [filePath, rebaseFrom]);
           (decl as any)[Processed] = true;
           return fileUrl;

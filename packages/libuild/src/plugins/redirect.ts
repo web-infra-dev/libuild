@@ -2,22 +2,18 @@
  * This plugin is used to redirectImport only in unbundle mode
  * Taking from https://github.com/ice-lab/icepkg/blob/main/packages/pkg/src/plugins/transform/alias.ts
  */
-import { isAbsolute, resolve, relative, join, dirname, win32 } from 'path';
-import { createFilter } from '@rollup/pluginutils';
+import { isAbsolute, resolve, relative, join, dirname, win32, basename, extname } from 'path';
 import { init, parse } from 'es-module-lexer';
 import type { ImportSpecifier } from 'es-module-lexer';
 import MagicString from 'magic-string';
+import { resolvePathAndQuery } from '@modern-js/libuild-utils';
 import { ILibuilder, LibuildPlugin } from '../types';
 import { getAssetContents, assetExt } from './asset';
+import { isCssModule } from './style/postcssTransformer';
 
 function normalizeSlashes(file: string) {
   return file.split(win32.sep).join('/');
 }
-
-const scriptsFilter = createFilter(
-  /\.m?[jt]sx?$/, // include
-  [/node_modules/, /\.d\.ts$/] // exclude
-);
 
 async function redirectImport(
   compiler: ILibuilder,
@@ -25,7 +21,7 @@ async function redirectImport(
   imports: readonly ImportSpecifier[],
   aliasRecord: Record<string, string>,
   filePath: string,
-  outputPath: string
+  outputDir: string
 ): Promise<MagicString> {
   const str: MagicString = new MagicString(code);
 
@@ -35,8 +31,7 @@ async function redirectImport(
       // import xxx from './xxx.svg';
       if (assetExt.filter((ext) => targetImport.n!.endsWith(ext)).length) {
         const absPath = resolve(dirname(filePath), targetImport.n!);
-        const relativePath = await getAssetContents.apply(compiler, [absPath, outputPath]);
-        const relativeImportPath = normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
+        const relativeImportPath = await getAssetContents.apply(compiler, [absPath, outputDir]);
         str.overwrite(targetImport.s, targetImport.e, `${relativeImportPath}`);
         return;
       }
@@ -62,19 +57,28 @@ async function redirectImport(
         return;
       }
       // redirect style path
-      const nameArr = targetImport.n!.split('.');
-      let ext = nameArr.pop();
-      if (nameArr.length > 1) {
-        const isModule = nameArr.length > 1 && nameArr[nameArr.length - 1] === 'module';
-        const name = nameArr.join('.');
-        if (ext === 'less' || ext === 'sass' || ext === 'scss' || ext === 'css') {
-          ext = 'css';
-          if (isModule) {
-            str.appendLeft(targetImport.se, `\nimport '${name}.${ext}'`);
-            str.overwrite(targetImport.s, targetImport.e, `${name}`);
-          } else {
-            str.overwrite(targetImport.s, targetImport.e, `${name}.${ext}`);
-          }
+      // css module
+      const { originalFilePath, query } = resolvePathAndQuery(targetImport.n!);
+      if (query.css_virtual) {
+        const base = `${basename(originalFilePath, extname(originalFilePath))}.css`;
+        const contents = compiler.virtualModule.get(originalFilePath)!;
+        const fileName = join(outputDir, base);
+        compiler.emitAsset(fileName, {
+          type: 'asset',
+          contents,
+          fileName,
+          originalFileName: originalFilePath,
+          entryPoint: originalFilePath,
+        });
+        str.overwrite(targetImport.s, targetImport.e, `./${base}`);
+      }
+      // less sass
+      const ext = extname(targetImport.n!);
+      if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
+        if (isCssModule(targetImport.n!, compiler.config.style.postcss?.autoModules ?? true)) {
+          str.overwrite(targetImport.s, targetImport.e, `${targetImport.n!.slice(0, -ext.length)}`);
+        } else {
+          str.overwrite(targetImport.s, targetImport.e, `${targetImport.n!.slice(0, -ext.length)}.css`);
         }
       }
     })
@@ -88,10 +92,11 @@ export const redirectPlugin = (): LibuildPlugin => {
   return {
     name: pluginName,
     apply(compiler) {
-      compiler.hooks.transform.tapPromise(pluginName, async (args) => {
-        const { code, path: id } = args;
+      compiler.hooks.processAsset.tapPromise(pluginName, async (args) => {
+        if (args.type === 'asset') return args;
+        const { contents: code, fileName, entryPoint: id } = args;
         const { alias: originalAlias } = compiler.config.resolve;
-        if (!code || !scriptsFilter(id)) {
+        if (!code) {
           return args;
         }
         await init;
@@ -114,13 +119,11 @@ export const redirectPlugin = (): LibuildPlugin => {
           }
           return result;
         }, {});
-        const { sourceDir, outdir } = compiler.config;
-        const basePath = relative(sourceDir, id);
-        const outputPath = join(outdir, basePath);
-        const str = await redirectImport(compiler, code, imports, alias, id, outputPath);
+
+        const str = await redirectImport(compiler, code, imports, alias, id!, dirname(fileName));
         return {
           ...args,
-          code: str.toString(),
+          contents: str.toString(),
           map: str.generateMap({
             hires: true,
             includeContent: true,

@@ -143,6 +143,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - rimraf -- ISC
 - run-parallel -- MIT
 - safe-buffer -- MIT
+- safe-identifier -- ISC
 - semver -- ISC
 - slash -- MIT
 - sourcemap-codec -- MIT

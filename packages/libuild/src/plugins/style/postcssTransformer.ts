@@ -1,6 +1,7 @@
 import { deepMerge } from '@modern-js/libuild-utils';
 import postcss from 'postcss';
 import postcssrc from 'postcss-load-config';
+import path from 'path';
 import { DEFAULT_NODE_ENV } from '../../constants/config';
 import { ILibuilder, PostcssOptions, Style } from '../../types';
 import { postcssUrlPlugin } from './postcssUrlPlugin';
@@ -33,19 +34,23 @@ async function loadPostcssConfig(root: string, postcssOptions: Style['postcss'])
   }
   return options;
 }
-const cssLangs = `\\.(css|less|sass|scss|styl|stylus|pcss|postcss)($|\\?)`;
+const cssLangs = `\\.(css|less|sass|scss)($|\\?)`;
 const cssModuleRE = new RegExp(`\\.module${cssLangs}`);
+
+export const isCssModule = (filePath: string, autoModules: Required<PostcssOptions>['autoModules']) => {
+  return typeof autoModules === 'boolean' ? autoModules && cssModuleRE.test(filePath) : autoModules.test(filePath);
+};
+
 export const postcssTransformer = async (
   css: string,
   entryPath: string,
   compilation: ILibuilder
 ): Promise<{
-  css: string;
-  modules: Record<string, string>;
+  code: string;
+  loader: 'js' | 'css';
 }> => {
   const postcssConfig = await loadPostcssConfig(compilation.config.root, compilation.config.style.postcss);
-  const plugins = postcssConfig.plugins ?? [];
-  const processOptions = postcssConfig?.processOptions ?? {};
+  const { autoModules = true, plugins = [], processOptions = {} } = postcssConfig;
   let modules: Record<string, string> = {};
   const finalPlugins = [
     postcssUrlPlugin({
@@ -54,8 +59,7 @@ export const postcssTransformer = async (
     }),
     ...plugins,
   ];
-  const isModule = cssModuleRE.test(entryPath);
-  if (isModule) {
+  if (isCssModule(entryPath, autoModules)) {
     finalPlugins.push(
       (await import('postcss-modules')).default({
         generateScopedName(name: string, filename: string, css: string) {
@@ -71,12 +75,20 @@ export const postcssTransformer = async (
       })
     );
   }
-  const { css: output } = await postcss(finalPlugins).process(css, {
+  let loader: 'js' | 'css' = 'css';
+  let { css: code } = await postcss(finalPlugins).process(css, {
     from: entryPath,
     ...processOptions,
   });
+  if (Object.values(modules).length) {
+    // add hash query for same path, let esbuild cache invalid
+    compilation.virtualModule.set(entryPath, code);
+    code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(modules)}`;
+    loader = 'js';
+  }
+
   return {
-    css: output,
-    modules,
+    code,
+    loader,
   };
 };

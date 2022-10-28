@@ -1,4 +1,4 @@
-import path, { relative } from 'path';
+import { basename, join, extname, relative, dirname } from 'path';
 import fs from 'fs';
 import { createHash } from 'crypto';
 import { resolvePathAndQuery } from '@modern-js/libuild-utils';
@@ -32,9 +32,11 @@ export const assetsPlugin = (): LibuildPlugin => {
     name: pluginName,
     apply(compiler) {
       compiler.hooks.load.tapPromise(pluginName, async (args) => {
-        if (assetExt.find((ext) => ext === path.extname(args.path))) {
+        if (assetExt.find((ext) => ext === extname(args.path))) {
           const { originalFilePath } = resolvePathAndQuery(args.path);
-          const contents = await getAssetContents.apply(compiler, [originalFilePath]);
+          const { bundle, outdir, outbase } = compiler.config;
+          const rebaseFrom = bundle ? outdir : join(outdir, relative(outbase, dirname(args.path)));
+          const contents = await getAssetContents.apply(compiler, [originalFilePath, rebaseFrom]);
           return {
             contents,
             loader: 'text',
@@ -77,7 +79,7 @@ export async function getAssetContents(this: ILibuilder, assetPath: string, reba
   const fileContent = await fs.promises.readFile(assetPath);
   const limit = this.config.asset.limit ?? DEFAULT_INLINE_LIMIT;
   const outdir = this.config.asset.outdir ?? 'assets';
-  const rebase = this.config.asset.rebase ?? false;
+  const rebase = this.config.asset.rebase ?? !this.config.bundle;
   const assetName = this.config.asset.name ?? '[name].[hash].[ext]';
   const publicPath = this.config.asset.publicPath ?? '';
   if (fileContent.length < limit && !rebase) {
@@ -89,7 +91,7 @@ export async function getAssetContents(this: ILibuilder, assetPath: string, reba
     return `data:${mimetype}${encoding},${data}`;
   }
   const outputFileName = getOutputFileName(assetPath, fileContent, assetName);
-  const outputFilePath = path.join(this.config.outdir, outdir, outputFileName);
+  const outputFilePath = join(this.config.outdir, outdir, outputFileName);
   this.emitAsset(outputFilePath, {
     type: 'asset',
     fileName: outputFilePath,
@@ -98,7 +100,7 @@ export async function getAssetContents(this: ILibuilder, assetPath: string, reba
   });
   if (rebaseFrom && rebase) {
     const relativePath = relative(rebaseFrom, outputFilePath);
-    return relativePath;
+    return relativePath.startsWith('..') ? relativePath : `./${relativePath}`;
   }
   const filePath = `${
     typeof publicPath === 'function' ? publicPath(assetPath) : publicPath
@@ -108,7 +110,7 @@ export async function getAssetContents(this: ILibuilder, assetPath: string, reba
 
 export function getOutputFileName(filePath: string, content: Buffer, assetName: Required<Asset['name']>): string {
   const format = typeof assetName === 'function' ? assetName(filePath) : assetName;
-  const fileBaseNameArray = path.basename(filePath).split('.');
+  const fileBaseNameArray = basename(filePath).split('.');
   const extname = fileBaseNameArray.pop();
   const fileBaseName = fileBaseNameArray.join('.');
   const outputFileName = format.replace(/(\[[^\]]*\])/g, (str: string, match: string): string => {

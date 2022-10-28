@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "support autoModules and style inject",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

@@ -58,6 +58,8 @@ export class Libuilder implements ILibuilder {
 
   outputChunk: Map<string, Chunk> = new Map();
 
+  virtualModule: Map<string, string> = new Map();
+
   name?: string;
 
   private errors: LibuildError[] = [];
