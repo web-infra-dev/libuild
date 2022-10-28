@@ -363,7 +363,7 @@
       "packageName": "@modern-js/libuild",
       "projectFolder": "packages/libuild",
       "reviewCategory": "library",
-      "versionPolicyName": "fixed"
+      "versionPolicyName": "core"
     },
     {
       "packageName": "@modern-js/libuild-utils",
