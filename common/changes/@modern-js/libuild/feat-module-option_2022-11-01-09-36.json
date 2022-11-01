@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "support postcss-modules option",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
