@@ -32,10 +32,9 @@
     "test": "tsd && mocha"
   },
   "dependencies": {
-    "@speedy-js/source-map": "0.1.3",
     "esbuild": "0.15.1",
     "postcss": "8.4.6",
-    "source-map": "0.7.3",
+    "source-map": "0.7.4",
     "source-map-support": "0.5.20",
     "style-inject": "0.3.0",
     "terser": "5.15.0"
