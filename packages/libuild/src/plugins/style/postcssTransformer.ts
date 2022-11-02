@@ -37,7 +37,7 @@ async function loadPostcssConfig(root: string, postcssOptions: Style['postcss'])
 const cssLangs = `\\.(css|less|sass|scss)($|\\?)`;
 const cssModuleRE = new RegExp(`\\.module${cssLangs}`);
 
-export const isCssModule = (filePath: string, autoModules: Required<PostcssOptions>['autoModules']) => {
+export const isCssModule = (filePath: string, autoModules: boolean | RegExp) => {
   return typeof autoModules === 'boolean' ? autoModules && cssModuleRE.test(filePath) : autoModules.test(filePath);
 };
 
@@ -50,7 +50,7 @@ export const postcssTransformer = async (
   loader: 'js' | 'css';
 }> => {
   const postcssConfig = await loadPostcssConfig(compilation.config.root, compilation.config.style.postcss);
-  const { autoModules = true, plugins = [], processOptions = {} } = postcssConfig;
+  const { modules: modulesOption = {}, autoModules = true, plugins = [], processOptions = {} } = postcssConfig;
   let modules: Record<string, string> = {};
   const finalPlugins = [
     postcssUrlPlugin({
@@ -66,11 +66,12 @@ export const postcssTransformer = async (
           const hash = getHash(filename, 'utf-8').substring(0, 5);
           return `${name}_${hash}`;
         },
-        getJSON(cssFileName: string, _modules: Record<string, string>, outputFileName: string) {
-          modules = _modules;
-        },
         async resolve(id: string) {
           return id;
+        },
+        ...modulesOption,
+        getJSON(cssFileName: string, _modules: Record<string, string>, outputFileName: string) {
+          modules = _modules;
         },
       })
     );

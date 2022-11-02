@@ -70,6 +70,9 @@ const style = {
             },
           ],
         },
+        modules: {
+          typeof: 'object',
+        },
       },
       additionalProperties: false,
     },
