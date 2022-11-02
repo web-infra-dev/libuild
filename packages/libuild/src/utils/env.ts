@@ -16,7 +16,6 @@ export const LibuildEnv = {
   LIBUILD_ENV_DEBUG: 'LIBUILD_ENV_DEBUG',
   // Turning this on is equivalent to enabling all of the native functions as which are used to speed up libuild. But still you can turn off them individually.
   LIBUILD_NATIVE: 'LIBUILD_NATIVE',
-  LIBUILD_NATIVE_REMAPPING: 'LIBUILD_NATIVE_REMAPPING',
 } as const;
 
 export type LibuildEnvName = keyof typeof LibuildEnv;
@@ -62,10 +61,6 @@ export const getClientEnvironment = (projectRoot?: string) => {
     {
       name: LibuildEnv.LIBUILD_ENV_DEBUG,
       default: 'false',
-    },
-    {
-      name: LibuildEnv.LIBUILD_NATIVE_REMAPPING,
-      default: String(defaultLibuildNativeEnabled),
     },
     {
       name: LibuildEnv.LIBUILD_NATIVE,
