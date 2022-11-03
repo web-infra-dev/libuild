@@ -203,7 +203,7 @@ importers:
     specifiers:
       '@babel/core': 7.15.8
       '@modern-js/eslint-config': workspace:*
-      '@modern-js/libuild': ^0.1.0
+      '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-utils': workspace:*
       '@types/babel__core': 7.1.16
@@ -213,7 +213,7 @@ importers:
       '@babel/core': 7.15.8
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
-      '@modern-js/libuild': 0.1.3
+      '@modern-js/libuild': link:../libuild
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@modern-js/libuild-utils': link:../libuild-utils
       '@types/babel__core': 7.1.16
@@ -226,7 +226,7 @@ importers:
       '@babel/preset-react': 7.14.5
       '@babel/preset-typescript': 7.16.7
       '@modern-js/eslint-config': workspace:*
-      '@modern-js/libuild': ^0.1.0
+      '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-utils': workspace:*
       '@types/babel__core': 7.1.16
@@ -239,7 +239,7 @@ importers:
       babel-plugin-import: 1.13.3
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
-      '@modern-js/libuild': 0.1.3
+      '@modern-js/libuild': link:../libuild
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@modern-js/libuild-utils': link:../libuild-utils
       '@types/babel__core': 7.1.16
@@ -255,7 +255,7 @@ importers:
       '@babel/preset-typescript': 7.16.7
       '@babel/runtime': 7.17.2
       '@modern-js/eslint-config': workspace:*
-      '@modern-js/libuild': ^0.1.0
+      '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-utils': workspace:*
       '@types/babel__core': 7.1.16
@@ -276,7 +276,7 @@ importers:
       '@babel/preset-react': 7.14.5_@babel+core@7.15.8
       '@babel/preset-typescript': 7.16.7_@babel+core@7.15.8
       '@modern-js/eslint-config': link:../../tools/eslint-config
-      '@modern-js/libuild': 0.1.3
+      '@modern-js/libuild': link:../libuild
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@modern-js/libuild-utils': link:../libuild-utils
       '@types/babel__core': 7.1.16
@@ -287,7 +287,7 @@ importers:
   ../../packages/libuild-plugin-node-polyfill:
     specifiers:
       '@modern-js/eslint-config': workspace:*
-      '@modern-js/libuild': ^0.1.0
+      '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       assert: 2.0.0
       browserify-zlib: 0.2.0
@@ -342,7 +342,7 @@ importers:
       vm-browserify: 1.1.2
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
-      '@modern-js/libuild': 0.1.3
+      '@modern-js/libuild': link:../libuild
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       eslint: 7.32.0
       typescript: 4.4.4
@@ -350,7 +350,7 @@ importers:
   ../../packages/libuild-plugin-svgr:
     specifiers:
       '@modern-js/eslint-config': workspace:*
-      '@modern-js/libuild': ^0.1.0
+      '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       '@svgr/core': 6.2.0
       '@svgr/plugin-jsx': 6.2.0
@@ -367,7 +367,7 @@ importers:
       rollup-pluginutils: 2.8.2
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
-      '@modern-js/libuild': 0.1.3
+      '@modern-js/libuild': link:../libuild
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@types/node': 12.20.42
       '@types/yoga-layout': 1.9.2
@@ -2781,6 +2781,7 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@eslint/eslintrc/0.4.3:
@@ -2942,18 +2943,6 @@ packages:
     resolution: {integrity: sha512-WrHvO8PDL8wd8T2+zBGKrMwVL5IyzR3ryWUsl0PXgEV0QHup4mTLi0QcATefGI6Gx9Anu7vthPyyyLpY0EpiQg==}
     dev: true
 
-  /@modern-js/libuild/0.1.3:
-    resolution: {integrity: sha512-WOJrrAfE2Zg2e/2Vf2P3jlUsfVLC59VpTzCdda27N9k87qlBM1IegMiIpyo0XmjuGQpgoAjyCTPdt3+xnQaWBw==}
-    hasBin: true
-    dependencies:
-      '@speedy-js/source-map': 0.1.3
-      esbuild: 0.15.1
-      postcss: 8.4.6
-      source-map: 0.7.3
-      source-map-support: 0.5.20
-      terser: 5.15.0
-    dev: true
-
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -3050,142 +3039,6 @@ packages:
 
   /@sinonjs/text-encoding/0.7.2:
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
-    dev: true
-
-  /@speedy-js/source-map-android-arm-eabi/0.1.3:
-    resolution: {integrity: sha512-up6h+Lv0Sh3ZVG5vfmeaNrVEhZU+Q3XbimZYCkkp2LEAS/e/UOpyz3qelxf2OAWJET0rEYFgvRZUWr3fEvE7vw==}
-    engines: {node: '>= 10'}
-    cpu: [arm]
-    os: [android]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-android-arm64/0.1.3:
-    resolution: {integrity: sha512-afByHjzaqzRSco9FR3/sDJiFcYsKlHT1YYiwdo+RXtYFd6mhCFlhpqrcKlNi7STQohP79458iV82ooV7AlKAhA==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [android]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-darwin-arm64/0.1.3:
-    resolution: {integrity: sha512-uu2bauwS8/WfTd6wG9bRuNTOLMxGHUzlJGvTaIBSR0E6JmiyR8xkVcRHNeh3MbhdcJxKcPbTA64kmmearkdTxA==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-darwin-x64/0.1.3:
-    resolution: {integrity: sha512-cFO8mNncbI7v0ZT0EKMr5NoqRM2tGJ4IZoRrIeREY4+c1vcJcekrMKHD/q8CvaLlXIeTR6Do73gLjmcUIcyzzg==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-freebsd-x64/0.1.3:
-    resolution: {integrity: sha512-6HyJv2rbEsXZxi+mfZtVBBFlj2Gn6neZejYpC6fXEqBO5SYs0JmkXqf2gs3Sx509RqsNOunFC/EaSIG66/eN5g==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-linux-arm-gnueabihf/0.1.3:
-    resolution: {integrity: sha512-oMp8s2qyKSZMhIsWBR4aZlmIJhEHW8PvCDmt0z2aIt1whdlcCZ8Qul1Lxb66MFg+wPKHsZKK/2GUpE3eACYc+A==}
-    engines: {node: '>= 10'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-linux-arm64-gnu/0.1.3:
-    resolution: {integrity: sha512-zPovamZqFrDsLoOTwa5vWRqWhLoS/gDptMoUx52pCU/1USShbCboeFyuXAkoe4YbFSPvr7hzfiMvxeTjzPk/Nw==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-linux-arm64-musl/0.1.3:
-    resolution: {integrity: sha512-IQYK0p4fAJnn8h/+WgAC1gIrhJ4ySa1ajMqVNpk9i4MVQ2dUe6QVms4Jfrl5Qd9DU0QXYrLV7FLX+27ZCNEitg==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-linux-x64-gnu/0.1.3:
-    resolution: {integrity: sha512-QLkW+OA4S0h6fM5AZpJzcANE7J9rq5ZgyG5HF5etBu343Ybzl/hgFsAjkTD+CQr09+5PYYvzW5bsiHspePftJw==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-linux-x64-musl/0.1.3:
-    resolution: {integrity: sha512-J11Hskc7gCOx/D/CognBoiAXdKHKV9Z6BLFX5nEL7B0co2veL4ligs3VYrL/Uoy2+UiLv12Mx9x+smkvMyZnRQ==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-win32-arm64-msvc/0.1.3:
-    resolution: {integrity: sha512-aVFB1MAb+JgwMDwWmRoPTklqM+q/boVqyVVZQjge1h/lCKZgWgl54/JtZTKCOL/yd+aURaV0UxcytqVRMWPubA==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-win32-ia32-msvc/0.1.3:
-    resolution: {integrity: sha512-DwHAdnypIKOqoqMvA+qf9YBcfknc6+P7keV3nWThS8YmYg1EcxVju312GCcp3I1SWoLXYMi8j5pDD+3EnSZl2w==}
-    engines: {node: '>= 10'}
-    cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map-win32-x64-msvc/0.1.3:
-    resolution: {integrity: sha512-bfSrS/C+kMbOlSxaGbTBBXljEsTz8/dEqRWw2sz3W8r1e6VWnkl+N0Xd/dAWu9SpN3G/tt8hLA4xsdq0aujNHA==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /@speedy-js/source-map/0.1.3:
-    resolution: {integrity: sha512-kFebUqtFwVRDy6m5VbEN9i/ket7p7Cc38wy1Sfb8LTA/jiwhaKrhZ8ir2+lAO3nctymvxobvOI6t2kC9LlaxVA==}
-    engines: {node: '>= 10'}
-    optionalDependencies:
-      '@speedy-js/source-map-android-arm-eabi': 0.1.3
-      '@speedy-js/source-map-android-arm64': 0.1.3
-      '@speedy-js/source-map-darwin-arm64': 0.1.3
-      '@speedy-js/source-map-darwin-x64': 0.1.3
-      '@speedy-js/source-map-freebsd-x64': 0.1.3
-      '@speedy-js/source-map-linux-arm-gnueabihf': 0.1.3
-      '@speedy-js/source-map-linux-arm64-gnu': 0.1.3
-      '@speedy-js/source-map-linux-arm64-musl': 0.1.3
-      '@speedy-js/source-map-linux-x64-gnu': 0.1.3
-      '@speedy-js/source-map-linux-x64-musl': 0.1.3
-      '@speedy-js/source-map-win32-arm64-msvc': 0.1.3
-      '@speedy-js/source-map-win32-ia32-msvc': 0.1.3
-      '@speedy-js/source-map-win32-x64-msvc': 0.1.3
     dev: true
 
   /@svgr/babel-plugin-add-jsx-attribute/6.3.1_@babel+core@7.15.8:
@@ -5518,6 +5371,7 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-android-arm64/0.14.28:
@@ -5535,6 +5389,7 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-darwin-64/0.14.28:
@@ -5552,6 +5407,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-darwin-arm64/0.14.28:
@@ -5569,6 +5425,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-freebsd-64/0.14.28:
@@ -5586,6 +5443,7 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-freebsd-arm64/0.14.28:
@@ -5603,6 +5461,7 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-32/0.14.28:
@@ -5620,6 +5479,7 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-64/0.14.28:
@@ -5637,6 +5497,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-arm/0.14.28:
@@ -5654,6 +5515,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-arm64/0.14.28:
@@ -5671,6 +5533,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-mips64le/0.14.28:
@@ -5688,6 +5551,7 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-ppc64le/0.14.28:
@@ -5705,6 +5569,7 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-riscv64/0.14.28:
@@ -5722,6 +5587,7 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-linux-s390x/0.14.28:
@@ -5739,6 +5605,7 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-netbsd-64/0.14.28:
@@ -5756,6 +5623,7 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-openbsd-64/0.14.28:
@@ -5773,6 +5641,7 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-plugin-license/1.2.2_esbuild@0.15.1:
@@ -5798,6 +5667,7 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-windows-32/0.14.28:
@@ -5815,6 +5685,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-windows-64/0.14.28:
@@ -5832,6 +5703,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild-windows-arm64/0.14.28:
@@ -5849,6 +5721,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /esbuild/0.14.28:
@@ -5906,6 +5779,7 @@ packages:
       esbuild-windows-32: 0.15.1
       esbuild-windows-64: 0.15.1
       esbuild-windows-arm64: 0.15.1
+    dev: false
 
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -9553,11 +9427,6 @@ packages:
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-
-  /source-map/0.7.3:
-    resolution: {integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==}
-    engines: {node: '>= 8'}
-    dev: true
 
   /source-map/0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
