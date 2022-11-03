@@ -1,6 +1,6 @@
 {
   "name": "@modern-js/libuild-plugin-svgr",
-  "version": "0.1.4",
+  "version": "0.3.0",
   "description": "A plugin for libuild to transform your svg to react component",
   "keywords": [
     "libuild",
@@ -27,7 +27,7 @@
     "@types/yoga-layout": "1.9.2",
     "eslint": "7.32.0",
     "@modern-js/eslint-config": "workspace:*",
-    "@modern-js/libuild": "^0.1.0",
+    "@modern-js/libuild": "workspace:*",
     "@modern-js/libuild-node-rig": "workspace:*"
   }
 }

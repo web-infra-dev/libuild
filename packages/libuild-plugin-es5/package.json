@@ -1,6 +1,6 @@
 {
   "name": "@modern-js/libuild-plugin-es5",
-  "version": "0.1.4",
+  "version": "0.3.0",
   "description": "A plugin for libuild to transform your code to es5",
   "keywords": [
     "libuild",
@@ -26,7 +26,7 @@
     "@babel/plugin-transform-runtime": "7.17.0",
     "@babel/preset-typescript": "7.16.7",
     "@modern-js/eslint-config": "workspace:*",
-    "@modern-js/libuild": "^0.1.0",
+    "@modern-js/libuild": "workspace:*",
     "@modern-js/libuild-utils": "workspace:*",
     "@modern-js/libuild-node-rig": "workspace:*",
     "babel-plugin-polyfill-corejs3": "0.5.2",

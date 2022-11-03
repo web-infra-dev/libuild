@@ -1,6 +1,25 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Thu, 13 Oct 2022 12:46:42 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Nov 2022 06:41:40 GMT and should not be manually modified.
+
+## 0.3.0
+Thu, 03 Nov 2022 06:41:40 GMT
+
+### Minor changes
+
+- support autoModules and style inject
+-  support outbase and deprecated sourceDir, to improve build when bundle is false
+- support postcss-modules option
+
+### Patches
+
+- refactor error thrown by libuilder
+- improve redirect plugin and rebase logic
+- add `await` for style compile
+- remove native remapping
+- adjust watch log
+- add cli option --source-dir
+- add log about esbuild warn and change error code
 
 ## 0.2.0
 Thu, 13 Oct 2022 12:46:42 GMT

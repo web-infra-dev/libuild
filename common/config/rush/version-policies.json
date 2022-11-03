@@ -65,6 +65,12 @@
   // },
   //
   {
+    "definitionName": "lockStepVersion",
+    "policyName": "fixed",
+    "version": "0.3.0",
+    "nextBump": "prerelease"
+  }
+  // {
   //   /**
   //    * (Required) Indicates the kind of version policy being defined ("lockStepVersion" or "individualVersion").
   //    *
@@ -75,10 +81,10 @@
   //    * depend on how developers answer the "rush change" questions for each package that
   //    * is changed.
   //    */
-    "definitionName": "individualVersion",
-  
-    "policyName": "fixed"
-  
+  //   "definitionName": "individualVersion",
+  //
+  //   "policyName": "fixed"
+  //
   //   /**
   //    * (Optional) This can be used to enforce that all packages in the set must share a common
   //    * major version number, e.g. because they are from the same major release branch.
@@ -98,5 +104,5 @@
   //   "exemptFromRushChange": false,
   //
   //   // "includeEmailInChangeFile": true
-  }
+  // }
 ]
