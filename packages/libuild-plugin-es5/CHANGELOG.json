@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild-plugin-es5",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "@modern-js/libuild-plugin-es5_v0.3.0",
+      "date": "Thu, 03 Nov 2022 07:55:22 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.1.4",
       "tag": "@modern-js/libuild-plugin-es5_v0.1.4",
       "date": "Thu, 13 Oct 2022 12:46:42 GMT",

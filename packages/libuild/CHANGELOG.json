@@ -2,6 +2,47 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "@modern-js/libuild_v0.3.0",
+      "date": "Thu, 03 Nov 2022 07:55:22 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "refactor error thrown by libuilder"
+          },
+          {
+            "comment": "improve redirect plugin and rebase logic"
+          },
+          {
+            "comment": "add `await` for style compile"
+          },
+          {
+            "comment": "remove native remapping"
+          },
+          {
+            "comment": "adjust watch log"
+          },
+          {
+            "comment": "add cli option --source-dir"
+          },
+          {
+            "comment": "add log about esbuild warn and change error code"
+          }
+        ],
+        "minor": [
+          {
+            "comment": "support autoModules and style inject"
+          },
+          {
+            "comment": " support outbase and deprecated sourceDir, to improve build when bundle is false"
+          },
+          {
+            "comment": "support postcss-modules option"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "@modern-js/libuild_v0.2.0",
       "date": "Thu, 13 Oct 2022 12:46:42 GMT",

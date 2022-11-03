@@ -1,6 +1,11 @@
 # Change Log - @modern-js/libuild-plugin-babel-preset
 
-This log was last generated on Thu, 13 Oct 2022 12:46:42 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Nov 2022 07:55:22 GMT and should not be manually modified.
+
+## 0.3.0
+Thu, 03 Nov 2022 07:55:22 GMT
+
+_Version update only_
 
 ## 0.1.4
 Thu, 13 Oct 2022 12:46:42 GMT
