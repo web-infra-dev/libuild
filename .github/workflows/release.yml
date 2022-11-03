@@ -23,10 +23,10 @@ jobs:
           access_token: ${{ github.token }}
       - name: Clone target repo
         uses: actions/checkout@v2
-      - name: Set node version to 12
+      - name: Set node version to 16
         uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: 16
           check-latest: true
           architecture: x64
       - name: Install rush toolchain
