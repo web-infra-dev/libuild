@@ -22,7 +22,7 @@ import {
   LibuildErrorParams,
 } from '../types';
 import { normalizeConfig } from '../config/normalize';
-import { pluginApply } from '../plugins/pluginApply';
+import { getInternalPlugin } from '../plugins/getInternalPlugin';
 import { validateUserConfig, loadConfig } from '../config';
 import { ErrorCode } from '../constants/error';
 import { createTransformHook, createProcessAssetHook } from './utils';
@@ -116,10 +116,19 @@ export class Libuilder implements ILibuilder {
       done: new tapable.AsyncSeriesHook<[]>([]),
       shutdown: new tapable.AsyncSeriesHook<[]>(),
     });
-    for (const plugin of this.config.plugins) {
+    // load plugins
+    const userPlugin = this.config.plugins;
+    const internalPlugin = await getInternalPlugin(this.config);
+    this.plugins = [...userPlugin, ...internalPlugin];
+    for (const plugin of this.plugins) {
       plugin.apply(this);
     }
-    await pluginApply(this.config, this);
+    if (this.config.format === 'umd' && this.plugins.every((plugin) => plugin.name !== 'libuild:umd')) {
+      throw new Error('@modern-js/libuild-plugin-umd is required for umd format. Please install it`');
+    }
+    if (this.config.target === 'es5' && this.plugins.every((plugin) => plugin.name !== 'libuild:es5')) {
+      throw new Error('@modern-js/libuild-plugin-es5 is required for es5 target. Please install it`');
+    }
   }
 
   async build() {

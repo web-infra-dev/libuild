@@ -221,9 +221,6 @@ const UserConfig = {
   jsx: {
     enum: ['automatic', 'preserve', 'transform'],
   },
-  getModuleId: {
-    instanceof: 'Function',
-  },
   esbuildOptions: {
     instanceof: 'Function',
   },

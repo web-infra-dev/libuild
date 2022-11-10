@@ -54,7 +54,6 @@ async function parseNormalError(err: Error): Promise<IConfigLoaderMessage> {
       },
     };
   } catch (e: any) {
-    console.log(`Load Config Transform Error: ${e.message}`);
     return {
       message: errorMessage,
     };
@@ -108,7 +107,6 @@ async function parseEsbuildError(data: Message): Promise<IConfigLoaderMessage> {
       },
     };
   } catch (e: any) {
-    console.log(`Load Config Transform Error: ${e.message}`);
     return {
       message: text,
       location: {

@@ -5,39 +5,33 @@ import { cssPlugin, minifyCssPlugin } from './style';
 import { minifyPlugin } from './minify';
 import { assetsPlugin } from './asset';
 
-import { BuildConfig, ILibuilder } from '../types';
+import { BuildConfig } from '../types';
 
-export async function pluginApply(config: BuildConfig, compiler: ILibuilder) {
+export async function getInternalPlugin(config: BuildConfig) {
+  const internalPlugin = [];
   if (config.clean) {
     const { cleanPlugin } = await import('./clean');
-    cleanPlugin().apply(compiler);
+    internalPlugin.push(cleanPlugin());
   }
 
   if (config.watch) {
     const { watchPlugin } = await import('./watch');
-    watchPlugin().apply(compiler);
+    internalPlugin.push(watchPlugin());
   }
 
-  resolvePlugin().apply(compiler);
-
-  assetsPlugin().apply(compiler);
-  cssPlugin().apply(compiler);
+  internalPlugin.push(resolvePlugin(), assetsPlugin(), cssPlugin());
 
   if (!config.bundle) {
     const { redirectPlugin } = await import('./redirect');
-
-    redirectPlugin().apply(compiler);
+    internalPlugin.push(redirectPlugin());
   }
-  minifyPlugin().apply(compiler);
 
-  formatPlugin().apply(compiler);
+  internalPlugin.push(formatPlugin(), minifyCssPlugin(), writeFilePlugin());
 
-  minifyCssPlugin().apply(compiler);
-
-  writeFilePlugin().apply(compiler);
   if (config.metafile) {
     const { metaFilePlugin } = await import('./metafile');
-
-    metaFilePlugin().apply(compiler);
+    internalPlugin.push(metaFilePlugin());
   }
+
+  return internalPlugin;
 }
