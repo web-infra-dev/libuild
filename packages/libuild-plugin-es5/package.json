@@ -26,6 +26,7 @@
     "@babel/plugin-transform-runtime": "7.17.0",
     "@babel/preset-typescript": "7.16.7",
     "@modern-js/eslint-config": "workspace:*",
+    "eslint": "7.32.0",
     "@modern-js/libuild": "workspace:*",
     "@modern-js/libuild-utils": "workspace:*",
     "@modern-js/libuild-node-rig": "workspace:*",

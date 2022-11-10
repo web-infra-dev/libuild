@@ -23,7 +23,7 @@ export const babelPlugin = (options: BabelTransformOptions): LibuildPlugin => {
             });
             return {
               ...args,
-              code: result?.code!,
+              code: result?.code,
               map: result?.map,
             };
           }

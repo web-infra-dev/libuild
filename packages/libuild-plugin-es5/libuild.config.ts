@@ -1,4 +1,4 @@
-import { defineConfig } from '@modern-js/libuild'
+import { defineConfig } from '@modern-js/libuild';
 
 export default defineConfig([
   {
@@ -12,5 +12,5 @@ export default defineConfig([
     format: 'esm',
     target: 'es2015',
     sourceMap: true,
-  }
-])
+  },
+]);

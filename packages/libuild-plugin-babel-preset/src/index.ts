@@ -1,5 +1,5 @@
 import type { LibuildPlugin } from '@modern-js/libuild';
-import type { BabelFileResult, TransformOptions as BabelTransformOptions } from '@babel/core';
+import type { TransformOptions as BabelTransformOptions } from '@babel/core';
 import { isJsExt, isJsLoader, resolvePathAndQuery } from '@modern-js/libuild-utils';
 
 export interface BabelPluginImportOptions {
@@ -69,10 +69,9 @@ export const babelPresetPlugin = (
       compiler.hooks.transform.tapPromise('babel', async (args) => {
         const { originalFilePath } = resolvePathAndQuery(args.path);
         if (isJsExt(originalFilePath) || isJsLoader(args.loader)) {
-          let result: BabelFileResult | null = null;
-          let isTsx = args.loader === 'tsx' || /\.tsx$/i.test(originalFilePath);
+          const isTsx = args.loader === 'tsx' || /\.tsx$/i.test(originalFilePath);
           const { plugins, presets } = normalizeBabel(preset, isTsx);
-          result = await require('@babel/core').transformAsync(args.code, {
+          const result = await require('@babel/core').transformAsync(args.code, {
             ...options,
             exclude: [/\bcore-js\b/],
             inputSourceMap: false,
@@ -85,11 +84,11 @@ export const babelPresetPlugin = (
             presets: [...presets, ...(options.presets || [])],
             plugins: [...plugins, ...(options.plugins || [])],
           });
-          
+
           return {
             ...args,
-            code: result?.code!,
-            map: result?.map!,
+            code: result?.code,
+            map: result?.map,
           };
         }
         /* c8 ignore start */

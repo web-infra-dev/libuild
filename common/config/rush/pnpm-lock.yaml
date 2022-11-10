@@ -188,6 +188,7 @@ importers:
       '@modern-js/libuild-utils': workspace:*
       '@types/babel__core': 7.1.16
       '@types/node': 12.20.42
+      eslint: 7.32.0
       typescript: 4.4.4
     dependencies:
       '@babel/core': 7.15.8
@@ -198,6 +199,7 @@ importers:
       '@modern-js/libuild-utils': link:../libuild-utils
       '@types/babel__core': 7.1.16
       '@types/node': 12.20.42
+      eslint: 7.32.0
       typescript: 4.4.4
 
   ../../packages/libuild-plugin-babel-preset:
@@ -211,6 +213,7 @@ importers:
       '@modern-js/libuild-utils': workspace:*
       '@types/babel__core': 7.1.16
       babel-plugin-import: 1.13.3
+      eslint: 7.32.0
       typescript: 4.4.4
     dependencies:
       '@babel/core': 7.15.8
@@ -223,6 +226,7 @@ importers:
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@modern-js/libuild-utils': link:../libuild-utils
       '@types/babel__core': 7.1.16
+      eslint: 7.32.0
       typescript: 4.4.4
 
   ../../packages/libuild-plugin-es5:
@@ -242,6 +246,7 @@ importers:
       babel-plugin-polyfill-corejs3: 0.5.2
       babel-plugin-polyfill-regenerator: 0.3.1
       core-js: 3.21.1
+      eslint: 7.32.0
       regenerator-runtime: 0.13.9
       typescript: 4.4.4
     dependencies:
@@ -262,6 +267,7 @@ importers:
       '@types/babel__core': 7.1.16
       babel-plugin-polyfill-corejs3: 0.5.2_@babel+core@7.15.8
       babel-plugin-polyfill-regenerator: 0.3.1_@babel+core@7.15.8
+      eslint: 7.32.0
       typescript: 4.4.4
 
   ../../packages/libuild-plugin-node-polyfill:
