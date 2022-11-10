@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "remove the built-in babel and support umd format through @modern-js/libuild-pluign-umd",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
