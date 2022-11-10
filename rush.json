@@ -399,6 +399,12 @@
       "versionPolicyName": "fixed"
     },
     {
+      "packageName": "@modern-js/libuild-plugin-umd",
+      "projectFolder": "packages/libuild-plugin-umd",
+      "reviewCategory": "library",
+      "versionPolicyName": "fixed"
+    },
+    {
       "packageName": "@modern-js/libuild-plugin-node-polyfill",
       "projectFolder": "packages/libuild-plugin-node-polyfill",
       "reviewCategory": "library",

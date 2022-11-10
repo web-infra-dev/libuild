@@ -1,10 +1,10 @@
 {
-  "name": "@modern-js/libuild-plugin-es5",
+  "name": "@modern-js/libuild-plugin-umd",
   "version": "0.3.0",
-  "description": "A plugin for libuild to transform your code to es5",
+  "description": "A plugin for libuild to transform your code to umd after build",
   "keywords": [
     "libuild",
-    "es5"
+    "umd"
   ],
   "repository": "modern-js-dev/libuild",
   "main": "./dist/cjs/index.js",
@@ -21,8 +21,9 @@
     "@modern-js/eslint-config": "workspace:*",
     "@modern-js/libuild": "workspace:*",
     "@modern-js/libuild-utils": "workspace:*",
-    "@modern-js/libuild-node-rig": "workspace:*"
-    },
+    "@modern-js/libuild-node-rig": "workspace:*",
+    "eslint": "7.32.0"
+  },
   "dependencies": {
     "@swc/core": "1.3.14"
   },

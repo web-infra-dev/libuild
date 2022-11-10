@@ -90,10 +90,8 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const clean = config.clean ?? false;
   const jsx = config.jsx ?? 'automatic';
   const esbuildOptions = config.esbuildOptions ?? ((config) => config);
-  const { getModuleId } = config;
 
   return {
-    getModuleId,
     esbuildOptions,
     jsx,
     chunkNames,

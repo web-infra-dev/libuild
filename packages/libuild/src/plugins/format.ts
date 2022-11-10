@@ -16,7 +16,7 @@ export const formatPlugin = (): LibuildPlugin => {
         if (chunk.fileName.endsWith('.js') && chunk.type === 'chunk') {
           const format = getFormatForChunk(compiler.config.format, chunk.originalFileName || chunk.fileName);
           const code = chunk.contents.toString();
-          const { sourceMap, target, getModuleId } = compiler.config;
+          const { sourceMap, target } = compiler.config;
           if (format === 'esm') {
             return {
               ...chunk,
@@ -37,30 +37,6 @@ export const formatPlugin = (): LibuildPlugin => {
               map: result.map ? JSON.parse(result.map) : undefined,
             };
           }
-
-          const plugins = [];
-          if (format === 'umd') {
-            plugins.push(require('@babel/plugin-transform-modules-umd'));
-          }
-          const babel = (await import('@babel/core')).default;
-          // When specify a custom callback to generate a module id, should insert an explicit id for modules, otherwise callback will not work.
-          const moduleIds = Boolean(getModuleId);
-          const result = await babel.transformAsync(chunk.contents.toString(), {
-            filename: chunk.fileName,
-            moduleIds,
-            getModuleId,
-            plugins,
-            sourceType: 'module',
-            sourceMaps: !!sourceMap,
-            compact: false,
-            babelrc: false,
-            configFile: false,
-          });
-          return {
-            ...chunk,
-            contents: result!.code!,
-            map: result!.map,
-          };
         }
         return chunk;
       });

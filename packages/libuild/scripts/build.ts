@@ -201,7 +201,6 @@ async function run() {
       'source-map',
       'source-map-support',
       'typescript',
-      '@speedy-js/source-map',
     ],
     plugins: [
       args.splitting && splitPlugin(),

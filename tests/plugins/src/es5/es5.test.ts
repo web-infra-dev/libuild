@@ -1,12 +1,11 @@
 import { getLibuilderTest } from '@modern-js/libuild-test-toolkit';
-import { es5OutputPlugin } from '@modern-js/libuild-plugin-es5';
+import { es5Plugin } from '@modern-js/libuild-plugin-es5';
 
 describe('fixture:es5', () => {
-  it('es5-output', async () => {
+  it('es5', async () => {
     const bundler = await getLibuilderTest({
       root: __dirname,
-      target: 'es6',
-      plugins: [es5OutputPlugin()],
+      plugins: [es5Plugin()],
     });
     await bundler.build();
     bundler.expectJSOutputMatchSnapshot();
