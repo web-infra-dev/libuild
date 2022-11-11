@@ -2,7 +2,7 @@ import type { LibuildPlugin } from '@modern-js/libuild';
 import { transform } from '@swc/core';
 
 type Options = {
-  moduleName: string | ((chunkName: string) => string);
+  moduleName?: string | ((chunkName: string) => string);
 };
 
 export const umdPlugin = (options?: Options): LibuildPlugin => {
