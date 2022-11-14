@@ -29,7 +29,7 @@ export const getLibuilderTest = async (params: CLIConfig, name?: string): Promis
     throw new Error('Detect multiply config.');
   }
   const bundler = (await Libuilder.create(
-    { ...userConfig, minify: false},
+    userConfig,
     name
   )) as unknown as ILibuilderTest;
 

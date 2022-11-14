@@ -26,7 +26,7 @@ export async function getInternalPlugin(config: BuildConfig) {
     internalPlugin.push(redirectPlugin());
   }
 
-  internalPlugin.push(formatPlugin(), minifyCssPlugin(), writeFilePlugin());
+  internalPlugin.push(formatPlugin(), minifyPlugin(), minifyCssPlugin(), writeFilePlugin());
 
   if (config.metafile) {
     const { metaFilePlugin } = await import('./metafile');
