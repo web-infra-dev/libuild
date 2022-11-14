@@ -1,0 +1,11 @@
+{
+  "name": "@modern-js/libuild-plugin-umd",
+  "entries": [
+    {
+      "version": "0.4.0",
+      "tag": "@modern-js/libuild-plugin-umd_v0.4.0",
+      "date": "Mon, 14 Nov 2022 06:16:02 GMT",
+      "comments": {}
+    }
+  ]
+}

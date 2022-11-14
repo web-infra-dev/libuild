@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Thu, 03 Nov 2022 07:55:22 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Nov 2022 06:16:02 GMT and should not be manually modified.
+
+## 0.4.0
+Mon, 14 Nov 2022 06:16:02 GMT
+
+### Updates
+
+- remove the built-in babel and support umd format through @modern-js/libuild-pluign-umd
 
 ## 0.3.0
 Thu, 03 Nov 2022 07:55:22 GMT

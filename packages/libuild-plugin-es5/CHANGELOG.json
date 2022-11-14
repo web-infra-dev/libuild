@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild-plugin-es5",
   "entries": [
     {
+      "version": "0.4.0",
+      "tag": "@modern-js/libuild-plugin-es5_v0.4.0",
+      "date": "Mon, 14 Nov 2022 06:16:02 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "deprecate es5InputPlugin and es5OutputPlugin, use es5Plugin powered by swc"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.0",
       "tag": "@modern-js/libuild-plugin-es5_v0.3.0",
       "date": "Thu, 03 Nov 2022 07:55:22 GMT",
