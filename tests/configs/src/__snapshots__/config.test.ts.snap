@@ -154,7 +154,12 @@ Object {
     "timesLog": Map {},
   },
   "metafile": false,
-  "minify": false,
+  "minify": Object {
+    "compress": Object {
+      "hoist_funs": false,
+      "inline": 1000000,
+    },
+  },
   "node_resolve": [Function],
   "outbase": "minify-terser/custom/src",
   "outdir": "minify-terser/custom/dist",
@@ -214,7 +219,7 @@ Object {
     "timesLog": Map {},
   },
   "metafile": false,
-  "minify": false,
+  "minify": "terser",
   "node_resolve": [Function],
   "outbase": "minify-terser/default/src",
   "outdir": "minify-terser/default/dist",

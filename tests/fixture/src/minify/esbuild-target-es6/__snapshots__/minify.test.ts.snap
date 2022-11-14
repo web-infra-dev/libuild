@@ -1,9 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fixture:minify when \`minify\` is \`esbuild\` + target es6 1`] = `
-"// index.ts
-var this_is_a_long_function_name1 = () => {
-};
-console.log(this_is_a_long_function_name1);
+"var n=()=>{};console.log(n);
 "
 `;
