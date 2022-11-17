@@ -67,6 +67,7 @@ export class Libuilder implements ILibuilder {
   private watcher?: FSWatcher;
 
   static async run(config: CLIConfig = {}, name?: string): Promise<Libuilder | Libuilder[]> {
+    loadEnv();
     const userConfig = await loadConfig(config);
     if (Array.isArray(userConfig)) {
       return Promise.all(
@@ -90,7 +91,6 @@ export class Libuilder implements ILibuilder {
 
     try {
       validateUserConfig(config);
-      loadEnv();
       await builder.init(config);
       await builder.hooks.initialize.promise();
     } catch (e: unknown) {
