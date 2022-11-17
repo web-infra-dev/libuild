@@ -31,15 +31,11 @@ export const sassRender: PreprocessRender = async function (
             const removeUnderScoreBaseUrl = baseUrl.replace(/^_/, '');
             const prependUnderScoreBaseUrl = `_${removeUnderScoreBaseUrl}`;
             try {
-              filePath = this.config.css_resolve(
-                path.join(dirUrl, prependUnderScoreBaseUrl),
-                dir === 'stdin' ? stdinDir : (resolvePathMap.get(dir) as string)
-              );
+              const id = path.join(dirUrl, prependUnderScoreBaseUrl);
+              filePath = this.config.css_resolve(id, dir === 'stdin' ? stdinDir : resolvePathMap.get(dir)!);
             } catch (err) {
-              filePath = this.config.css_resolve(
-                path.join(dirUrl, removeUnderScoreBaseUrl),
-                dir === 'stdin' ? stdinDir : dir
-              );
+              const id = path.join(dirUrl, removeUnderScoreBaseUrl);
+              filePath = this.config.css_resolve(id, dir === 'stdin' ? stdinDir : resolvePathMap.get(dir)!);
             }
             resolvePathMap.set(url, path.dirname(filePath));
             if (url.startsWith('./')) {
