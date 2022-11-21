@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix asset relative path in win32",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
