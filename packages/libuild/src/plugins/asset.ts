@@ -1,4 +1,4 @@
-import { basename, join, extname, relative, dirname } from 'path';
+import { basename, join, extname, relative, dirname, win32 } from 'path';
 import fs from 'fs';
 import { createHash } from 'crypto';
 import { resolvePathAndQuery } from '@modern-js/libuild-utils';
@@ -100,7 +100,7 @@ export async function getAssetContents(this: ILibuilder, assetPath: string, reba
   });
   if (rebaseFrom && rebase) {
     const relativePath = relative(rebaseFrom, outputFilePath);
-    return relativePath.startsWith('..') ? relativePath : `./${relativePath}`;
+    return normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
   }
   const filePath = `${
     typeof publicPath === 'function' ? publicPath(assetPath) : publicPath
@@ -131,4 +131,8 @@ export function getOutputFileName(filePath: string, content: Buffer, assetName: 
 
 export function getHash(content: Buffer | string, encoding: any, type = 'md5'): string {
   return createHash(type).update(content.toString(), encoding).digest('hex');
+}
+
+function normalizeSlashes(file: string) {
+  return file.split(win32.sep).join('/');
 }
