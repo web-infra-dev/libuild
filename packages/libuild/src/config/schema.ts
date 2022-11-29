@@ -113,6 +113,9 @@ const resolve = {
 
 const UserConfig = {
   style,
+  autoExternal: {
+    typeof: ['boolean', 'object'],
+  },
   clean: {
     type: 'boolean',
   },

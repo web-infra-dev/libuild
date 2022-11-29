@@ -66,7 +66,8 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   };
 
   const watch = config.watch ?? false;
-  const { dep, peerDep } = getAllDeps(root);
+  const autoExternal = config.autoExternal ?? true;
+  const { dep, peerDep } = getAllDeps(root, autoExternal);
   const external = [
     ...[...dep, ...peerDep].map((dep) => new RegExp(`^${dep}($|\\/|\\\\)`)),
     ...(config.external ?? []),
@@ -138,5 +139,6 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     external,
     platform,
     asset,
+    autoExternal,
   };
 }

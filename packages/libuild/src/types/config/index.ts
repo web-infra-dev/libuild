@@ -47,6 +47,15 @@ export interface UserConfig {
   /**
    * @default true
    */
+  autoExternal?:
+    | boolean
+    | {
+        dependencies: boolean;
+        peerDependencies: boolean;
+      };
+  /**
+   * @default true
+   */
   bundle?: boolean;
   /**
    * Input to the bundling algorithm.
