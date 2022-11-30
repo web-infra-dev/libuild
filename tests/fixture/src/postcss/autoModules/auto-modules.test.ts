@@ -8,9 +8,7 @@ describe('fixture:postcss:auto-modules', () => {
         index: './index.css',
       },
       style: {
-        postcss: {
-          autoModules: false,
-        },
+        autoModules: false,
       },
     });
     await bundler.build();
@@ -23,9 +21,7 @@ describe('fixture:postcss:auto-modules', () => {
         index: './index.css',
       },
       style: {
-        postcss: {
-          autoModules: /^.+\.css$/,
-        },
+        autoModules: /^.+\.css$/,
       },
     });
     await bundler.build();

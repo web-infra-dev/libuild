@@ -17,18 +17,6 @@ declare class Loader {
 export type PostcssOptions = {
   processOptions?: ProcessOptions;
   plugins?: AcceptedPlugin[];
-  autoModules?: boolean | RegExp;
-  modules?: {
-    localsConvention?: 'camelCase' | 'camelCaseOnly' | 'dashes' | 'dashesOnly' | LocalsConventionFunction;
-    scopeBehaviour?: 'global' | 'local';
-    globalModulePaths?: RegExp[];
-    generateScopedName?: string | GenerateScopedNameFunction;
-    hashPrefix?: string;
-    exportGlobals?: boolean;
-    root?: string;
-    resolve?: (file: string) => string | Promise<string>;
-    Loader?: typeof Loader;
-  };
 };
 
 export type { sassOptions };
@@ -48,5 +36,17 @@ export interface Style {
     lessOptions?: Less.Options;
   };
   postcss?: PostcssOptions;
+  autoModules?: boolean | RegExp;
+  modules?: {
+    localsConvention?: 'camelCase' | 'camelCaseOnly' | 'dashes' | 'dashesOnly' | LocalsConventionFunction;
+    scopeBehaviour?: 'global' | 'local';
+    globalModulePaths?: RegExp[];
+    generateScopedName?: string | GenerateScopedNameFunction;
+    hashPrefix?: string;
+    exportGlobals?: boolean;
+    root?: string;
+    resolve?: (file: string) => string | Promise<string>;
+    Loader?: typeof Loader;
+  };
   cleanCss?: CleanCss.OptionsOutput | boolean;
 }

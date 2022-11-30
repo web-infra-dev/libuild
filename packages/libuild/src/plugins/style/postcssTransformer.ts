@@ -50,7 +50,8 @@ export const postcssTransformer = async (
   loader: 'js' | 'css';
 }> => {
   const postcssConfig = await loadPostcssConfig(compilation.config.root, compilation.config.style.postcss);
-  const { modules: modulesOption = {}, autoModules = true, plugins = [], processOptions = {} } = postcssConfig;
+  const { plugins = [], processOptions = {} } = postcssConfig;
+  const { modules: modulesOption = {}, autoModules = true } = compilation.config.style;
   let modules: Record<string, string> = {};
   const finalPlugins = [
     postcssUrlPlugin({

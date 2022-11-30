@@ -75,7 +75,7 @@ async function redirectImport(
       // less sass
       const ext = extname(targetImport.n!);
       if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
-        if (isCssModule(targetImport.n!, compiler.config.style.postcss?.autoModules ?? true)) {
+        if (isCssModule(targetImport.n!, compiler.config.style?.autoModules ?? true)) {
           str.overwrite(targetImport.s, targetImport.e, `${targetImport.n!.slice(0, -ext.length)}`);
         } else {
           str.overwrite(targetImport.s, targetImport.e, `${targetImport.n!.slice(0, -ext.length)}.css`);

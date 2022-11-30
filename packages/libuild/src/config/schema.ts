@@ -60,21 +60,21 @@ const style = {
         processOptions: {
           type: 'object',
         },
-        autoModules: {
-          anyOf: [
-            {
-              instanceof: 'RegExp',
-            },
-            {
-              typeof: 'boolean',
-            },
-          ],
-        },
-        modules: {
-          typeof: 'object',
-        },
       },
       additionalProperties: false,
+    },
+    autoModules: {
+      anyOf: [
+        {
+          instanceof: 'RegExp',
+        },
+        {
+          typeof: 'boolean',
+        },
+      ],
+    },
+    modules: {
+      typeof: 'object',
     },
     cleanCss: {
       typeof: ['boolean', 'object'],
