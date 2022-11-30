@@ -34,7 +34,6 @@ const style = {
           typeof: ['string', 'object'],
         },
       },
-      additionalProperties: false,
     },
     sass: {
       type: 'object',
@@ -49,7 +48,6 @@ const style = {
           typeof: ['string', 'object'],
         },
       },
-      additionalProperties: false,
     },
     postcss: {
       type: 'object',
@@ -61,7 +59,6 @@ const style = {
           type: 'object',
         },
       },
-      additionalProperties: false,
     },
     autoModules: {
       anyOf: [
@@ -83,7 +80,6 @@ const style = {
       typeof: 'boolean',
     },
   },
-  additionalProperties: false,
 };
 
 const resolve = {
@@ -108,7 +104,6 @@ const resolve = {
       type: 'boolean',
     },
   },
-  additionalProperties: false,
 };
 
 const UserConfig = {
@@ -257,7 +252,6 @@ const DEFAULT_SCHEMA = {
     ...CLIConfig,
     ...BuildConfig,
   },
-  additionalProperties: false,
 };
 
 export { DEFAULT_SCHEMA };
