@@ -1,6 +1,6 @@
 {
   "name": "@modern-js/libuild-plugin-babel-preset",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A plugin for libuild to transform your code with @babel/preset-react, @babel/preset-typescript and babel-plugin-import",
   "keywords": [
     "libuild",
