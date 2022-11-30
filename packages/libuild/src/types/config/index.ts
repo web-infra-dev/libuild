@@ -50,8 +50,8 @@ export interface UserConfig {
   autoExternal?:
     | boolean
     | {
-        dependencies: boolean;
-        peerDependencies: boolean;
+        dependencies?: boolean;
+        peerDependencies?: boolean;
       };
   /**
    * @default true
