@@ -11,6 +11,5 @@ describe('fixture:env', () => {
     await bundler.build();
     bundler.expectJSOutputMatchSnapshot();
     delete process.env.NODE_ENV;
-    delete process.env.LIBUILD_NATIVE_REMAPPING;
   });
 });

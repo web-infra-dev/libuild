@@ -60,11 +60,6 @@ declare const VALID_USER_CONFIG_LIST: [
     sourceMap: 'inline' | 'external' | true | false;
   },
   {
-    define: {
-      'process.env.LIBUILD_NATIVE_SOURCEMAP': 'true';
-    };
-  },
-  {
     external: [] | ['@modern-js/libuild'];
   },
   {
@@ -118,11 +113,6 @@ declare const INVALID_USER_CONFIG_LIST: [
   },
   {
     target: 'es2021';
-  },
-  {
-    define: {
-      'process.env.LIBUILD_NATIVE_SOURCEMAP': true;
-    };
   },
   {
     style: true;

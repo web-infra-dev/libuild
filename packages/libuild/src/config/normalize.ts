@@ -54,10 +54,14 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   logger.debug('Current env', JSON.stringify(rawEnv, null, 4));
 
   const define = {
-    ...Object.keys(rawEnv).reduce((acc, key) => {
-      acc[`process.env.${key}`] = JSON.stringify(rawEnv[key as LibuildEnvName]);
-      return acc;
-    }, {} as Record<string, string>),
+    ...Object.keys(rawEnv).reduce((res, key) => {
+      const value = JSON.stringify(rawEnv[key as LibuildEnvName]);
+      return {
+        ...res,
+        [`process.env.${key}`]: value,
+        [`import.meta.env.${key}`]: value,
+      };
+    }, {}),
     ...config.define,
   };
 

@@ -2,8 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import env from 'dotenv';
 import envExpand from 'dotenv-expand';
-import { version } from 'process';
-import semver from 'semver';
 import { DEFAULT_NODE_ENV } from '../constants/config';
 
 interface SupportedLibuildEnv {

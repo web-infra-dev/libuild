@@ -10,8 +10,7 @@ Object {
   "configFile": "configFile/argv/libuild.config.ts",
   "css_resolve": [Function],
   "define": Object {
-    "import.meta.env": "{\\"NODE_ENV\\":\\"\\\\\\"production\\\\\\"\\",\\"MODE\\":\\"\\\\\\"production\\\\\\"\\"}",
-    "process.env.NODE_ENV": "\\"production\\"",
+    "import.meta.env.LIBUILD_ENV_DEBUG": "\\"false\\"",
   },
   "entryNames": "[name]",
   "esbuildOptions": [Function],
@@ -71,8 +70,7 @@ Object {
   "configFile": "merge/input/libuild.config.ts",
   "css_resolve": [Function],
   "define": Object {
-    "import.meta.env": "{\\"NODE_ENV\\":\\"\\\\\\"production\\\\\\"\\",\\"MODE\\":\\"\\\\\\"production\\\\\\"\\"}",
-    "process.env.NODE_ENV": "\\"production\\"",
+    "import.meta.env.LIBUILD_ENV_DEBUG": "\\"false\\"",
   },
   "entryNames": "config-filename",
   "esbuildOptions": [Function],
@@ -134,8 +132,7 @@ Object {
   "configFile": "minify-terser/custom/libuild.config.ts",
   "css_resolve": [Function],
   "define": Object {
-    "import.meta.env": "{\\"NODE_ENV\\":\\"\\\\\\"production\\\\\\"\\",\\"MODE\\":\\"\\\\\\"production\\\\\\"\\"}",
-    "process.env.NODE_ENV": "\\"production\\"",
+    "import.meta.env.LIBUILD_ENV_DEBUG": "\\"false\\"",
   },
   "entryNames": "[name]",
   "esbuildOptions": [Function],
@@ -200,8 +197,7 @@ Object {
   "configFile": "minify-terser/default/libuild.config.ts",
   "css_resolve": [Function],
   "define": Object {
-    "import.meta.env": "{\\"NODE_ENV\\":\\"\\\\\\"production\\\\\\"\\",\\"MODE\\":\\"\\\\\\"production\\\\\\"\\"}",
-    "process.env.NODE_ENV": "\\"production\\"",
+    "import.meta.env.LIBUILD_ENV_DEBUG": "\\"false\\"",
   },
   "entryNames": "[name]",
   "esbuildOptions": [Function],
