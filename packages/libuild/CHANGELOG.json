@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.5.2",
+      "tag": "@modern-js/libuild_v0.5.2",
+      "date": "Thu, 01 Dec 2022 12:12:33 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "remove process.env.NODE_ENV default value"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.1",
       "tag": "@modern-js/libuild_v0.5.1",
       "date": "Thu, 01 Dec 2022 08:58:38 GMT",

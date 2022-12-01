@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Thu, 01 Dec 2022 08:58:38 GMT and should not be manually modified.
+This log was last generated on Thu, 01 Dec 2022 12:12:33 GMT and should not be manually modified.
+
+## 0.5.2
+Thu, 01 Dec 2022 12:12:33 GMT
+
+### Updates
+
+- remove process.env.NODE_ENV default value
 
 ## 0.5.1
 Thu, 01 Dec 2022 08:58:38 GMT
