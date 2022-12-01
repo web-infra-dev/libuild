@@ -72,12 +72,14 @@ export class Libuilder implements ILibuilder {
     if (Array.isArray(userConfig)) {
       return Promise.all(
         userConfig.map(async (c) => {
+          validateUserConfig(c);
           const compiler = await Libuilder.create(c);
           await compiler.build();
           return compiler;
         })
       );
     }
+    validateUserConfig(userConfig);
     const compiler = await Libuilder.create(userConfig, name);
     await compiler.build();
     return compiler;
@@ -90,7 +92,6 @@ export class Libuilder implements ILibuilder {
     builder.version = require('../../package.json').version;
 
     try {
-      validateUserConfig(config);
       await builder.init(config);
       await builder.hooks.initialize.promise();
     } catch (e: unknown) {
