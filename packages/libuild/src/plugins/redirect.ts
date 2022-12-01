@@ -27,10 +27,15 @@ async function redirectImport(
 
   await Promise.all(
     imports.map(async (targetImport) => {
+      const { n: moduleName } = targetImport;
+      if (!moduleName) {
+        return;
+      }
+
       // redirect asset path
       // import xxx from './xxx.svg';
-      if (assetExt.filter((ext) => targetImport.n!.endsWith(ext)).length) {
-        const absPath = resolve(dirname(filePath), targetImport.n!);
+      if (assetExt.filter((ext) => moduleName.endsWith(ext)).length) {
+        const absPath = resolve(dirname(filePath), moduleName);
         const relativeImportPath = await getAssetContents.apply(compiler, [absPath, outputDir]);
         str.overwrite(targetImport.s, targetImport.e, `${relativeImportPath}`);
         return;
@@ -39,12 +44,12 @@ async function redirectImport(
       let absoluteImportPath = '';
       for (const alias of Object.keys(aliasRecord)) {
         // prefix
-        if (targetImport.n!.startsWith(`${alias}/`)) {
-          absoluteImportPath = join(aliasRecord[alias], targetImport.n!.slice(alias.length + 1));
+        if (moduleName.startsWith(`${alias}/`)) {
+          absoluteImportPath = join(aliasRecord[alias], moduleName.slice(alias.length + 1));
           break;
         }
         // full path
-        if (targetImport.n! === alias) {
+        if (moduleName === alias) {
           absoluteImportPath = aliasRecord[alias];
           break;
         }
@@ -58,7 +63,7 @@ async function redirectImport(
       }
       // redirect style path
       // css module
-      const { originalFilePath, query } = resolvePathAndQuery(targetImport.n!);
+      const { originalFilePath, query } = resolvePathAndQuery(moduleName);
       if (query.css_virtual) {
         const base = `${basename(originalFilePath, extname(originalFilePath))}.css`;
         const contents = compiler.virtualModule.get(originalFilePath)!;
@@ -73,12 +78,12 @@ async function redirectImport(
         str.overwrite(targetImport.s, targetImport.e, `./${base}`);
       }
       // less sass
-      const ext = extname(targetImport.n!);
+      const ext = extname(moduleName);
       if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
-        if (isCssModule(targetImport.n!, compiler.config.style?.autoModules ?? true)) {
-          str.overwrite(targetImport.s, targetImport.e, `${targetImport.n!.slice(0, -ext.length)}`);
+        if (isCssModule(moduleName!, compiler.config.style?.autoModules ?? true)) {
+          str.overwrite(targetImport.s, targetImport.e, `${moduleName.slice(0, -ext.length)}`);
         } else {
-          str.overwrite(targetImport.s, targetImport.e, `${targetImport.n!.slice(0, -ext.length)}.css`);
+          str.overwrite(targetImport.s, targetImport.e, `${moduleName.slice(0, -ext.length)}.css`);
         }
       }
     })
