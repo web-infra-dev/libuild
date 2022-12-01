@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.5.1",
+      "tag": "@modern-js/libuild_v0.5.1",
+      "date": "Thu, 01 Dec 2022 08:58:38 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix redirect path when moduleName is undefined"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.0",
       "tag": "@modern-js/libuild_v0.5.0",
       "date": "Wed, 30 Nov 2022 09:08:41 GMT",
