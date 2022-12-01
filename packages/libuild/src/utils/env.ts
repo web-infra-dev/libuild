@@ -49,11 +49,7 @@ export const getClientEnvironment = (projectRoot?: string) => {
     loadEnv(projectRoot);
   }
 
-  // See: https://github.com/nodejs/node/issues/37236
-  const supportNapiClassRef = semver.satisfies(version, '>=14.17.0');
   const LIBUILD_ENV = /^LIBUILD_/i;
-  const defaultLibuildNativeEnabled =
-    process.env.LIBUILD_NATIVE === undefined ? supportNapiClassRef : process.env.LIBUILD_NATIVE === 'true';
 
   const SUPPORTED_LIBUILD_ENVS: SupportedLibuildEnv[] = [
     {
@@ -77,7 +73,6 @@ export const getClientEnvironment = (projectRoot?: string) => {
           acc[envName] = process.env[envName] ?? defaultValue;
           return acc;
         }, {} as Record<LibuildEnvName, string>),
-        NODE_ENV: process.env.NODE_ENV || DEFAULT_NODE_ENV,
       } as Record<LibuildEnvName, string>
     );
 

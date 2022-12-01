@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "remove process.env.NODE_ENV default value",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

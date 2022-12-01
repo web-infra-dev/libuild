@@ -58,10 +58,6 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
       acc[`process.env.${key}`] = JSON.stringify(rawEnv[key as LibuildEnvName]);
       return acc;
     }, {} as Record<string, string>),
-    'import.meta.env': JSON.stringify({
-      NODE_ENV: JSON.stringify(rawEnv.NODE_ENV),
-      MODE: JSON.stringify(rawEnv.NODE_ENV),
-    }),
     ...config.define,
   };
 
