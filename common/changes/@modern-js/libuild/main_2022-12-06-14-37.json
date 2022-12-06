@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix dynamic import expression not converted to require when using cjs and no-bundle",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

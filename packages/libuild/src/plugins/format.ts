@@ -16,7 +16,7 @@ export const formatPlugin = (): LibuildPlugin => {
         if (chunk.fileName.endsWith('.js') && chunk.type === 'chunk') {
           const format = getFormatForChunk(compiler.config.format, chunk.originalFileName || chunk.fileName);
           const code = chunk.contents.toString();
-          const { sourceMap, target } = compiler.config;
+          const { sourceMap, target, bundle } = compiler.config;
 
           if (format === 'cjs' || format === 'iife') {
             const result = await transform(code, {
@@ -24,6 +24,9 @@ export const formatPlugin = (): LibuildPlugin => {
               target,
               format,
               charset: 'utf8',
+              supported: {
+                'dynamic-import': bundle || format !== 'cjs',
+              },
             });
             return {
               ...chunk,
