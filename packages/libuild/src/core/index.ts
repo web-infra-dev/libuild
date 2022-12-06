@@ -124,11 +124,8 @@ export class Libuilder implements ILibuilder {
     for (const plugin of this.plugins) {
       plugin.apply(this);
     }
-    if (this.config.format === 'umd' && this.plugins.every((plugin) => plugin.name !== 'libuild:umd')) {
-      throw new Error('@modern-js/libuild-plugin-umd is required for umd format. Please install it`');
-    }
-    if (this.config.target === 'es5' && this.plugins.every((plugin) => plugin.name !== 'libuild:es5')) {
-      throw new Error('@modern-js/libuild-plugin-es5 is required for es5 target. Please install it`');
+    if (this.config.format === 'umd' && this.plugins.every((plugin) => plugin.name !== 'libuild:swc-umd')) {
+      throw new Error('@modern-js/libuild-plugin-swc is required for umd format. Please install it`');
     }
   }
 

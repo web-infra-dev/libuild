@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "use libuild-plugin-swc to support umd and es5 instead.",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

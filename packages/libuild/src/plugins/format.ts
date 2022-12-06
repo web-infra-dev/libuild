@@ -17,12 +17,6 @@ export const formatPlugin = (): LibuildPlugin => {
           const format = getFormatForChunk(compiler.config.format, chunk.originalFileName || chunk.fileName);
           const code = chunk.contents.toString();
           const { sourceMap, target } = compiler.config;
-          if (format === 'esm') {
-            return {
-              ...chunk,
-              contents: code,
-            };
-          }
 
           if (format === 'cjs' || format === 'iife') {
             const result = await transform(code, {

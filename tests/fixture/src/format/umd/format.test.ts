@@ -1,5 +1,5 @@
 import { getLibuilderTest } from '@modern-js/libuild-test-toolkit';
-import { umdPlugin } from '@modern-js/libuild-plugin-umd';
+import { umdPlugin } from '@modern-js/libuild-plugin-swc';
 
 describe('fixture:format:umd', () => {
   it('format umd', async () => {

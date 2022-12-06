@@ -10,8 +10,8 @@ importers:
       '@modern-js/eslint-config': workspace:*
       '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
-      '@modern-js/libuild-plugin-es5': workspace:*
       '@modern-js/libuild-plugin-svgr': workspace:*
+      '@modern-js/libuild-plugin-swc': workspace:*
       eslint: 7.32.0
       less: 4.1.3
       react: 17.0.2
@@ -25,8 +25,8 @@ importers:
       '@modern-js/eslint-config': link:../tools/eslint-config
       '@modern-js/libuild': link:../packages/libuild
       '@modern-js/libuild-node-rig': link:../tools/node-rig
-      '@modern-js/libuild-plugin-es5': link:../packages/libuild-plugin-es5
       '@modern-js/libuild-plugin-svgr': link:../packages/libuild-plugin-svgr
+      '@modern-js/libuild-plugin-swc': link:../packages/libuild-plugin-swc
       eslint: 7.32.0
       less: 4.1.3
       sass: 1.54.5
@@ -223,23 +223,6 @@ importers:
       eslint: 7.32.0
       typescript: 4.4.4
 
-  ../../packages/libuild-plugin-es5:
-    specifiers:
-      '@modern-js/eslint-config': workspace:*
-      '@modern-js/libuild': workspace:*
-      '@modern-js/libuild-node-rig': workspace:*
-      '@modern-js/libuild-utils': workspace:*
-      '@swc/core': 1.3.14
-      typescript: 4.4.4
-    dependencies:
-      '@swc/core': 1.3.14
-    devDependencies:
-      '@modern-js/eslint-config': link:../../tools/eslint-config
-      '@modern-js/libuild': link:../libuild
-      '@modern-js/libuild-node-rig': link:../../tools/node-rig
-      '@modern-js/libuild-utils': link:../libuild-utils
-      typescript: 4.4.4
-
   ../../packages/libuild-plugin-node-polyfill:
     specifiers:
       '@modern-js/eslint-config': workspace:*
@@ -330,17 +313,17 @@ importers:
       eslint: 7.32.0
       typescript: 4.4.4
 
-  ../../packages/libuild-plugin-umd:
+  ../../packages/libuild-plugin-swc:
     specifiers:
       '@modern-js/eslint-config': workspace:*
       '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-utils': workspace:*
-      '@swc/core': 1.3.14
+      '@modern-js/swc-plugins': 0.0.9
       eslint: 7.32.0
       typescript: 4.4.4
     dependencies:
-      '@swc/core': 1.3.14
+      '@modern-js/swc-plugins': 0.0.9
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
       '@modern-js/libuild': link:../libuild
@@ -433,9 +416,8 @@ importers:
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-plugin-babel': workspace:*
       '@modern-js/libuild-plugin-babel-preset': workspace:*
-      '@modern-js/libuild-plugin-es5': workspace:*
       '@modern-js/libuild-plugin-svgr': workspace:*
-      '@modern-js/libuild-plugin-umd': workspace:*
+      '@modern-js/libuild-plugin-swc': workspace:*
       '@modern-js/libuild-test-toolkit': workspace:*
       '@modern-js/libuild-utils': workspace:*
       '@types/convert-source-map': 1.5.2
@@ -476,9 +458,8 @@ importers:
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@modern-js/libuild-plugin-babel': link:../../packages/libuild-plugin-babel
       '@modern-js/libuild-plugin-babel-preset': link:../../packages/libuild-plugin-babel-preset
-      '@modern-js/libuild-plugin-es5': link:../../packages/libuild-plugin-es5
       '@modern-js/libuild-plugin-svgr': link:../../packages/libuild-plugin-svgr
-      '@modern-js/libuild-plugin-umd': link:../../packages/libuild-plugin-umd
+      '@modern-js/libuild-plugin-swc': link:../../packages/libuild-plugin-swc
       '@modern-js/libuild-test-toolkit': link:../toolkit
       '@modern-js/libuild-utils': link:../../packages/libuild-utils
       '@types/convert-source-map': 1.5.2
@@ -519,9 +500,9 @@ importers:
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-plugin-babel': workspace:*
       '@modern-js/libuild-plugin-babel-preset': workspace:*
-      '@modern-js/libuild-plugin-es5': workspace:*
       '@modern-js/libuild-plugin-node-polyfill': workspace:*
       '@modern-js/libuild-plugin-svgr': workspace:*
+      '@modern-js/libuild-plugin-swc': workspace:*
       '@modern-js/libuild-test-toolkit': workspace:*
       '@types/mocha': 9.0.0
       '@types/node': 12.20.42
@@ -537,9 +518,9 @@ importers:
       '@modern-js/libuild-node-rig': link:../../tools/node-rig
       '@modern-js/libuild-plugin-babel': link:../../packages/libuild-plugin-babel
       '@modern-js/libuild-plugin-babel-preset': link:../../packages/libuild-plugin-babel-preset
-      '@modern-js/libuild-plugin-es5': link:../../packages/libuild-plugin-es5
       '@modern-js/libuild-plugin-node-polyfill': link:../../packages/libuild-plugin-node-polyfill
       '@modern-js/libuild-plugin-svgr': link:../../packages/libuild-plugin-svgr
+      '@modern-js/libuild-plugin-swc': link:../../packages/libuild-plugin-swc
       '@modern-js/libuild-test-toolkit': link:../toolkit
       '@types/mocha': 9.0.0
       '@types/node': 12.20.42
@@ -2010,6 +1991,112 @@ packages:
     resolution: {integrity: sha512-WrHvO8PDL8wd8T2+zBGKrMwVL5IyzR3ryWUsl0PXgEV0QHup4mTLi0QcATefGI6Gx9Anu7vthPyyyLpY0EpiQg==}
     dev: true
 
+  /@modern-js/swc-plugins-darwin-arm64/0.0.9:
+    resolution: {integrity: sha512-NCkV4GLeqHWCn3kL5fY6k4ioIR0swpm8i49hmUSw0YR6N9WkVhWG9c1CkmX82ipmpv4oZ7uE+S3MlJ7Xalp61Q==}
+    engines: {node: '>= 14'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-darwin-x64/0.0.9:
+    resolution: {integrity: sha512-FllFqHAgw3eBAhR3kZ7QIne0SJTHPyVDrPXo3BMtVQvRsDlo7Ekl1I5XlNbMhKlre1eOHazrYjF3pM0QeXP1+g==}
+    engines: {node: '>= 14.18'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-linux-arm-gnueabihf/0.0.9:
+    resolution: {integrity: sha512-gaHFvEx4IJaAcKRgaGYWn/2XoaRciz8E2i/OmNMrZ0UcBQjtQW+0hD+55/VuwXDNIx9GJ9csZnBLOnRhpvYgFA==}
+    engines: {node: '>= 14.18'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-linux-arm64-gnu/0.0.9:
+    resolution: {integrity: sha512-xOaBQVBKxwjv29pBudWVjWtBysgbGGJ74rDL1u4EyOFpKszusXrN6cJ1KHND6wZrsGlkqTuoOOjsKAA0AqxvQQ==}
+    engines: {node: '>= 14.18'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-linux-arm64-musl/0.0.9:
+    resolution: {integrity: sha512-PT0t6pqBOkmeGnwJLQX4vq5649+YSgmUA1awQkO6GBEwkwzteL3JTsAeq7H+WMfIQvLRud8/IVt3jBW/gKdhtw==}
+    engines: {node: '>= 14.18'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-linux-x64-gnu/0.0.9:
+    resolution: {integrity: sha512-52kOAQeN2iK4oNQS6PO9dv13BNoyWaoa3JT3DV5gdGmyrXq98Jhlb7/unFKlKXoyNOxsQh55ypu6rwWGeXH0bQ==}
+    engines: {node: '>= 14.18'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-linux-x64-musl/0.0.9:
+    resolution: {integrity: sha512-WpChZNeC0xUHSkt2lLglujUCs42oKnBZOUh/cqBCM9VtV0pPmVdRryfA43NCiiDu2vVKOcFhHNeyV38/zjiLFg==}
+    engines: {node: '>= 14.18'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-win32-arm64-msvc/0.0.9:
+    resolution: {integrity: sha512-Yf0fhMGnP9jKjUhqdvB+hrEM/UMZBesRmo0ssA/iMq5yixN00BKoW6evyUWzicH6HlR88prwpdp8tLLoYeb3IA==}
+    engines: {node: '>= 14.18'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-win32-ia32-msvc/0.0.9:
+    resolution: {integrity: sha512-XlGqhXdrak2N7Gv0glQp4wwVC8mzaqsVM+4aHRm8Fvd4PeNIJdBPB8VLuKrkDl6s60tMV82Dbq8UPBkKUtSxdw==}
+    engines: {node: '>= 14.18'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins-win32-x64-msvc/0.0.9:
+    resolution: {integrity: sha512-LMGp5jV8Xbh2Zy8OzvDuuAP0Jxhz+fyZEZzcQSa2fdcFz+3SrVsN4djVlMFw5del9rIawNIm3HcB8xXzaValNA==}
+    engines: {node: '>= 14.18'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@modern-js/swc-plugins/0.0.9:
+    resolution: {integrity: sha512-XpDh4VdCoSL7KTQyFGDHMDqveaNwiQoUvVrUHjDm6mXbqandViX8atglxRFmb3rpGBSASkewu1NfCCfnpy6ezQ==}
+    engines: {node: '>=14.18.0'}
+    optionalDependencies:
+      '@modern-js/swc-plugins-darwin-arm64': 0.0.9
+      '@modern-js/swc-plugins-darwin-x64': 0.0.9
+      '@modern-js/swc-plugins-linux-arm-gnueabihf': 0.0.9
+      '@modern-js/swc-plugins-linux-arm64-gnu': 0.0.9
+      '@modern-js/swc-plugins-linux-arm64-musl': 0.0.9
+      '@modern-js/swc-plugins-linux-x64-gnu': 0.0.9
+      '@modern-js/swc-plugins-linux-x64-musl': 0.0.9
+      '@modern-js/swc-plugins-win32-arm64-msvc': 0.0.9
+      '@modern-js/swc-plugins-win32-ia32-msvc': 0.0.9
+      '@modern-js/swc-plugins-win32-x64-msvc': 0.0.9
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2233,114 +2320,6 @@ packages:
       cosmiconfig: 7.0.1
       deepmerge: 4.2.2
       svgo: 2.8.0
-    dev: false
-
-  /@swc/core-darwin-arm64/1.3.14:
-    resolution: {integrity: sha512-QFuUq3341uOCrJMIWGuo+CmRC5qZoM2lUo7o2lmv1FO1Dh9njTG85pLD83vz6y4j/F034DBGzvRgSti/Bsoccw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-darwin-x64/1.3.14:
-    resolution: {integrity: sha512-fpAjbjXimJBmxCumRB8zjEtPc0lGUi9Uvu92XH6ww6AyXvg7KQmua5P2R9tnzAm6NwTCXKkgS86cgKysAbbObw==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-linux-arm-gnueabihf/1.3.14:
-    resolution: {integrity: sha512-3XSFlgIyDPS+x2c0IFr0AGj4NUbrWGKbkkUCpmAURII0n3YoDsYw8Ux73I8MkWxTTwDGkou8qQOXyA28kAUM4w==}
-    engines: {node: '>=10'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-linux-arm64-gnu/1.3.14:
-    resolution: {integrity: sha512-r3fToDRYX76NEptAjvDg5aGrbitOgqooV37RpSTIGYd/CSNuin4cpCNFdca/Vh5lnNfal7mqdGDbG7gMruARtw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-linux-arm64-musl/1.3.14:
-    resolution: {integrity: sha512-IivEUC+3HNSsQNCfaCDzev2CpsvWpgFReitCmj0PKIdXFRsTi78jtJiraLWnYy956j4wwZbKN0OFGkS2ekKAVg==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-linux-x64-gnu/1.3.14:
-    resolution: {integrity: sha512-HtwwA1Z0tE2z9fgaR5ehgY5ULbnVLHj3tayyWhIElF4EWsi6aQfCyn/oCZAcjoPKfEnJiSNBYt5gMmfK8l4mJA==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-linux-x64-musl/1.3.14:
-    resolution: {integrity: sha512-RPXilkTD8IVgpou4TNuqZJOB7kMrVJ7sm7GgHF4v1eV3xdIyvy4w5FWjXZRdwMW6iunLgQEckuOmVx0I4mrdNg==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-win32-arm64-msvc/1.3.14:
-    resolution: {integrity: sha512-H8Ka/ahJRs84hQCHC5ndORujbLBmi1mv+Z/m4CXpOaEX7TmeAo8nA17rrRckNvVkud9fghsKQGjkBQvJ0v7mRw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-win32-ia32-msvc/1.3.14:
-    resolution: {integrity: sha512-H3ZmDXrVxrqBzzCFodwYfcXfTHE0xGNLJlLGzJ4haV6RBM3ZYIvRzDtPivDzic/VQncmPj1WpLoEDfx/7KNC8Q==}
-    engines: {node: '>=10'}
-    cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core-win32-x64-msvc/1.3.14:
-    resolution: {integrity: sha512-/D1lhWF/DQi2M7b6jWL35NmTY0mRJ5mwTXdmjqNNWOZ8h8TXQo1A3/FDFnfIIcRUeSNdF7IeB3xInT3BI34E1w==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@swc/core/1.3.14:
-    resolution: {integrity: sha512-LpTTrXOGS7vnbR/rHrAux7GykUWbyVmI5NbICl9iF9yeqFdGm6JjaGBhbanmG8zrQL5aFx2kMxxb92V9D1KUiw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    requiresBuild: true
-    optionalDependencies:
-      '@swc/core-darwin-arm64': 1.3.14
-      '@swc/core-darwin-x64': 1.3.14
-      '@swc/core-linux-arm-gnueabihf': 1.3.14
-      '@swc/core-linux-arm64-gnu': 1.3.14
-      '@swc/core-linux-arm64-musl': 1.3.14
-      '@swc/core-linux-x64-gnu': 1.3.14
-      '@swc/core-linux-x64-musl': 1.3.14
-      '@swc/core-win32-arm64-msvc': 1.3.14
-      '@swc/core-win32-ia32-msvc': 1.3.14
-      '@swc/core-win32-x64-msvc': 1.3.14
     dev: false
 
   /@trysound/sax/0.2.0:

@@ -20,7 +20,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "@modern-js/libuild-plugin-babel-preset": "workspace:*",
-    "@modern-js/libuild-plugin-es5": "workspace:*",
+    "@modern-js/libuild-plugin-swc": "workspace:*",
     "@modern-js/libuild-plugin-node-polyfill": "workspace:*",
     "@modern-js/libuild-plugin-svgr": "workspace:*",
     "@modern-js/libuild-node-rig": "workspace:*",

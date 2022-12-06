@@ -81,7 +81,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - lilconfig -- MIT
 - loader-utils -- MIT
 - lodash.camelcase -- MIT
-- lru-cache -- ISC
 - magic-string -- MIT
 - merge2 -- MIT
 - micromatch -- MIT
@@ -110,7 +109,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - run-parallel -- MIT
 - safe-buffer -- MIT
 - safe-identifier -- ISC
-- semver -- ISC
 - slash -- MIT
 - sourcemap-codec -- MIT
 - stack-trace -- MIT
@@ -127,5 +125,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - uri-js -- BSD-2-Clause
 - util-deprecate -- MIT
 - wrappy -- ISC
-- yallist -- ISC
 - yaml -- ISC

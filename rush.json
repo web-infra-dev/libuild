@@ -393,14 +393,8 @@
       "versionPolicyName": "fixed"
     },
     {
-      "packageName": "@modern-js/libuild-plugin-es5",
-      "projectFolder": "packages/libuild-plugin-es5",
-      "reviewCategory": "library",
-      "versionPolicyName": "fixed"
-    },
-    {
-      "packageName": "@modern-js/libuild-plugin-umd",
-      "projectFolder": "packages/libuild-plugin-umd",
+      "packageName": "@modern-js/libuild-plugin-swc",
+      "projectFolder": "packages/libuild-plugin-swc",
       "reviewCategory": "library",
       "versionPolicyName": "fixed"
     },

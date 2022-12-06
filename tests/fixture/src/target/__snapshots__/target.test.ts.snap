@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fixture:es5 es5 1`] = `
-"// index.ts
+exports[`fixture:target es5 1`] = `
+"\\"use strict\\";
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
@@ -31,7 +31,7 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-var __generator = this && this.__generator || function(thisArg, body) {
+var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -141,6 +141,51 @@ function _mulAsync() {
         });
     });
     return _mulAsync.apply(this, arguments);
+}
+mulAsync(1, 1);
+"
+`;
+
+exports[`fixture:target es2015 1`] = `
+"var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
+
+// index.ts
+function mulAsync(a, b) {
+  return __async(this, null, function* () {
+    return new Promise((resolve, reject) => {
+      resolve(a * b);
+    });
+  });
+}
+mulAsync(1, 1);
+"
+`;
+
+exports[`fixture:target es2017 1`] = `
+"// index.ts
+async function mulAsync(a, b) {
+  return new Promise((resolve, reject) => {
+    resolve(a * b);
+  });
 }
 mulAsync(1, 1);
 "
