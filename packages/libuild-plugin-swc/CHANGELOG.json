@@ -1,0 +1,17 @@
+{
+  "name": "@modern-js/libuild-plugin-swc",
+  "entries": [
+    {
+      "version": "0.6.0",
+      "tag": "@modern-js/libuild-plugin-swc_v0.6.0",
+      "date": "Tue, 06 Dec 2022 14:39:31 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "add es5Plugin, transformPlugin and umdPlugin"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -2,6 +2,21 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.6.0",
+      "tag": "@modern-js/libuild_v0.6.0",
+      "date": "Tue, 06 Dec 2022 14:39:31 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "use libuild-plugin-swc to support umd and es5 instead."
+          },
+          {
+            "comment": "fix dynamic import expression not converted to require when using cjs and no-bundle"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.2",
       "tag": "@modern-js/libuild_v0.5.2",
       "date": "Thu, 01 Dec 2022 12:12:33 GMT",
