@@ -125,14 +125,21 @@ export class EsbuildBuilder implements IBuilderBase {
       chunkNames,
       jsx,
       esbuildOptions,
+      format,
     } = compiler.config;
+
+    let esbuildFormat = format === 'umd' ? 'esm' : format;
+
+    if (bundle && splitting && format === 'cjs') {
+      esbuildFormat = 'esm';
+    }
 
     const esbuildConfig: BuildOptions = {
       entryPoints: input,
       metafile: true,
       define,
       bundle,
-      format: 'esm',
+      format: esbuildFormat,
       target,
       sourcemap: sourceMap ? 'external' : false,
       mainFields: resolve.mainFields,
@@ -152,8 +159,12 @@ export class EsbuildBuilder implements IBuilderBase {
       chunkNames,
       plugins: [adapterPlugin(this.compiler)],
       minifyIdentifiers: !!minify,
+      minify: minify === 'esbuild',
       inject,
       jsx,
+      supported: {
+        'dynamic-import': bundle || format !== 'cjs',
+      },
     };
 
     const buildOptions = esbuildOptions(esbuildConfig);

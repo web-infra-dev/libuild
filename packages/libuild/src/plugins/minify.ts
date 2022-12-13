@@ -1,7 +1,6 @@
 import { isObject, deepMerge } from '@modern-js/libuild-utils';
-import { transform } from 'esbuild';
 import { minify as terserMinify, MinifyOptions as TerserMinifyOptions } from 'terser';
-import { ChunkType, SourceMap, ILibuilder, LibuildPlugin, CLIConfig } from '../types';
+import { ChunkType, LibuildPlugin, CLIConfig } from '../types';
 import { normalizeSourceMap } from '../utils';
 
 export const minifyPlugin = (): LibuildPlugin => {
@@ -10,14 +9,25 @@ export const minifyPlugin = (): LibuildPlugin => {
     name: pluginName,
     apply(compiler) {
       compiler.hooks.processAsset.tapPromise(pluginName, async (chunk) => {
-        if (chunk.type === ChunkType.chunk) {
+        const { sourceMap, minify, target } = compiler.config;
+        if (chunk.type === ChunkType.chunk && minify !== 'esbuild') {
           const code = chunk.contents.toString();
-          const result = await minify.call(compiler, code);
-          return {
-            ...chunk,
-            contents: result.code || chunk.contents,
-            map: result.map,
-          };
+          const needSourceMap = Boolean(sourceMap);
+          if (minify) {
+            const terserOptions = resolveTerserOptions(minify, {
+              sourceMap: Boolean(needSourceMap),
+              target,
+            });
+            const result = await terserMinify(code, {
+              ...terserOptions,
+              sourceMap: needSourceMap,
+            });
+            return {
+              ...chunk,
+              contents: result.code || chunk.contents,
+              map: normalizeSourceMap(result.map as any, { needSourceMap }),
+            };
+          }
         }
         return chunk;
       });
@@ -52,36 +62,4 @@ function resolveTerserOptions(
     },
     isObject(terserOptions) ? terserOptions : {}
   );
-}
-
-async function minify(this: ILibuilder, code: string): Promise<{ code: string; map?: SourceMap }> {
-  const needSourceMap = Boolean(this.config.sourceMap);
-  if (this.config.minify === 'esbuild') {
-    const result = await transform(code, {
-      sourcemap: needSourceMap,
-      minify: true,
-      target: this.config.target,
-    });
-    return {
-      code: result.code,
-      map: normalizeSourceMap(result.map, { needSourceMap }),
-    };
-  }
-
-  if (this.config.minify) {
-    const terserOptions = resolveTerserOptions(this.config.minify, {
-      sourceMap: Boolean(needSourceMap),
-      target: this.config.target,
-    });
-    const result = await terserMinify(code, {
-      ...terserOptions,
-      sourceMap: needSourceMap,
-    });
-    return {
-      code: result.code!,
-      map: normalizeSourceMap(result.map as any, { needSourceMap }),
-    };
-  }
-
-  return { code };
 }

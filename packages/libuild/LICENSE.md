@@ -79,6 +79,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - jsonpointer -- MIT
 - leven -- MIT
 - lilconfig -- MIT
+- lines-and-columns -- MIT
 - loader-utils -- MIT
 - lodash.camelcase -- MIT
 - magic-string -- MIT
@@ -115,9 +116,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - string-hash -- CC0-1.0
 - strip-ansi -- MIT
 - strip-bom -- MIT
+- sucrase -- MIT
 - supports-color -- MIT
 - tapable -- MIT
 - to-regex-range -- MIT
+- ts-interface-checker -- Apache-2.0
 - tsconfig-paths -- MIT
 - tsconfig-paths-webpack-plugin -- MIT
 - type-detect -- MIT
