@@ -2,7 +2,7 @@
   "changes": [
     {
       "packageName": "@modern-js/libuild",
-      "comment": "use sucrase transform chunk to cjs",
+      "comment": "remove esbulild transform, only invoke esbuild build once, and use sucrase transform chunk to cjs",
       "type": "none"
     }
   ],
