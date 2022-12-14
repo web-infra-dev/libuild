@@ -180,7 +180,6 @@ importers:
   ../../packages/libuild-plugin-babel:
     specifiers:
       '@babel/core': 7.15.8
-      '@babel/preset-typescript': 7.16.7
       '@modern-js/eslint-config': workspace:*
       '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
@@ -191,7 +190,6 @@ importers:
       typescript: 4.4.4
     dependencies:
       '@babel/core': 7.15.8
-      '@babel/preset-typescript': 7.16.7_@babel+core@7.15.8
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
       '@modern-js/libuild': link:../libuild

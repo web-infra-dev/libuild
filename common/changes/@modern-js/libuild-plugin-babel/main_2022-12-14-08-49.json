@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild-plugin-babel",
+      "comment": "revert  preset-typescript in babel plugin",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild-plugin-babel"
+}

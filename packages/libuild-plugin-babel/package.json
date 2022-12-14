@@ -26,7 +26,6 @@
     "@types/babel__core": "7.1.16"
   },
   "dependencies": {
-    "@babel/preset-typescript": "7.16.7",
     "@babel/core": "7.15.8"
   }
 }
