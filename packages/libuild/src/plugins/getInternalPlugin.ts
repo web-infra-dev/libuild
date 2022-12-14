@@ -1,10 +1,9 @@
-import { formatPlugin } from './format';
+import { formatCjsPlugin } from './format-cjs';
 import { resolvePlugin } from './resolve';
 import { writeFilePlugin } from './write-file';
 import { cssPlugin, minifyCssPlugin } from './style';
 import { minifyPlugin } from './minify';
 import { assetsPlugin } from './asset';
-
 import { BuildConfig } from '../types';
 
 export async function getInternalPlugin(config: BuildConfig) {
@@ -26,7 +25,11 @@ export async function getInternalPlugin(config: BuildConfig) {
     internalPlugin.push(redirectPlugin());
   }
 
-  internalPlugin.push(formatPlugin(), minifyPlugin(), minifyCssPlugin(), writeFilePlugin());
+  if (config.bundle && config.format === 'cjs' && config.splitting) {
+    internalPlugin.push(formatCjsPlugin());
+  }
+
+  internalPlugin.push(minifyPlugin(), minifyCssPlugin(), writeFilePlugin());
 
   if (config.metafile) {
     const { metaFilePlugin } = await import('./metafile');

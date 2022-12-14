@@ -98,7 +98,7 @@ export interface UserConfig {
    * Module format
    * @default 'esm'
    */
-  format?: Format | ((chunkName: string) => Format);
+  format?: Format;
   /**
    * Code splitting
    * @default false

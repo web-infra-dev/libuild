@@ -201,6 +201,7 @@ async function run() {
       'source-map',
       'source-map-support',
       'typescript',
+      '@ast-grep/napi',
     ],
     plugins: [
       args.splitting && splitPlugin(),

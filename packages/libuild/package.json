@@ -37,7 +37,9 @@
     "source-map": "0.7.4",
     "source-map-support": "0.5.20",
     "style-inject": "0.3.0",
-    "terser": "5.15.0"
+    "terser": "5.15.0",
+    "@ast-grep/napi": "0.1.11",
+    "sucrase": "3.29.0"
   },
   "devDependencies": {
     "@ampproject/remapping": "1.0.2",
