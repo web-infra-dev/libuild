@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild-plugin-babel",
   "entries": [
     {
+      "version": "0.7.1",
+      "tag": "@modern-js/libuild-plugin-babel_v0.7.1",
+      "date": "Wed, 14 Dec 2022 08:51:29 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "revert  preset-typescript in babel plugin"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.0",
       "tag": "@modern-js/libuild-plugin-babel_v0.7.0",
       "date": "Wed, 14 Dec 2022 05:15:41 GMT",

@@ -1,6 +1,6 @@
 {
   "name": "@modern-js/libuild-plugin-node-polyfill",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A plugin for libuild includes node polyfill",
   "keywords": [
     "libuild",
