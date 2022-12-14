@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Fri, 09 Dec 2022 08:39:53 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Dec 2022 05:15:41 GMT and should not be manually modified.
+
+## 0.7.0
+Wed, 14 Dec 2022 05:15:41 GMT
+
+### Updates
+
+- remove esbulild transform, only invoke esbuild build once, and use sucrase transform chunk to cjs
 
 ## 0.6.1
 Fri, 09 Dec 2022 08:39:53 GMT
