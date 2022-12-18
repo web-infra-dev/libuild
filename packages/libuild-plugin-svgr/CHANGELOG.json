@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild-plugin-svgr",
   "entries": [
     {
+      "version": "0.7.2",
+      "tag": "@modern-js/libuild-plugin-svgr_v0.7.2",
+      "date": "Sun, 18 Dec 2022 13:57:57 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.7.1",
       "tag": "@modern-js/libuild-plugin-svgr_v0.7.1",
       "date": "Wed, 14 Dec 2022 08:51:29 GMT",

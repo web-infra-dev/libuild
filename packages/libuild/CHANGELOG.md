@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Wed, 14 Dec 2022 08:51:29 GMT and should not be manually modified.
+This log was last generated on Sun, 18 Dec 2022 13:57:57 GMT and should not be manually modified.
+
+## 0.7.2
+Sun, 18 Dec 2022 13:57:57 GMT
+
+### Updates
+
+- update @ast-grep/napi version to support win32
 
 ## 0.7.1
 Wed, 14 Dec 2022 08:51:29 GMT
