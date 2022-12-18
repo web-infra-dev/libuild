@@ -8,6 +8,7 @@ import type { ImportSpecifier } from 'es-module-lexer';
 import { js } from '@ast-grep/napi';
 import MagicString from 'magic-string';
 import { resolvePathAndQuery } from '@modern-js/libuild-utils';
+import { createMatchPath, loadConfig, MatchPath } from 'tsconfig-paths';
 import { ILibuilder, LibuildPlugin } from '../types';
 import { getAssetContents, assetExt } from './asset';
 import { isCssModule } from './style/postcssTransformer';
@@ -28,10 +29,11 @@ async function redirectImport(
   modules: MatchModule,
   aliasRecord: Record<string, string>,
   filePath: string,
-  outputDir: string
+  outputDir: string,
+  matchPath?: MatchPath
 ): Promise<MagicString> {
   const str: MagicString = new MagicString(code);
-
+  const extensions = ['.ts', '.tsx', '.js', '.jsx'];
   await Promise.all(
     modules.map(async (module) => {
       const { name, start, end } = module;
@@ -48,7 +50,7 @@ async function redirectImport(
         return;
       }
       // redirect alias
-      let absoluteImportPath = '';
+      let absoluteImportPath = matchPath ? matchPath(name, undefined, undefined, extensions) : undefined;
       for (const alias of Object.keys(aliasRecord)) {
         // prefix
         if (name.startsWith(`${alias}/`)) {
@@ -126,6 +128,14 @@ export const redirectPlugin = (): LibuildPlugin => {
           return result;
         }, {});
 
+        // get matchPath func to support tsconfig paths
+        const result = loadConfig(compiler.config.root);
+        let matchPath: MatchPath | undefined;
+        if (result.resultType === 'success') {
+          const { absoluteBaseUrl, paths, mainFields, addMatchAll } = result;
+          matchPath = createMatchPath(absoluteBaseUrl, paths, mainFields, addMatchAll);
+        }
+
         let matchModule: MatchModule = [];
         if (format === 'esm') {
           await init;
@@ -134,9 +144,6 @@ export const redirectPlugin = (): LibuildPlugin => {
             [imports] = parse(code);
           } catch (e) {
             console.error('[parse error]', e);
-          }
-          if (!imports.length) {
-            return args;
           }
           matchModule = imports.map((targetImport) => {
             return {
@@ -147,17 +154,24 @@ export const redirectPlugin = (): LibuildPlugin => {
           });
         }
         if (format === 'cjs') {
-          const sgNode = js.parse(code).root();
-          matchModule = sgNode.findAll('require($MATCH)').map((node) => {
-            const matchNode = node.getMatch('MATCH')!;
-            return {
-              name: matchNode.text().slice(1, -1),
-              start: matchNode.range().start.index + 1,
-              end: matchNode.range().end.index - 1,
-            };
-          });
+          try {
+            const sgNode = js.parse(code).root();
+            matchModule = sgNode.findAll('require($MATCH)').map((node) => {
+              const matchNode = node.getMatch('MATCH')!;
+              return {
+                name: matchNode.text().slice(1, -1),
+                start: matchNode.range().start.index + 1,
+                end: matchNode.range().end.index - 1,
+              };
+            });
+          } catch (e) {
+            console.error('[parse error]', e);
+          }
         }
-        const str = await redirectImport(compiler, code, matchModule, absoluteAlias, id!, dirname(fileName));
+        if (!matchModule.length) {
+          return args;
+        }
+        const str = await redirectImport(compiler, code, matchModule, absoluteAlias, id!, dirname(fileName), matchPath);
         return {
           ...args,
           contents: str.toString(),

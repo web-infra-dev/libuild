@@ -98,6 +98,7 @@ importers:
       sucrase: 3.29.0
       tapable: 2.2.1
       terser: 5.15.0
+      tsconfig-paths: 4.1.1
       tsconfig-paths-webpack-plugin: 4.0.0
       tsd: 0.19.1
       tsm: 2.2.1
@@ -170,6 +171,7 @@ importers:
       stack-trace: 1.0.0-pre1
       strip-ansi: 7.0.1
       tapable: 2.2.1
+      tsconfig-paths: 4.1.1
       tsconfig-paths-webpack-plugin: 4.0.0
       tsd: 0.19.1
       tsm: 2.2.1
@@ -8582,7 +8584,7 @@ packages:
     dependencies:
       chalk: 4.1.0
       enhanced-resolve: 5.8.3
-      tsconfig-paths: 4.1.0
+      tsconfig-paths: 4.1.1
     dev: true
 
   /tsconfig-paths/3.14.1:
@@ -8594,8 +8596,8 @@ packages:
       strip-bom: 3.0.0
     dev: false
 
-  /tsconfig-paths/4.1.0:
-    resolution: {integrity: sha512-AHx4Euop/dXFC+Vx589alFba8QItjF+8hf8LtmuiCwHyI4rHXQtOOENaM8kvYf5fR0dRChy3wzWIZ9WbB7FWow==}
+  /tsconfig-paths/4.1.1:
+    resolution: {integrity: sha512-VgPrtLKpRgEAJsMj5Q/I/mXouC6A/7eJ/X4Nuk6o0cRPwBtznYxTCU4FodbexbzH9somBPEXYi0ZkUViUpJ21Q==}
     engines: {node: '>=6'}
     dependencies:
       json5: 2.2.1
