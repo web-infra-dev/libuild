@@ -36,19 +36,12 @@ async function redirectImport(
   const extensions = ['.ts', '.tsx', '.js', '.jsx'];
   await Promise.all(
     modules.map(async (module) => {
-      const { name, start, end } = module;
+      const { start, end } = module;
+      let { name } = module;
       if (!name) {
         return;
       }
 
-      // redirect asset path
-      // import xxx from './xxx.svg';
-      if (assetExt.filter((ext) => name.endsWith(ext)).length) {
-        const absPath = resolve(dirname(filePath), name);
-        const relativeImportPath = await getAssetContents.apply(compiler, [absPath, outputDir]);
-        str.overwrite(start, end, `${relativeImportPath}`);
-        return;
-      }
       // redirect alias
       let absoluteImportPath = matchPath ? matchPath(name, undefined, undefined, extensions) : undefined;
       for (const alias of Object.keys(aliasRecord)) {
@@ -68,8 +61,18 @@ async function redirectImport(
         const relativePath = relative(dirname(filePath), absoluteImportPath);
         const relativeImportPath = normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
         str.overwrite(start, end, relativeImportPath);
+        name = relativeImportPath;
+      }
+
+      // redirect asset path
+      // import xxx from './xxx.svg';
+      if (assetExt.filter((ext) => name.endsWith(ext)).length) {
+        const absPath = resolve(dirname(filePath), name);
+        const relativeImportPath = await getAssetContents.apply(compiler, [absPath, outputDir]);
+        str.overwrite(start, end, `${relativeImportPath}`);
         return;
       }
+
       // redirect style path
       // css module
       const { originalFilePath, query } = resolvePathAndQuery(name);

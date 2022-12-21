@@ -130,7 +130,7 @@ function transformNormalError(err: any, opt?: LibuildErrorParams) {
     return new LibuildError(err.name, clearMessage(err.message), {
       ...opt,
       codeFrame: {
-        filePath: stacks[0].getFileName(),
+        filePath: stacks[0]?.getFileName(),
       },
       stack: err.stack && clearStack(err.stack),
     });
