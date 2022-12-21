@@ -87,7 +87,8 @@ async function redirectImport(
           originalFileName: originalFilePath,
           entryPoint: originalFilePath,
         });
-        str.overwrite(start, end, `./${base}`);
+        const relativeImportPath = normalizeSlashes(`./${base}`);
+        str.overwrite(start, end, relativeImportPath);
       }
       // less sass
       const ext = extname(name);
