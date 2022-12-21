@@ -1,6 +1,11 @@
 # Change Log - @modern-js/libuild-plugin-svgr
 
-This log was last generated on Sun, 18 Dec 2022 13:57:57 GMT and should not be manually modified.
+This log was last generated on Wed, 21 Dec 2022 07:52:26 GMT and should not be manually modified.
+
+## 0.7.3
+Wed, 21 Dec 2022 07:52:26 GMT
+
+_Version update only_
 
 ## 0.7.2
 Sun, 18 Dec 2022 13:57:57 GMT

@@ -67,7 +67,7 @@
   {
     "definitionName": "lockStepVersion",
     "policyName": "fixed",
-    "version": "0.7.2",
+    "version": "0.7.3",
     "nextBump": "prerelease"
   }
   // {
