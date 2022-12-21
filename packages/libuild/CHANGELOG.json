@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.7.3",
+      "tag": "@modern-js/libuild_v0.7.3",
+      "date": "Wed, 21 Dec 2022 06:56:28 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix alias in bundleless"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.2",
       "tag": "@modern-js/libuild_v0.7.2",
       "date": "Sun, 18 Dec 2022 13:57:57 GMT",
