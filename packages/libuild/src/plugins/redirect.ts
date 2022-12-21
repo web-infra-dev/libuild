@@ -36,11 +36,11 @@ async function redirectImport(
   const extensions = ['.ts', '.tsx', '.js', '.jsx'];
   await Promise.all(
     modules.map(async (module) => {
-      const { start, end } = module;
-      let { name } = module;
-      if (!name) {
+      if (!module.name) {
         return;
       }
+      const { start, end } = module;
+      let { name } = module;
 
       // redirect alias
       let absoluteImportPath = matchPath ? matchPath(name, undefined, undefined, extensions) : undefined;
