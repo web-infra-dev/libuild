@@ -77,7 +77,8 @@ async function redirectImport(
       // css module
       const { originalFilePath, query } = resolvePathAndQuery(name);
       if (query.css_virtual) {
-        const base = `${basename(originalFilePath, extname(originalFilePath))}.css`;
+        const replacedName = basename(originalFilePath, extname(originalFilePath)).replace('.', '_');
+        const base = `${replacedName}.css`;
         const contents = compiler.virtualModule.get(originalFilePath)!;
         const fileName = join(outputDir, base);
         compiler.emitAsset(fileName, {
