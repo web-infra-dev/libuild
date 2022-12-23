@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "replace css module filename, use '_' to replace '.'",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
