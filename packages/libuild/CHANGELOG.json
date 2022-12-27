@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.7.4",
+      "tag": "@modern-js/libuild_v0.7.4",
+      "date": "Tue, 27 Dec 2022 13:42:04 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "replace css module filename, use '_' to replace '.'"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.3",
       "tag": "@modern-js/libuild_v0.7.3",
       "date": "Wed, 21 Dec 2022 07:52:26 GMT",

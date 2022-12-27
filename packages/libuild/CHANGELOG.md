@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Wed, 21 Dec 2022 07:52:26 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Dec 2022 13:42:04 GMT and should not be manually modified.
+
+## 0.7.4
+Tue, 27 Dec 2022 13:42:04 GMT
+
+### Updates
+
+- replace css module filename, use '_' to replace '.'
 
 ## 0.7.3
 Wed, 21 Dec 2022 07:52:26 GMT
