@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "keep the import about asset to let webpack can resolve by default, but it can be changed by rebase.",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

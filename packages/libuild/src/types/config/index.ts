@@ -4,10 +4,12 @@ import type { Resolve, ResolveNormalized } from './resolve';
 import type { LogLevel, ILogger } from '../logger';
 import type { LibuildPlugin } from '../builder';
 import type { Style } from './style';
+import type { Asset, AssetNormalized } from './asset';
 
 export * from './resolve';
 export * from './config-loader';
 export * from './style';
+export * from './asset';
 
 type Minify = 'esbuild' | 'terser' | false | TerserMinifyOptions;
 
@@ -29,20 +31,6 @@ type External = (string | RegExp)[];
 
 type Platform = 'node' | 'browser';
 
-export type Asset = {
-  outdir?: string;
-  /**
-   * rebase relative url, default is true in bundle mode.
-   */
-  rebase?: boolean;
-  name?: string | ((filePath: string) => string);
-  /**
-   * Specify the limit size to inline
-   * @default 0
-   */
-  limit?: number;
-  publicPath?: string | ((filePath: string) => string);
-};
 export interface UserConfig {
   /**
    * @default true
@@ -205,6 +193,7 @@ export interface CLIConfig extends UserConfig {
 export interface BuildConfig extends Required<CLIConfig> {
   logger: ILogger;
   resolve: ResolveNormalized;
+  asset: AssetNormalized;
   css_resolve: (id: string, dir: string) => string;
   node_resolve: (id: string, dir: string, kind?: ImportKind) => string;
 }
