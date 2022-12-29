@@ -126,6 +126,7 @@ export class EsbuildBuilder implements IBuilderBase {
       jsx,
       esbuildOptions,
       format,
+      asset,
     } = compiler.config;
 
     let esbuildFormat = format === 'umd' ? 'esm' : format;
@@ -165,6 +166,7 @@ export class EsbuildBuilder implements IBuilderBase {
       supported: {
         'dynamic-import': bundle || format !== 'cjs',
       },
+      assetNames: `${asset.outdir}/[name].[hash]`,
     };
 
     const buildOptions = esbuildOptions(esbuildConfig);

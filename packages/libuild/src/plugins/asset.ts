@@ -34,8 +34,23 @@ export const assetsPlugin = (): LibuildPlugin => {
       compiler.hooks.load.tapPromise(pluginName, async (args) => {
         if (assetExt.find((ext) => ext === extname(args.path))) {
           const { originalFilePath } = resolvePathAndQuery(args.path);
-          const { bundle, outdir, outbase } = compiler.config;
+          const {
+            bundle,
+            outdir,
+            outbase,
+            asset: { rebase, limit },
+          } = compiler.config;
           const rebaseFrom = bundle ? outdir : join(outdir, relative(outbase, dirname(args.path)));
+          if (rebase) {
+            const contents = await fs.promises.readFile(originalFilePath);
+            if (contents.length > limit || !bundle) {
+              return {
+                contents,
+                loader: 'copy',
+              };
+            }
+          }
+
           const contents = await getAssetContents.apply(compiler, [originalFilePath, rebaseFrom]);
           return {
             contents,
@@ -75,14 +90,10 @@ function encodeSVG(buffer: Buffer) {
  * @returns dataurl or path
  */
 export async function getAssetContents(this: ILibuilder, assetPath: string, rebaseFrom?: string) {
-  const DEFAULT_INLINE_LIMIT = 0;
   const fileContent = await fs.promises.readFile(assetPath);
-  const limit = this.config.asset.limit ?? DEFAULT_INLINE_LIMIT;
-  const outdir = this.config.asset.outdir ?? 'assets';
-  const rebase = this.config.asset.rebase ?? !this.config.bundle;
-  const assetName = this.config.asset.name ?? '[name].[hash].[ext]';
-  const publicPath = this.config.asset.publicPath ?? '';
-  if (fileContent.length < limit && !rebase) {
+  const { bundle } = this.config;
+  const { name: assetName, limit, rebase, outdir, publicPath } = this.config.asset;
+  if (fileContent.length <= limit && bundle) {
     // inline base64
     const mimetype = (await import('mime-types')).default.lookup(assetPath);
     const isSVG = mimetype === 'image/svg+xml';

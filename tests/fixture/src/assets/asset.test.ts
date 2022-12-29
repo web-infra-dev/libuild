@@ -6,6 +6,7 @@ describe('fixture:assets', () => {
       root: __dirname,
       asset: {
         limit: 14 * 1024,
+        rebase: false,
       },
     });
     await bundler.build();

@@ -78,7 +78,14 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const style = config.style ?? {};
   const loader = config.loader ?? {};
   const inject = config.inject ?? [];
-  const asset = config.asset ?? {};
+  const format = config.format ?? 'esm';
+  const asset = {
+    limit: config.asset?.limit ?? 0,
+    outdir: config.asset?.outdir ?? 'assets',
+    rebase: config.asset?.rebase ?? (format === 'esm' || format === 'cjs'),
+    name: config.asset?.name ?? '[name].[hash].[ext]',
+    publicPath: config.asset?.publicPath ?? '',
+  };
   const minify = config.minify ?? false;
   const splitting = config.splitting ?? false;
   const outdir = path.resolve(root, config.outdir ?? DEFAULT_OUTDIR);
@@ -87,7 +94,6 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const sourceDir = path.resolve(root, config.sourceDir ?? 'src');
   const entryNames = config.entryNames ?? (bundle ? '[name]' : '[dir]/[name]');
   const chunkNames = config.chunkNames ?? entryNames;
-  const format = config.format ?? 'esm';
   const clean = config.clean ?? false;
   const jsx = config.jsx ?? 'automatic';
   const esbuildOptions = config.esbuildOptions ?? ((config) => config);
