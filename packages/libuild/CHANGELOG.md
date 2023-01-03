@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Tue, 27 Dec 2022 13:42:04 GMT and should not be manually modified.
+This log was last generated on Tue, 03 Jan 2023 03:12:59 GMT and should not be manually modified.
+
+## 0.7.5
+Tue, 03 Jan 2023 03:12:59 GMT
+
+### Updates
+
+- keep the import about asset to let webpack can resolve by default, but it can be changed by rebase.
 
 ## 0.7.4
 Tue, 27 Dec 2022 13:42:04 GMT
