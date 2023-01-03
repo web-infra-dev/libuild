@@ -26,7 +26,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   if (Array.isArray(config.input)) {
     const jsFiles = await globby(config.input, {
       expandDirectories: {
-        extensions: ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs', 'css', 'sass', 'scss', 'less'],
+        extensions: ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs', 'mts', 'cts', 'css', 'sass', 'scss', 'less'],
       },
       cwd: root,
     });
