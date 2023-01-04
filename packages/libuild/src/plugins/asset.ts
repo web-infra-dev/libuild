@@ -2,9 +2,9 @@ import { basename, join, extname, relative, dirname, win32 } from 'path';
 import fs from 'fs';
 import { createHash } from 'crypto';
 import { resolvePathAndQuery } from '@modern-js/libuild-utils';
+import type { Loader } from 'esbuild';
 import { LibuildPlugin, ILibuilder, Asset } from '../types';
 
-const IMAGE_REGEXP = /\.png$|\.jpe?g$|\.gif$|\.webp$/;
 export const assetExt = [
   '.svg',
   '.png',
@@ -34,27 +34,13 @@ export const assetsPlugin = (): LibuildPlugin => {
       compiler.hooks.load.tapPromise(pluginName, async (args) => {
         if (assetExt.find((ext) => ext === extname(args.path))) {
           const { originalFilePath } = resolvePathAndQuery(args.path);
-          const {
-            bundle,
-            outdir,
-            outbase,
-            asset: { rebase, limit },
-          } = compiler.config;
+          const { bundle, outdir, outbase } = compiler.config;
           const rebaseFrom = bundle ? outdir : join(outdir, relative(outbase, dirname(args.path)));
-          if (rebase) {
-            const contents = await fs.promises.readFile(originalFilePath);
-            if (contents.length > limit || !bundle) {
-              return {
-                contents,
-                loader: 'copy',
-              };
-            }
-          }
 
-          const contents = await getAssetContents.apply(compiler, [originalFilePath, rebaseFrom]);
+          const { contents, loader } = await getAssetContents.apply(compiler, [originalFilePath, rebaseFrom, true]);
           return {
             contents,
-            loader: 'text',
+            loader,
           };
         }
       });
@@ -86,37 +72,58 @@ function encodeSVG(buffer: Buffer) {
  *
  * @param this Compiler
  * @param assetPath Absolute path of the asset
- * @param rebaseFrom Absolute path of the file which import asset
+ * @param rebaseFrom Absolute path of the file which use asset
+ * @param calledOnLoad called in load hooks
  * @returns dataurl or path
  */
-export async function getAssetContents(this: ILibuilder, assetPath: string, rebaseFrom?: string) {
+export async function getAssetContents(
+  this: ILibuilder,
+  assetPath: string,
+  rebaseFrom: string,
+  calledOnLoad?: boolean
+) {
   const fileContent = await fs.promises.readFile(assetPath);
   const { bundle } = this.config;
   const { name: assetName, limit, rebase, outdir, publicPath } = this.config.asset;
-  if (fileContent.length <= limit && bundle) {
-    // inline base64
-    const mimetype = (await import('mime-types')).default.lookup(assetPath);
-    const isSVG = mimetype === 'image/svg+xml';
-    const data = isSVG ? encodeSVG(fileContent) : fileContent.toString('base64');
-    const encoding = isSVG ? '' : ';base64';
-    return `data:${mimetype}${encoding},${data}`;
-  }
   const outputFileName = getOutputFileName(assetPath, fileContent, assetName);
   const outputFilePath = join(this.config.outdir, outdir, outputFileName);
-  this.emitAsset(outputFilePath, {
-    type: 'asset',
-    fileName: outputFilePath,
-    contents: fileContent,
-    originalFileName: assetPath,
-  });
-  if (rebaseFrom && rebase) {
-    const relativePath = relative(rebaseFrom, outputFilePath);
-    return normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
-  }
-  const filePath = `${
+  const relativePath = relative(rebaseFrom, outputFilePath);
+  const normalizedRelativePath = normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
+  const normalizedPublicPath = `${
     typeof publicPath === 'function' ? publicPath(assetPath) : publicPath
   }${outdir}/${outputFileName}`;
-  return filePath;
+  let emitAsset = true;
+  let contents = normalizedPublicPath;
+  let loader: Loader = 'text';
+  if (bundle) {
+    // inline base64
+    if (fileContent.length <= limit) {
+      const mimetype = (await import('mime-types')).default.lookup(assetPath);
+      const isSVG = mimetype === 'image/svg+xml';
+      const data = isSVG ? encodeSVG(fileContent) : fileContent.toString('base64');
+      const encoding = isSVG ? '' : ';base64';
+      contents = `data:${mimetype}${encoding},${data}`;
+      loader = 'text';
+      emitAsset = false;
+    } else if (rebase) {
+      contents = calledOnLoad ? fileContent.toString() : normalizedRelativePath;
+      loader = calledOnLoad ? 'copy' : 'text';
+    }
+  } else {
+    contents = normalizedRelativePath;
+  }
+  if (emitAsset) {
+    this.emitAsset(outputFilePath, {
+      type: 'asset',
+      fileName: outputFilePath,
+      contents: fileContent,
+      originalFileName: assetPath,
+    });
+  }
+  return {
+    contents,
+    loader,
+  };
 }
 
 export function getOutputFileName(filePath: string, content: Buffer, assetName: Required<Asset['name']>): string {

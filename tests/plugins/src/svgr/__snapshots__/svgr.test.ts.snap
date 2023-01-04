@@ -11,7 +11,7 @@ var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value2) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value: value2 }) : obj[key] = value2;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
@@ -1395,10 +1395,10 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useImperativeHandle(ref, create, deps);
         }
-        function useDebugValue(value2, formatterFn) {
+        function useDebugValue(value, formatterFn) {
           {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useDebugValue(value2, formatterFn);
+            return dispatcher.useDebugValue(value, formatterFn);
           }
         }
         var disabledDepth = 0;
@@ -2838,9 +2838,9 @@ var require_react_jsx_runtime_development = __commonJS({
             return jsxWithValidation(type, props, key, false);
           }
         }
-        var jsx3 = jsxWithValidationDynamic;
+        var jsx2 = jsxWithValidationDynamic;
         var jsxs2 = jsxWithValidationStatic;
-        exports.jsx = jsx3;
+        exports.jsx = jsx2;
         exports.jsxs = jsxs2;
       })();
     }
@@ -2883,13 +2883,13 @@ var SvgLogo = (props) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(\\"svg\\", 
     ]
   })
 }));
-var logo_default = \\"./logo.svg\\";
+var logo_default = SvgLogo;
 
 // index.tsx
-var import_jsx_runtime = __toESM(require_jsx_runtime());
-var value = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SvgLogo, {});
-console.log(value);
-console.log(logo_default);
+var svgr_default = logo_default;
+export {
+  svgr_default as default
+};
 /*
 object-assign
 (c) Sindre Sorhus

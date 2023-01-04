@@ -1,4 +1,4 @@
-import type { Metafile, OnResolveArgs, OnLoadArgs, OnResolveResult, OnLoadResult, BuildOptions } from 'esbuild';
+import type { Metafile, OnResolveArgs, OnLoadArgs, OnResolveResult, OnLoadResult, BuildOptions, Loader } from 'esbuild';
 import { AsyncSeriesBailHook, AsyncSeriesHook, AsyncSeriesWaterfallHook, SyncHook } from 'tapable';
 import { ImportKind } from 'esbuild';
 import { CLIConfig, BuildConfig } from './config';
@@ -74,6 +74,11 @@ export interface BuilderResolveOptions {
   skipSideEffects?: boolean;
 }
 
+type LoadSvgrResult = {
+  contents: string;
+  loader: Loader;
+};
+
 export interface IBuilderBase {
   build(): Promise<any>;
   reBuild(paths: string[]): Promise<void>;
@@ -101,6 +106,7 @@ export interface ILibuilder {
   watchedFiles: Set<string>;
   addWatchFile(id: string): void;
   resolve(source: string, options?: BuilderResolveOptions): Promise<BuilderResolveResult>;
+  loadSvgr(path: string): Promise<LoadSvgrResult | void>;
   getTransformContext(path: string): ITransformContext;
   getSourcemapContext(path: string): ISourcemapContext;
   report(error: any): void;

@@ -65,17 +65,34 @@ async function redirectImport(
       }
 
       // redirect asset path
-      // import xxx from './xxx.svg';
       if (assetExt.filter((ext) => name.endsWith(ext)).length) {
         const absPath = resolve(dirname(filePath), name);
-        const relativeImportPath = await getAssetContents.apply(compiler, [absPath, outputDir]);
-        str.overwrite(start, end, `${relativeImportPath}`);
+        const svgrResult = await compiler.loadSvgr(absPath);
+        if (svgrResult) {
+          // svgr
+          const { outdir, outbase } = compiler.config;
+          const ext = extname(name);
+          const outputName = `${name.slice(0, -ext.length)}.js`;
+          const outputFilePath = join(outdir, relative(outbase, dirname(absPath)), outputName);
+          compiler.emitAsset(outputFilePath, {
+            type: 'asset',
+            fileName: outputFilePath,
+            contents: svgrResult.contents,
+            originalFileName: absPath,
+          });
+          str.overwrite(start, end, outputName);
+        } else {
+          // other assets
+          const { contents: relativeImportPath } = await getAssetContents.apply(compiler, [absPath, outputDir]);
+          str.overwrite(start, end, `${relativeImportPath}`);
+        }
         return;
       }
 
       // redirect style path
-      // css module
       const { originalFilePath, query } = resolvePathAndQuery(name);
+
+      // css module
       if (query.css_virtual) {
         const replacedName = basename(originalFilePath, extname(originalFilePath)).replace('.', '_');
         const base = `${replacedName}.css`;
@@ -91,6 +108,7 @@ async function redirectImport(
         const relativeImportPath = normalizeSlashes(`./${base}`);
         str.overwrite(start, end, relativeImportPath);
       }
+
       // less sass
       const ext = extname(name);
       if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
