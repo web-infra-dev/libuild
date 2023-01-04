@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Tue, 03 Jan 2023 03:12:59 GMT and should not be manually modified.
+This log was last generated on Wed, 04 Jan 2023 13:09:40 GMT and should not be manually modified.
+
+## 0.7.6
+Wed, 04 Jan 2023 13:09:40 GMT
+
+### Updates
+
+- refactor asset, support svgr in bundleless
 
 ## 0.7.5
 Tue, 03 Jan 2023 03:12:59 GMT

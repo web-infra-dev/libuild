@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild-plugin-svgr",
   "entries": [
     {
+      "version": "0.7.6",
+      "tag": "@modern-js/libuild-plugin-svgr_v0.7.6",
+      "date": "Wed, 04 Jan 2023 13:09:40 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "transform svg on load hooks"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.5",
       "tag": "@modern-js/libuild-plugin-svgr_v0.7.5",
       "date": "Tue, 03 Jan 2023 03:12:59 GMT",

@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.7.6",
+      "tag": "@modern-js/libuild_v0.7.6",
+      "date": "Wed, 04 Jan 2023 13:09:40 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "refactor asset, support svgr in bundleless"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.5",
       "tag": "@modern-js/libuild_v0.7.5",
       "date": "Tue, 03 Jan 2023 03:12:59 GMT",
