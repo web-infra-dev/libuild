@@ -176,6 +176,8 @@ export class Libuilder implements ILibuilder {
     throw new LibuildError(ErrorCode.RESOLVE_OUT_OF_PLUGIN, 'resolve is not allowed to called out of plugin');
   }
 
+  async loadSvgr(path: string) {}
+
   private transformContextMap = new Map<string, TransformContext>();
 
   getTransformContext(path: string): TransformContext {
