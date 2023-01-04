@@ -73,7 +73,7 @@ async function redirectImport(
           const { outdir, outbase } = compiler.config;
           const ext = extname(name);
           const outputName = `${name.slice(0, -ext.length)}.js`;
-          const outputFilePath = join(outdir, relative(outbase, dirname(absPath)), outputName);
+          const outputFilePath = join(outdir, relative(outbase, dirname(absPath)), basename(outputName));
           compiler.emitAsset(outputFilePath, {
             type: 'asset',
             fileName: outputFilePath,
