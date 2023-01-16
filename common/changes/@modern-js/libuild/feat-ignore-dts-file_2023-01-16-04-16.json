@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "add logic which is ignore d.ts files",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

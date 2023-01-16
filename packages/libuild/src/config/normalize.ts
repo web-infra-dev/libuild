@@ -28,6 +28,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
       expandDirectories: {
         extensions: ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs', 'mts', 'cts', 'css', 'sass', 'scss', 'less'],
       },
+      ignore: ['**/*.d.ts'],
       cwd: root,
     });
     input = jsFiles;
