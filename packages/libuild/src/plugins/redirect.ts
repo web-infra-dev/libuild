@@ -64,8 +64,43 @@ async function redirectImport(
         name = relativeImportPath;
       }
 
-      // redirect asset path
+      // redirect style path
+      const { originalFilePath, query } = resolvePathAndQuery(name);
+      const ext = extname(name);
+
+      if (query.css_virtual) {
+        // css module
+        const replacedName = basename(originalFilePath, extname(originalFilePath)).replace('.', '_');
+        const base = `${replacedName}.css`;
+        const contents = compiler.virtualModule.get(originalFilePath)!;
+        const fileName = join(outputDir, base);
+        compiler.emitAsset(fileName, {
+          type: 'asset',
+          contents,
+          fileName,
+          originalFileName: originalFilePath,
+          entryPoint: originalFilePath,
+        });
+        const relativeImportPath = normalizeSlashes(`./${base}`);
+        str.overwrite(start, end, relativeImportPath);
+      }
+
+      if (!name.startsWith('.')) {
+        return;
+      }
+
+      if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
+        // less sass
+        if (isCssModule(name!, compiler.config.style?.autoModules ?? true)) {
+          str.overwrite(start, end, `${name.slice(0, -ext.length)}`);
+        } else {
+          str.overwrite(start, end, `${name.slice(0, -ext.length)}.css`);
+        }
+        return;
+      }
+
       if (assetExt.filter((ext) => name.endsWith(ext)).length) {
+        // asset
         const absPath = resolve(dirname(filePath), name);
         const svgrResult = await compiler.loadSvgr(absPath);
         if (svgrResult) {
@@ -85,37 +120,6 @@ async function redirectImport(
           // other assets
           const { contents: relativeImportPath } = await getAssetContents.apply(compiler, [absPath, outputDir]);
           str.overwrite(start, end, `${relativeImportPath}`);
-        }
-        return;
-      }
-
-      // redirect style path
-      const { originalFilePath, query } = resolvePathAndQuery(name);
-
-      // css module
-      if (query.css_virtual) {
-        const replacedName = basename(originalFilePath, extname(originalFilePath)).replace('.', '_');
-        const base = `${replacedName}.css`;
-        const contents = compiler.virtualModule.get(originalFilePath)!;
-        const fileName = join(outputDir, base);
-        compiler.emitAsset(fileName, {
-          type: 'asset',
-          contents,
-          fileName,
-          originalFileName: originalFilePath,
-          entryPoint: originalFilePath,
-        });
-        const relativeImportPath = normalizeSlashes(`./${base}`);
-        str.overwrite(start, end, relativeImportPath);
-      }
-
-      // less sass
-      const ext = extname(name);
-      if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
-        if (isCssModule(name!, compiler.config.style?.autoModules ?? true)) {
-          str.overwrite(start, end, `${name.slice(0, -ext.length)}`);
-        } else {
-          str.overwrite(start, end, `${name.slice(0, -ext.length)}.css`);
         }
       }
     })

@@ -20,6 +20,7 @@ describe('fixture:redirect', () => {
       } else {
         expect(chunk.contents.includes('import a from "./style.module"')).to.be.true;
         expect(chunk.contents.includes('import b from "./assets/logo.5d5d9eef.svg"')).to.be.true;
+        expect(chunk.contents.includes('import "antd/dist/antd.less"')).to.be.true;
       }
     });
   });
