@@ -5,7 +5,7 @@ describe('fixture:less_import_css', function () {
     const bundler = await getLibuilderTest({
       root: __dirname,
       input: {
-        main: './style.less',
+        main: './style/index.less',
       },
       resolve: {
         alias: {

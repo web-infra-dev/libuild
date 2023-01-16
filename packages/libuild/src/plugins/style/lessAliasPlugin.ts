@@ -41,46 +41,5 @@ export default class LessAliasesPlugin {
       }
     }
     pluginManager.addFileManager(new AliasPlugin({ config: this.config, stdinDir: this.stdinDir }));
-    class Visitor extends less.visitors.Visitor {
-      constructor(options: Options) {
-        super();
-        this._visitor = new less.visitors.Visitor(this);
-        this.isPreEvalVisitor = true;
-        this.isReplacing = false;
-
-        this.config = options.config;
-        this.stdinDir = options.stdinDir;
-      }
-
-      run(root: any) {
-        return this._visitor.visit(root);
-      }
-
-      visitImport(importNode: any) {
-        if (importNode?.path?.value) {
-          const { currentDirectory } = importNode.path._fileInfo;
-          const node = importNode.path.value;
-          // @import 'xxx.less'
-          if (typeof node === 'string' && node.startsWith('~')) {
-            this.isReplacing = true;
-            importNode.path.value = getResolve(node, currentDirectory);
-          }
-          // @import url('xxx.less')
-          if (typeof node.value === 'string' && node.value.startsWith('~')) {
-            this.isReplacing = true;
-            importNode.path.value.value = getResolve(node.value, currentDirectory);
-          }
-        }
-
-        return importNode;
-      }
-
-      visitImportOut(node: any) {
-        this.isReplacing = false;
-        return node;
-      }
-    }
-
-    pluginManager.addVisitor(new Visitor({ config: this.config, stdinDir: this.stdinDir }));
   }
 }

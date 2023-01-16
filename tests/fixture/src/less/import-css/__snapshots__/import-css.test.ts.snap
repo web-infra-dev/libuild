@@ -26574,7 +26574,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
   padding: 0;
 }
 
-/* style.less */
+/* style/index.less */
 /*!
  * 
  * antd v4.17.2

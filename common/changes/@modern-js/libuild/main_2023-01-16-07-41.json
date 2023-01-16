@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "remove less visitor plugin to fix less circular reference which will break less render",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
