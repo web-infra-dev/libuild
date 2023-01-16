@@ -1,6 +1,11 @@
 # Change Log - @modern-js/libuild-plugin-node-polyfill
 
-This log was last generated on Thu, 05 Jan 2023 02:12:37 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Jan 2023 08:35:04 GMT and should not be manually modified.
+
+## 0.9.0
+Mon, 16 Jan 2023 08:35:04 GMT
+
+_Version update only_
 
 ## 0.8.0
 Thu, 05 Jan 2023 02:12:37 GMT

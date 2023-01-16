@@ -1,6 +1,15 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Thu, 05 Jan 2023 02:12:37 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Jan 2023 08:35:04 GMT and should not be manually modified.
+
+## 0.9.0
+Mon, 16 Jan 2023 08:35:04 GMT
+
+### Updates
+
+- add logic which is ignore d.ts files
+- remove less visitor plugin to fix less circular reference which will break less render
+- fix redirect error, no redirect file which is dep
 
 ## 0.8.0
 Thu, 05 Jan 2023 02:12:37 GMT
