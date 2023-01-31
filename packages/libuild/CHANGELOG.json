@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.9.1",
+      "tag": "@modern-js/libuild_v0.9.1",
+      "date": "Tue, 31 Jan 2023 09:51:30 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix minify target will be broken by es5 plugin"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.0",
       "tag": "@modern-js/libuild_v0.9.0",
       "date": "Mon, 16 Jan 2023 08:35:04 GMT",

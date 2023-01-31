@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild-plugin-node-polyfill",
   "entries": [
     {
+      "version": "0.9.1",
+      "tag": "@modern-js/libuild-plugin-node-polyfill_v0.9.1",
+      "date": "Tue, 31 Jan 2023 09:51:30 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.9.0",
       "tag": "@modern-js/libuild-plugin-node-polyfill_v0.9.0",
       "date": "Mon, 16 Jan 2023 08:35:04 GMT",

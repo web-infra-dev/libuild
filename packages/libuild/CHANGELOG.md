@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Mon, 16 Jan 2023 08:35:04 GMT and should not be manually modified.
+This log was last generated on Tue, 31 Jan 2023 09:51:30 GMT and should not be manually modified.
+
+## 0.9.1
+Tue, 31 Jan 2023 09:51:30 GMT
+
+### Updates
+
+- fix minify target will be broken by es5 plugin
 
 ## 0.9.0
 Mon, 16 Jan 2023 08:35:04 GMT
