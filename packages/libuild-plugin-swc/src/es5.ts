@@ -6,9 +6,6 @@ export const es5Plugin = (filename?: string | ((filename: string) => string)): L
   return {
     name: pluginName,
     apply(compiler) {
-      compiler.hooks.initialize.tapPromise(pluginName, async () => {
-        compiler.config.target = 'esnext';
-      });
       compiler.hooks.processAsset.tapPromise({ name: pluginName }, async (chunk) => {
         if (chunk.fileName.endsWith('.js') && chunk.type === 'chunk') {
           const name = typeof filename === 'function' ? filename(chunk.fileName) : filename ?? chunk.fileName;

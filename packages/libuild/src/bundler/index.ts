@@ -130,7 +130,7 @@ export class EsbuildBuilder implements IBuilderBase {
     } = compiler.config;
 
     let esbuildFormat = format === 'umd' ? 'esm' : format;
-
+    const esbuildTarget = compiler.plugins.find((plugin) => plugin.name === 'libuild:swc-es5') ? 'esnext' : target;
     if (bundle && splitting && format === 'cjs') {
       esbuildFormat = 'esm';
     }
@@ -141,7 +141,7 @@ export class EsbuildBuilder implements IBuilderBase {
       define,
       bundle,
       format: esbuildFormat,
-      target,
+      target: esbuildTarget,
       sourcemap: sourceMap ? 'external' : false,
       mainFields: resolve.mainFields,
       resolveExtensions: jsExtensions,
