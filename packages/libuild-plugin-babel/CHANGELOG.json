@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild-plugin-babel",
   "entries": [
     {
+      "version": "0.9.2",
+      "tag": "@modern-js/libuild-plugin-babel_v0.9.2",
+      "date": "Wed, 01 Feb 2023 02:52:09 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.9.1",
       "tag": "@modern-js/libuild-plugin-babel_v0.9.1",
       "date": "Tue, 31 Jan 2023 09:51:30 GMT",
