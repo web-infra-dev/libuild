@@ -32,6 +32,7 @@ export const transformPlugin = (options?: TransformConfig): LibuildPlugin => {
                     },
                 target: 'es2022',
               },
+              isModule: 'unknown',
               extensions: {},
             },
             options || {}

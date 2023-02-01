@@ -17,6 +17,7 @@ export const es5Plugin = (filename?: string | ((filename: string) => string)): L
             configFile: false,
             extensions: {},
             jsc: { target: 'es5' },
+            isModule: 'unknown',
           });
           const result = await swcCompiler.transformSync(name, chunk.contents.toString());
           return {

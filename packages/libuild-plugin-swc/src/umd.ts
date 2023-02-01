@@ -20,6 +20,7 @@ export const umdPlugin = (filename?: string | ((filename: string) => string)): L
             module: {
               type: 'umd',
             },
+            isModule: 'unknown',
           });
           const result = await swcCompiler.transformSync(name, chunk.contents.toString());
           return {
