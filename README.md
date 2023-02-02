@@ -2,7 +2,7 @@ The home for various projects about libuild
 
 ## What is Libuild
 
-A tool for building modern JavaScript library powered by esbuild.
+A tool for building modern JavaScript library powered by [esbuild](https://esbuild.github.io/).
 
 ## Engineering Solutions
 
