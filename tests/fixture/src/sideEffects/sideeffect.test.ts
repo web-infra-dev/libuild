@@ -1,5 +1,4 @@
 import assert from 'assert';
-import path from 'path';
 import { getLibuilderTest } from '@modern-js/libuild-test-toolkit';
 
 describe('fixture:sideEffects', () => {
@@ -36,6 +35,40 @@ describe('fixture:sideEffects', () => {
       if (item.type === 'chunk') {
         assert(item.contents.includes('globalEffect'), 'this should be included');
         assert(!item.contents.includes('indexEffect'), 'this should be included');
+      }
+    }
+  });
+  it('reg:sideEffects', async () => {
+    const bundler = await getLibuilderTest({
+      root: __dirname,
+      input: {
+        config: './config.ts',
+      },
+      sideEffects: [/\.js$/],
+    });
+    await bundler.build();
+    const js = bundler.getJSOutput();
+    for (const item of Object.values(js)) {
+      if (item.type === 'chunk') {
+        assert(item.contents.includes('indexEffect'), 'this should be included');
+        assert(item.contents.includes('antd'), 'this should be included');
+      }
+    }
+  });
+  it('function:sideEffects', async () => {
+    const bundler = await getLibuilderTest({
+      root: __dirname,
+      input: {
+        configFunc: './config.ts',
+      },
+      sideEffects: (id) => id.endsWith('.js'),
+    });
+    await bundler.build();
+    const js = bundler.getJSOutput();
+    for (const item of Object.values(js)) {
+      if (item.type === 'chunk') {
+        assert(item.contents.includes('indexEffect'), 'this should be included');
+        assert(item.contents.includes('antd'), 'this should be included');
       }
     }
   });

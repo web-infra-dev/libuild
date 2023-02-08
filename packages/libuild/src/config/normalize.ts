@@ -147,5 +147,6 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     platform,
     asset,
     autoExternal,
+    sideEffects: config.sideEffects,
   };
 }

@@ -3,9 +3,7 @@ import { resolvePathAndQuery } from '@modern-js/libuild-utils';
 import path from 'path';
 import fs from 'fs';
 import module from 'module';
-import type { BuilderResolveOptions, ILibuilder } from '../types';
-
-type BuilderResolve = ILibuilder['resolve'];
+import type { BuilderResolveOptions, ILibuilder, SideEffects } from '../types';
 
 const HTTP_PATTERNS = /^(https?:)?\/\//;
 const DATAURL_PATTERNS = /^data:/;
@@ -13,52 +11,12 @@ const HASH_PATTERNS = /#[^#]+$/;
 export const isUrl = (source: string) =>
   HTTP_PATTERNS.test(source) || DATAURL_PATTERNS.test(source) || HASH_PATTERNS.test(source);
 
-/**
- * return sideEffects
- * @todo fix subpath later
- * @param filePath
- * @returns
- */
-function getSideEffects(filePath: string | boolean): boolean | undefined {
-  if (typeof filePath === 'boolean') {
-    return false;
-  }
-  let sideEffects;
-  let curDir = path.dirname(filePath);
-  let pkgPath = '';
-  try {
-    while (curDir !== path.dirname(curDir)) {
-      if (fs.existsSync(path.resolve(curDir, 'package.json'))) {
-        pkgPath = path.resolve(curDir, 'package.json');
-        break;
-      }
-      curDir = path.dirname(curDir);
-    }
-  } catch (err) {
-    // just ignore in case some system permission exception happens
-  }
-  if (!pkgPath) {
-    return undefined;
-  }
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-  if (typeof pkg.sideEffects === 'boolean') {
-    sideEffects = pkg.sideEffects;
-  } else if (Array.isArray(pkg.sideEffects)) {
-    sideEffects = createFilter(pkg.sideEffects, null, {
-      resolve: path.dirname(pkgPath),
-    })(filePath);
-  } else {
-    sideEffects = true;
-  }
-  return sideEffects;
-}
-
 function isString(str: unknown): str is string {
   return typeof str === 'string';
 }
 
-export function installResolve(compiler: ILibuilder): BuilderResolve {
-  const { external } = compiler.config;
+export function installResolve(compiler: ILibuilder): ILibuilder['resolve'] {
+  const { external, sideEffects: userSideEffects } = compiler.config;
   const regExternal = external.filter((item): item is RegExp => !isString(item));
   const externalList = external
     .filter(isString)
@@ -94,6 +52,63 @@ export function installResolve(compiler: ILibuilder): BuilderResolve {
     return false;
   }
 
+  /**
+   * return module sideEffects
+   * @todo fix subpath later
+   * @param filePath
+   * @param isExternal
+   * @returns
+   */
+  async function getSideEffects(filePath: string | boolean, isExternal: boolean) {
+    if (typeof filePath === 'boolean') {
+      return false;
+    }
+    let moduleSideEffects = true;
+    let sideEffects: SideEffects | undefined | string[] = userSideEffects;
+    let pkgPath = '';
+    if (typeof userSideEffects === 'undefined') {
+      let curDir = path.dirname(filePath);
+      try {
+        while (curDir !== path.dirname(curDir)) {
+          if (fs.existsSync(path.resolve(curDir, 'package.json'))) {
+            pkgPath = path.resolve(curDir, 'package.json');
+            break;
+          }
+          curDir = path.dirname(curDir);
+        }
+        sideEffects = JSON.parse(fs.readFileSync(pkgPath, 'utf-8')).sideEffects;
+      } catch (err) {
+        // just ignore in case some system permission exception happens
+      }
+      if (!pkgPath) {
+        return undefined;
+      }
+    }
+    if (typeof sideEffects === 'boolean') {
+      moduleSideEffects = sideEffects;
+    } else if (Array.isArray(sideEffects)) {
+      moduleSideEffects = createFilter(
+        sideEffects.map((glob) => {
+          if (typeof glob === 'string') {
+            if (!glob.includes('/')) {
+              return `**/${glob}`;
+            }
+          }
+          return glob;
+        }),
+        null,
+        pkgPath
+          ? {
+              resolve: path.dirname(pkgPath),
+            }
+          : undefined
+      )(filePath);
+    } else if (typeof sideEffects === 'function') {
+      moduleSideEffects = sideEffects(filePath, isExternal);
+    }
+    return moduleSideEffects;
+  }
+
   return async (source, options = {}) => {
     if (isUrl(source)) {
       return {
@@ -110,7 +125,7 @@ export function installResolve(compiler: ILibuilder): BuilderResolve {
     return {
       external: isExternal,
       namespace: isExternal ? undefined : 'file',
-      sideEffects: isExternal || options.skipSideEffects ? false : getSideEffects(resultPath),
+      sideEffects: isExternal || options.skipSideEffects ? false : await getSideEffects(resultPath, isExternal),
       path: resultPath,
       suffix,
     };
