@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.10.0",
+      "tag": "@modern-js/libuild_v0.10.0",
+      "date": "Wed, 08 Feb 2023 11:09:00 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.9.2",
       "tag": "@modern-js/libuild_v0.9.2",
       "date": "Wed, 01 Feb 2023 02:52:09 GMT",
