@@ -31,6 +31,8 @@ type External = (string | RegExp)[];
 
 type Platform = 'node' | 'browser';
 
+export type SideEffects = RegExp[] | boolean | ((id: string, external: boolean) => boolean);
+
 export interface UserConfig {
   /**
    * @default true
@@ -177,6 +179,10 @@ export interface UserConfig {
    * @default 'automatic'
    */
   jsx?: 'automatic' | 'preserve' | 'transform';
+  /**
+   * Module sideEffects, it will invalidate the sideEffects field in package.json
+   */
+  sideEffects?: SideEffects;
 }
 
 export interface CLIConfig extends UserConfig {
@@ -190,7 +196,8 @@ export interface CLIConfig extends UserConfig {
   configFile?: string;
 }
 
-export interface BuildConfig extends Required<CLIConfig> {
+export interface BuildConfig extends Required<Omit<CLIConfig, 'sideEffects'>> {
+  sideEffects?: SideEffects;
   logger: ILogger;
   resolve: ResolveNormalized;
   asset: AssetNormalized;

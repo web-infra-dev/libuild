@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "support sideEffects config",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

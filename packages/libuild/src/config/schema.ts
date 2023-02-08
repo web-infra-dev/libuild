@@ -222,6 +222,22 @@ const UserConfig = {
   esbuildOptions: {
     instanceof: 'Function',
   },
+  sideEffects: {
+    anyOf: [
+      {
+        type: 'array',
+        items: {
+          instanceof: 'RegExp',
+        },
+      },
+      {
+        type: 'boolean',
+      },
+      {
+        instanceof: 'Function',
+      },
+    ],
+  },
 };
 
 const CLIConfig = {
