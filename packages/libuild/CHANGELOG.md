@@ -1,11 +1,20 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Wed, 08 Feb 2023 11:09:00 GMT and should not be manually modified.
+This log was last generated on Mon, 13 Feb 2023 06:20:23 GMT and should not be manually modified.
+
+## 0.10.1
+Mon, 13 Feb 2023 06:20:23 GMT
+
+### Updates
+
+- fix: fix handleWatch in watch mode when bundle is false
 
 ## 0.10.0
 Wed, 08 Feb 2023 11:09:00 GMT
 
-_Version update only_
+### Updates
+
+- support sideEffects config
 
 ## 0.9.2
 Wed, 01 Feb 2023 02:52:09 GMT
