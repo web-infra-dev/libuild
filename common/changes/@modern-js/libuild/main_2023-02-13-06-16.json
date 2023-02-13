@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix: fix handleWatch in watch mode when bundle is false",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

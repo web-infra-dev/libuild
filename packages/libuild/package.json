@@ -104,7 +104,11 @@
     "commander": "9.4.0",
     "magic-string": "0.26.4",
     "globby": "13.1.2",
-    "safe-identifier": "0.4.2"
+    "safe-identifier": "0.4.2",
+    "glob-parent": "6.0.2",
+    "@types/micromatch": "4.0.2",
+    "@types/glob-parent": "5.1.1",
+    "micromatch": "4.0.5"
   },
   "sideEffects": false,
   "tsd": {

@@ -1,6 +1,8 @@
 import type { Stats } from 'fs';
 import chokidar, { FSWatcher } from 'chokidar';
-import chalk from 'chalk';
+import path from 'path';
+import micromatch from 'micromatch';
+import globParent from 'glob-parent';
 import { LibuildPlugin } from '../types';
 
 export const watchPlugin = (): LibuildPlugin => {
@@ -38,9 +40,29 @@ export const watchPlugin = (): LibuildPlugin => {
           }
         };
         /**
-         * do nothing currently
+         * Only can rebuild when bundle is false
          */
-        const handleAdd = () => {};
+        const handleAdd = (filePath: string) => {
+          const { input: userInput } = compiler.userConfig;
+          const { bundle, root, input } = compiler.config;
+          const absFilePath = path.resolve(root, filePath);
+          if (Array.isArray(userInput) && !bundle) {
+            userInput.forEach((i) => {
+              const absGlob = path.resolve(root, i);
+              let shouldRebuild = false;
+              if (absGlob !== globParent(absGlob)) {
+                micromatch.isMatch(absFilePath, absGlob) && (shouldRebuild = true);
+              } else if (absFilePath.startsWith(absGlob)) {
+                shouldRebuild = true;
+              }
+              if (shouldRebuild) {
+                (input as string[]).push(absFilePath);
+                compiler.addWatchFile(absFilePath);
+                handleBatchChange([filePath]);
+              }
+            });
+          }
+        };
         /**
          * do nothing currently
          */

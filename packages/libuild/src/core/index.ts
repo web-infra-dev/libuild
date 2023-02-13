@@ -52,6 +52,8 @@ export class Libuilder implements ILibuilder {
     POST_INTERNAL: 255,
   };
 
+  userConfig!: CLIConfig;
+
   config!: BuildConfig;
 
   plugins: LibuildPlugin[] = [];
@@ -103,6 +105,7 @@ export class Libuilder implements ILibuilder {
   }
 
   async init(config: CLIConfig) {
+    this.userConfig = config;
     this.config = await normalizeConfig(config);
     this.hooks = Object.freeze({
       initialize: new tapable.AsyncSeriesHook<[], void>(),
