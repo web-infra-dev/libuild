@@ -80,11 +80,10 @@ type LoadSvgrResult = {
 };
 
 export interface IBuilderBase {
-  build(): Promise<any>;
-  reBuild(paths: string[]): Promise<void>;
+  build(): Promise<void>;
+  reBuild(paths: string[], type: 'add' | 'change'): Promise<void>;
   close(callack?: Callback): void;
   shouldRebuild(paths: string[]): boolean;
-  canRebuild(): boolean;
 }
 
 export interface ILibuilder {

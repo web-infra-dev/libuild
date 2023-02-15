@@ -1,4 +1,11 @@
-export { Message as EsbuildError } from 'esbuild';
+import { Message } from 'esbuild';
+
+export { Message as EsbuildError };
+
+export interface EsbuildResultInfo {
+  errors: Message[];
+  warnings: Message[];
+}
 
 export enum ErrorLevel {
   Ignore,

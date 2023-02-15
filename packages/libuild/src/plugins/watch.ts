@@ -20,47 +20,39 @@ export const watchPlugin = (): LibuildPlugin => {
         compiler.watcher = watch as FSWatcher;
         let running = false;
         let needReRun = false;
-        const batchedPaths: string[] = [];
-        const handleBatchChange = async (paths: string[]) => {
-          if (!compiler.compilation.canRebuild()) {
-            needReRun = true;
-            batchedPaths.push(...paths);
-          } else if (running) {
-            needReRun = true;
-            batchedPaths.push(...paths);
-          } else if (compiler.compilation.shouldRebuild(paths)) {
-            running = true;
-            compiler.hooks.watchChange.call(paths);
-            await compiler.compilation.reBuild(paths);
-            running = false;
-            if (needReRun) {
-              needReRun = false;
-              handleBatchChange([...new Set(batchedPaths.splice(0, batchedPaths.length))]);
-            }
-          }
-        };
+        const addedPaths: string[] = [];
         /**
          * Only can rebuild when bundle is false
          */
-        const handleAdd = (filePath: string) => {
+        const handleAdd = async (filePath: string) => {
           const { input: userInput } = compiler.userConfig;
           const { bundle, root, input } = compiler.config;
           const absFilePath = path.resolve(root, filePath);
+          let shouldRebuild = false;
           if (Array.isArray(userInput) && !bundle) {
-            userInput.forEach((i) => {
+            userInput.forEach(async (i) => {
               const absGlob = path.resolve(root, i);
-              let shouldRebuild = false;
               if (absGlob !== globParent(absGlob)) {
                 micromatch.isMatch(absFilePath, absGlob) && (shouldRebuild = true);
               } else if (absFilePath.startsWith(absGlob)) {
                 shouldRebuild = true;
               }
-              if (shouldRebuild) {
-                (input as string[]).push(absFilePath);
-                compiler.addWatchFile(absFilePath);
-                handleBatchChange([filePath]);
-              }
             });
+            if (shouldRebuild) {
+              if (running) {
+                needReRun = true;
+                addedPaths.push(filePath);
+              } else {
+                running = true;
+                (input as string[]).push(filePath);
+                await compiler.compilation.reBuild([filePath], 'add');
+                running = false;
+                if (needReRun) {
+                  needReRun = false;
+                  await compiler.compilation.reBuild([...new Set(addedPaths.splice(0, addedPaths.length))], 'change');
+                }
+              }
+            }
           }
         };
         /**
@@ -68,9 +60,12 @@ export const watchPlugin = (): LibuildPlugin => {
          */
         const handleUnlink = () => {};
 
-        function handleChange(filePath: string, events: Stats, ...args: any[]) {
-          handleBatchChange([filePath]);
-        }
+        const handleChange = async (filePath: string, events: Stats, ...args: any[]) => {
+          const paths = [filePath];
+          if (compiler.compilation.shouldRebuild(paths)) {
+            await compiler.compilation.reBuild(paths, 'change');
+          }
+        };
         watch.on('ready', () => {
           watch.on('change', handleChange);
           watch.on('add', handleAdd);

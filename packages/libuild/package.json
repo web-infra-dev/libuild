@@ -32,7 +32,7 @@
     "test": "tsd && mocha"
   },
   "dependencies": {
-    "esbuild": "0.15.1",
+    "esbuild": "0.17.7",
     "postcss": "8.4.6",
     "source-map": "0.7.4",
     "source-map-support": "0.5.20",

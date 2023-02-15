@@ -1,4 +1,4 @@
-import { build, Plugin, transform } from 'esbuild';
+import { Plugin, transform, build, context } from 'esbuild';
 import * as esbuild from 'esbuild';
 import rimraf from 'rimraf';
 import yargs from 'yargs';
@@ -178,7 +178,7 @@ async function run() {
     };
   }
 
-  await build({
+  const config: esbuild.BuildOptions = {
     entryPoints: [path.resolve(__dirname, '../src/index.ts')],
     target: 'node12',
     sourcemap: args.splitting ? 'external' : true,
@@ -188,7 +188,6 @@ async function run() {
     write: !args.splitting,
     splitting: args.splitting,
     sourcesContent: args.splitting,
-    watch: args.watch ?? false,
     mainFields: ['source', 'main', 'module'],
     outdir,
     external: [
@@ -238,7 +237,13 @@ ${dependencies.map((dependency) => `- ${dependency.packageJson.name} -- ${depend
           },
         }),
     ].filter(Boolean) as Plugin[],
-  });
+  };
+
+  if (args.watch) {
+    await (await context(config)).watch();
+  } else {
+    await build(config);
+  }
 
   // extract types
   const apiExtractorJsonPath: string = path.join(__dirname, '../api-extractor.json');
