@@ -1,6 +1,11 @@
 # Change Log - @modern-js/libuild-plugin-babel
 
-This log was last generated on Mon, 13 Feb 2023 06:20:23 GMT and should not be manually modified.
+This log was last generated on Fri, 17 Feb 2023 08:36:10 GMT and should not be manually modified.
+
+## 0.11.0
+Fri, 17 Feb 2023 08:36:10 GMT
+
+_Version update only_
 
 ## 0.10.1
 Mon, 13 Feb 2023 06:20:23 GMT
