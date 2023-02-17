@@ -17,7 +17,6 @@ export interface ILibuilderTest extends ILibuilder {
    */
   testRebuild(filePath: string, content: string): Promise<void>;
 }
-export { BuildConfig }
 export const getLibuilderTest = async (params: CLIConfig, name?: string): Promise<ILibuilderTest> => {
   if (!params.input) {
     params.input = {

@@ -1,5 +1,4 @@
 import { LogLevel as esbuildLogLevel, BuildResult, BuildOptions, BuildContext, context, build } from 'esbuild';
-import * as path from 'path';
 import chalk from 'chalk';
 import { getLogLevel } from '../logger';
 import { LibuildError } from '../error';
@@ -187,19 +186,13 @@ export class EsbuildBuilder implements IBuilderBase {
     }
   }
 
-  async reBuild(paths: string[], type: 'add' | 'change') {
+  async reBuild(type: 'link' | 'change') {
     const { instance, compiler } = this;
-    const text = type === 'add' ? 'added' : 'changed';
-    compiler.hooks.watchChange.call(paths);
-    if (paths.length > 0) {
-      compiler.config.logger.info(`${chalk.underline(paths.join(' '))} ${text}`);
-    }
     try {
       const start = Date.now();
-      if (type === 'add') {
+      if (type === 'link') {
         await this.build();
       } else {
-        compiler.clearErrors();
         this.result = await instance?.rebuild();
       }
       compiler.config.logger.info(
@@ -210,16 +203,5 @@ export class EsbuildBuilder implements IBuilderBase {
       this.report(error);
       compiler.printErrors();
     }
-  }
-
-  shouldRebuild(paths: string[]): boolean {
-    for (const item of paths) {
-      const full = path.join(this.compiler.config.root, item);
-
-      if (this.compiler.watchedFiles.has(full)) {
-        return true;
-      }
-    }
-    return false;
   }
 }

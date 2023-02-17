@@ -81,9 +81,8 @@ type LoadSvgrResult = {
 
 export interface IBuilderBase {
   build(): Promise<void>;
-  reBuild(paths: string[], type: 'add' | 'change'): Promise<void>;
+  reBuild(type: 'link' | 'change'): Promise<void>;
   close(callack?: Callback): void;
-  shouldRebuild(paths: string[]): boolean;
 }
 
 export interface ILibuilder {
@@ -92,6 +91,7 @@ export interface ILibuilder {
   compilation: IBuilderBase;
   hooks: ILibuilderHooks;
   STAGE: ILibuilderStage;
+  userConfig: CLIConfig;
   config: BuildConfig;
   plugins: LibuildPlugin[];
   outputChunk: Map<string, Chunk>;
