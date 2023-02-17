@@ -26575,13 +26575,17 @@ div.ant-typography-edit-content.ant-typography-rtl {
 }
 
 /* style/index.less */
-/*!
- * 
- * antd v4.17.2
- * 
- * Copyright 2015-present, Alipay, Inc.
- * All rights reserved.
- *       
- */
+/*! Bundled license information:
+
+antd/dist/antd.css:
+  (*!
+   * 
+   * antd v4.17.2
+   * 
+   * Copyright 2015-present, Alipay, Inc.
+   * All rights reserved.
+   *       
+   *)
+*/
 "
 `;

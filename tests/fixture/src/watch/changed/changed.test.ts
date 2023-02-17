@@ -10,18 +10,6 @@ describe('fixture:watch', function () {
     bundler = await getLibuilderTest({
       root,
       watch: true,
-      plugins: [
-        {
-          name: 'delay',
-          apply(compiler) {
-            compiler.hooks.endCompilation.tapPromise('delay', async () => {
-              await new Promise((resolve) => {
-                setTimeout(resolve, 200);
-              });
-            });
-          },
-        },
-      ],
     });
     await bundler.build();
   });

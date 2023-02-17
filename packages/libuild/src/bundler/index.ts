@@ -1,9 +1,8 @@
-import { LogLevel as esbuildLogLevel, BuildResult, BuildOptions, BuildInvalidate, build as esbuild } from 'esbuild';
-import * as path from 'path';
+import { LogLevel as esbuildLogLevel, BuildResult, BuildOptions, BuildContext, context, build } from 'esbuild';
 import chalk from 'chalk';
 import { getLogLevel } from '../logger';
 import { LibuildError } from '../error';
-import { Callback, ILibuilder, BuildConfig, IBuilderBase } from '../types';
+import { Callback, ILibuilder, BuildConfig, IBuilderBase, EsbuildResultInfo, EsbuildError } from '../types';
 import { adapterPlugin } from './adapter';
 import { jsExtensions } from '../core/resolve';
 import { ErrorCode } from '../constants/error';
@@ -18,7 +17,9 @@ function convertLogLevel(level: BuildConfig['logLevel']): esbuildLogLevel {
 export class EsbuildBuilder implements IBuilderBase {
   compiler: ILibuilder;
 
-  instance!: BuildResult;
+  instance?: BuildContext;
+
+  result?: BuildResult;
 
   reBuildCount: number;
 
@@ -29,10 +30,8 @@ export class EsbuildBuilder implements IBuilderBase {
 
   close(callback?: Callback) {
     try {
-      if (this.instance) {
-        this.instance.stop?.();
-        this.instance.rebuild?.dispose();
-      }
+      this.instance?.cancel();
+      this.instance?.dispose();
       callback?.();
       /* c8 ignore next */
     } catch (err) {
@@ -41,15 +40,15 @@ export class EsbuildBuilder implements IBuilderBase {
     }
   }
 
-  private async report(error: any) {
+  private async report(error: EsbuildResultInfo) {
     const { compiler } = this;
     compiler.report(this.parseError(error));
     await compiler.hooks.endCompilation.promise(compiler.getErrors());
   }
 
-  private parseError(err: any) {
+  private parseError(err: EsbuildResultInfo) {
     const infos: LibuildError[] = [];
-    const parseDetail = (item: any) => {
+    const parseDetail = (item: EsbuildError) => {
       if (item.detail) {
         return this.parseError(item.detail);
       }
@@ -58,7 +57,7 @@ export class EsbuildBuilder implements IBuilderBase {
     if (err.errors) {
       infos.push(
         ...err.errors
-          .map((item: any) => {
+          .map((item: EsbuildError) => {
             return (
               parseDetail(item) ??
               LibuildError.from(item, {
@@ -74,7 +73,7 @@ export class EsbuildBuilder implements IBuilderBase {
     if (err.warnings) {
       infos.push(
         ...err.warnings
-          .map((item: any) => {
+          .map((item: EsbuildError) => {
             return (
               parseDetail(item) ??
               LibuildError.from(item, {
@@ -146,9 +145,7 @@ export class EsbuildBuilder implements IBuilderBase {
       mainFields: resolve.mainFields,
       resolveExtensions: jsExtensions,
       splitting,
-      watch: false,
       charset: 'utf8',
-      incremental: watch,
       logLimit: 5,
       absWorkingDir: root,
       platform,
@@ -171,40 +168,33 @@ export class EsbuildBuilder implements IBuilderBase {
 
     const buildOptions = esbuildOptions(esbuildConfig);
     try {
-      this.instance = await esbuild(buildOptions);
-      if (this.instance.warnings.length) {
-        this.report(this.instance);
+      if (watch) {
+        this.instance = await context(buildOptions);
+        this.result = await this.instance.rebuild();
+      } else {
+        this.result = await build(buildOptions);
+      }
+      if (this.result.warnings.length) {
+        this.report(this.result);
       }
     } catch (error: any) {
       await this.report(error);
 
-      if (compiler.config.watch) {
-        const rebuild = () => {
-          return this.build();
-        };
-
-        rebuild.dispose = () => undefined;
-
-        this.instance = {
-          errors: [],
-          warnings: [],
-          rebuild: rebuild as BuildInvalidate,
-        };
-
-        return this.instance;
+      if (watch) {
+        this.instance?.cancel();
       }
     }
   }
 
-  async reBuild(paths: string[]) {
+  async reBuild(type: 'link' | 'change') {
     const { instance, compiler } = this;
-    if (paths.length > 0) {
-      compiler.config.logger.info(`${chalk.underline(paths.join(' '))} changed`);
-    }
     try {
       const start = Date.now();
-      compiler.clearErrors();
-      await instance.rebuild?.();
+      if (type === 'link') {
+        await this.build();
+      } else {
+        this.result = await instance?.rebuild();
+      }
       compiler.config.logger.info(
         chalk.green`Rebuild Successfully in ${Date.now() - start}ms`,
         chalk.yellow`Rebuild Count: ${++this.reBuildCount}`
@@ -213,20 +203,5 @@ export class EsbuildBuilder implements IBuilderBase {
       this.report(error);
       compiler.printErrors();
     }
-  }
-
-  shouldRebuild(paths: string[]): boolean {
-    for (const item of paths) {
-      const full = path.join(this.compiler.config.root, item);
-
-      if (this.compiler.watchedFiles.has(full)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  canRebuild(): boolean {
-    return !!this.instance;
   }
 }

@@ -2,7 +2,8 @@ import type { Stats } from 'fs';
 import chokidar, { FSWatcher } from 'chokidar';
 import path from 'path';
 import micromatch from 'micromatch';
-import globParent from 'glob-parent';
+import { glob } from 'glob';
+import chalk from 'chalk';
 import { LibuildPlugin } from '../types';
 
 export const watchPlugin = (): LibuildPlugin => {
@@ -20,57 +21,58 @@ export const watchPlugin = (): LibuildPlugin => {
         compiler.watcher = watch as FSWatcher;
         let running = false;
         let needReRun = false;
-        const batchedPaths: string[] = [];
-        const handleBatchChange = async (paths: string[]) => {
-          if (!compiler.compilation.canRebuild()) {
-            needReRun = true;
-            batchedPaths.push(...paths);
-          } else if (running) {
-            needReRun = true;
-            batchedPaths.push(...paths);
-          } else if (compiler.compilation.shouldRebuild(paths)) {
-            running = true;
-            compiler.hooks.watchChange.call(paths);
-            await compiler.compilation.reBuild(paths);
-            running = false;
-            if (needReRun) {
-              needReRun = false;
-              handleBatchChange([...new Set(batchedPaths.splice(0, batchedPaths.length))]);
-            }
-          }
-        };
-        /**
-         * Only can rebuild when bundle is false
-         */
-        const handleAdd = (filePath: string) => {
-          const { input: userInput } = compiler.userConfig;
-          const { bundle, root, input } = compiler.config;
+
+        const handleLink = async (filePath: string, type: 'add' | 'unlink') => {
+          const { userConfig, config } = compiler;
+          const { input: userInput } = userConfig;
+          const { bundle, root, input } = config;
           const absFilePath = path.resolve(root, filePath);
+          let shouldRebuild = false;
           if (Array.isArray(userInput) && !bundle) {
-            userInput.forEach((i) => {
+            userInput.forEach(async (i) => {
               const absGlob = path.resolve(root, i);
-              let shouldRebuild = false;
-              if (absGlob !== globParent(absGlob)) {
+              if (glob.hasMagic(absGlob)) {
                 micromatch.isMatch(absFilePath, absGlob) && (shouldRebuild = true);
               } else if (absFilePath.startsWith(absGlob)) {
                 shouldRebuild = true;
               }
-              if (shouldRebuild) {
-                (input as string[]).push(absFilePath);
-                compiler.addWatchFile(absFilePath);
-                handleBatchChange([filePath]);
-              }
             });
           }
+          if (shouldRebuild) {
+            const text = type === 'add' ? 'added' : 'unlinked';
+            compiler.config.logger.info(`${chalk.underline(filePath)} ${text}`);
+            (input as string[]).push(filePath);
+            if (running) {
+              needReRun = true;
+            } else {
+              running = true;
+              await compiler.compilation.reBuild('link');
+              running = false;
+              if (needReRun) {
+                needReRun = false;
+                await compiler.compilation.reBuild('link');
+              }
+            }
+          }
         };
-        /**
-         * do nothing currently
-         */
-        const handleUnlink = () => {};
+        const handleAdd = async (filePath: string) => {
+          return handleLink(filePath, 'add');
+        };
+        const handleUnlink = async (filePath: string) => {
+          return handleLink(filePath, 'unlink');
+        };
 
-        function handleChange(filePath: string, events: Stats, ...args: any[]) {
-          handleBatchChange([filePath]);
-        }
+        const handleChange = async (filePath: string, events: Stats, ...args: any[]) => {
+          const {
+            config: { root },
+            watchedFiles,
+          } = compiler;
+          if (watchedFiles.has(path.resolve(root, filePath))) {
+            compiler.config.logger.info(`${chalk.underline(filePath)} changed`);
+            compiler.hooks.watchChange.call([filePath]);
+            await compiler.compilation.reBuild('change');
+          }
+        };
         watch.on('ready', () => {
           watch.on('change', handleChange);
           watch.on('add', handleAdd);

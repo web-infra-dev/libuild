@@ -12,6 +12,7 @@ export async function waitForEqual(valueFn: () => string, expectedValue: string)
           reject();
         }
       } catch (err) {
+        clearInterval(id);
         reject(err);
       }
     }, 100);
