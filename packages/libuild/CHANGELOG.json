@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.11.1",
+      "tag": "@modern-js/libuild_v0.11.1",
+      "date": "Thu, 23 Feb 2023 12:02:24 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix: remove file from input when unlink"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.0",
       "tag": "@modern-js/libuild_v0.11.0",
       "date": "Fri, 17 Feb 2023 08:36:10 GMT",

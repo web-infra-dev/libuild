@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Fri, 17 Feb 2023 08:36:10 GMT and should not be manually modified.
+This log was last generated on Thu, 23 Feb 2023 12:02:24 GMT and should not be manually modified.
+
+## 0.11.1
+Thu, 23 Feb 2023 12:02:24 GMT
+
+### Updates
+
+- fix: remove file from input when unlink
 
 ## 0.11.0
 Fri, 17 Feb 2023 08:36:10 GMT
