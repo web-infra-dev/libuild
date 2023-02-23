@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix: remove file from input when unlink",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

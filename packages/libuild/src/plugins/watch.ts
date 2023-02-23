@@ -41,7 +41,11 @@ export const watchPlugin = (): LibuildPlugin => {
           if (shouldRebuild) {
             const text = type === 'add' ? 'added' : 'unlinked';
             compiler.config.logger.info(`${chalk.underline(filePath)} ${text}`);
-            (input as string[]).push(filePath);
+            if (type === 'unlink') {
+              (input as string[]).splice((input as string[]).indexOf(filePath), 1);
+            } else {
+              (input as string[]).push(filePath);
+            }
             if (running) {
               needReRun = true;
             } else {
