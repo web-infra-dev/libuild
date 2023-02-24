@@ -22,7 +22,8 @@ export async function getInternalPlugin(config: BuildConfig) {
 
   if (!config.bundle) {
     const { redirectPlugin } = await import('./redirect');
-    internalPlugin.push(redirectPlugin());
+    const { jsonPlugin } = await import('./json');
+    internalPlugin.push(redirectPlugin(), jsonPlugin());
   }
 
   if (config.bundle && config.format === 'cjs' && config.splitting) {
