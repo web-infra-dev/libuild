@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.11.2",
+      "tag": "@modern-js/libuild_v0.11.2",
+      "date": "Fri, 24 Feb 2023 07:18:39 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix: copy json when bundle is false"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.1",
       "tag": "@modern-js/libuild_v0.11.1",
       "date": "Thu, 23 Feb 2023 12:02:24 GMT",
