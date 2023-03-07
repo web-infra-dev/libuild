@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix resolve sideEffects logic",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

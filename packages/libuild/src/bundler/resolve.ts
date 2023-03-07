@@ -125,7 +125,7 @@ export function installResolve(compiler: ILibuilder): ILibuilder['resolve'] {
     return {
       external: isExternal,
       namespace: isExternal ? undefined : 'file',
-      sideEffects: isExternal || options.skipSideEffects ? false : await getSideEffects(resultPath, isExternal),
+      sideEffects: options.skipSideEffects ? false : await getSideEffects(resultPath, isExternal),
       path: resultPath,
       suffix,
     };
