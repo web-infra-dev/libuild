@@ -2,7 +2,7 @@
   "changes": [
     {
       "packageName": "@modern-js/libuild",
-      "comment": "fix resolve sideEffects logic",
+      "comment": "bump v0.11.3",
       "type": "none"
     }
   ],
