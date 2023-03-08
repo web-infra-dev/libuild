@@ -2,7 +2,7 @@
   "changes": [
     {
       "packageName": "@modern-js/libuild-plugin-swc",
-      "comment": "export @modern-js/swc-plugins type",
+      "comment": "bump v0.11.3",
       "type": "none"
     }
   ],
