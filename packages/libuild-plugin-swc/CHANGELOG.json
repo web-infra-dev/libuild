@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild-plugin-swc",
   "entries": [
     {
+      "version": "0.11.4",
+      "tag": "@modern-js/libuild-plugin-swc_v0.11.4",
+      "date": "Fri, 10 Mar 2023 15:19:49 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "upgrade @modern-js/swc-plugins to 0.2.0"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.3",
       "tag": "@modern-js/libuild-plugin-swc_v0.11.3",
       "date": "Wed, 08 Mar 2023 04:56:23 GMT",

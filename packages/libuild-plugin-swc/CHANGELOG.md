@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild-plugin-swc
 
-This log was last generated on Wed, 08 Mar 2023 04:56:23 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Mar 2023 15:19:49 GMT and should not be manually modified.
+
+## 0.11.4
+Fri, 10 Mar 2023 15:19:49 GMT
+
+### Updates
+
+- upgrade @modern-js/swc-plugins to 0.2.0
 
 ## 0.11.3
 Wed, 08 Mar 2023 04:56:23 GMT
