@@ -25,7 +25,7 @@
     "eslint": "7.32.0"
   },
   "dependencies": {
-    "@modern-js/swc-plugins": "0.0.12"
+    "@modern-js/swc-plugins": "0.2.0"
   },
   "files": [
     "dist",
