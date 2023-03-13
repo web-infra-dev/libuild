@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Fri, 10 Mar 2023 15:19:49 GMT and should not be manually modified.
+This log was last generated on Mon, 13 Mar 2023 12:43:34 GMT and should not be manually modified.
+
+## 0.11.5
+Mon, 13 Mar 2023 12:43:34 GMT
+
+### Updates
+
+- support getJSON in postcss-modules
 
 ## 0.11.4
 Fri, 10 Mar 2023 15:19:49 GMT
