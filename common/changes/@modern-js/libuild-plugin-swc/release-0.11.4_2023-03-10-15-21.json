@@ -2,7 +2,7 @@
   "changes": [
     {
       "packageName": "@modern-js/libuild-plugin-swc",
-      "comment": "upgrade @modern-js/swc-plugins to 0.2.0",
+      "comment": "",
       "type": "none"
     }
   ],
