@@ -1,6 +1,6 @@
 import type CleanCss from 'clean-css';
 import type { AcceptedPlugin, ProcessOptions, Plugin } from 'postcss';
-import { Options as sassOptions } from 'sass';
+import type { Options as sassOptions } from 'sass';
 
 type LocalsConventionFunction = (originalClassName: string, generatedClassName: string, inputFile: string) => string;
 
@@ -47,6 +47,7 @@ export interface Style {
     root?: string;
     resolve?: (file: string) => string | Promise<string>;
     Loader?: typeof Loader;
+    getJSON?(cssFilename: string, json: { [name: string]: string }, outputFilename?: string): void;
   };
   cleanCss?: CleanCss.OptionsOutput | boolean;
 }

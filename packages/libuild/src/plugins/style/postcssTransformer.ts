@@ -52,6 +52,7 @@ export const postcssTransformer = async (
   const postcssConfig = await loadPostcssConfig(compilation.config.root, compilation.config.style.postcss);
   const { plugins = [], processOptions = {} } = postcssConfig;
   const { modules: modulesOption = {}, autoModules = true } = compilation.config.style;
+  const { getJSON: userGetJSON } = modulesOption;
   let modules: Record<string, string> = {};
   const finalPlugins = [
     postcssUrlPlugin({
@@ -72,6 +73,9 @@ export const postcssTransformer = async (
         },
         ...modulesOption,
         getJSON(cssFileName: string, _modules: Record<string, string>, outputFileName: string) {
+          if (userGetJSON) {
+            userGetJSON(cssFileName, _modules, outputFileName);
+          }
           modules = _modules;
         },
       })
