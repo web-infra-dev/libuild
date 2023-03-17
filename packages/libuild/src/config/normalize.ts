@@ -38,10 +38,12 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const configFile = getDefaultConfigFilePath(root, config.configFile);
   const logLevel = config.logLevel ?? 'info';
   const logger = createLogger({ level: logLevel });
+  const platform = config.platform ?? 'node';
+  const defaultMainFields = platform === 'node' ? ['module', 'main'] : ['module', 'browser', 'main'];
   const resolve: ResolveNormalized = {
     alias: config.resolve?.alias ?? {},
     mainFiles: config.resolve?.mainFiles ?? ['index'],
-    mainFields: config.resolve?.mainFields ?? ['module', 'browser', 'main'],
+    mainFields: config.resolve?.mainFields ?? defaultMainFields,
     preferRelative: config.resolve?.preferRelative ?? false,
   };
   const plugins: LibuildPlugin[] = config.plugins ?? [];
@@ -73,7 +75,6 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     ...[...dep, ...peerDep].map((dep) => new RegExp(`^${dep}($|\\/|\\\\)`)),
     ...(config.external ?? []),
   ];
-  const platform = config.platform ?? 'node';
   const bundle = config.bundle ?? true;
   const metafile = config.metafile ?? false;
   const style = config.style ?? {};

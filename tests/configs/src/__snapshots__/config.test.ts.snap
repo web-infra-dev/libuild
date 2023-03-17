@@ -48,7 +48,6 @@ Object {
     "alias": Object {},
     "mainFields": Array [
       "module",
-      "browser",
       "main",
     ],
     "mainFiles": Array [
@@ -115,7 +114,6 @@ Object {
     "alias": Object {},
     "mainFields": Array [
       "module",
-      "browser",
       "main",
     ],
     "mainFiles": Array [
@@ -182,7 +180,6 @@ Object {
     "alias": Object {},
     "mainFields": Array [
       "module",
-      "browser",
       "main",
     ],
     "mainFiles": Array [
@@ -251,7 +248,6 @@ Object {
     "alias": Object {},
     "mainFields": Array [
       "module",
-      "browser",
       "main",
     ],
     "mainFiles": Array [
@@ -323,7 +319,6 @@ Object {
     "alias": Object {},
     "mainFields": Array [
       "module",
-      "browser",
       "main",
     ],
     "mainFiles": Array [
@@ -390,7 +385,6 @@ Object {
     "alias": Object {},
     "mainFields": Array [
       "module",
-      "browser",
       "main",
     ],
     "mainFiles": Array [
