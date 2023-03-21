@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Mon, 13 Mar 2023 12:43:34 GMT and should not be manually modified.
+This log was last generated on Tue, 21 Mar 2023 07:44:54 GMT and should not be manually modified.
+
+## 0.11.6
+Tue, 21 Mar 2023 07:44:54 GMT
+
+### Updates
+
+- remove browser fields from default mainFields
 
 ## 0.11.5
 Mon, 13 Mar 2023 12:43:34 GMT
