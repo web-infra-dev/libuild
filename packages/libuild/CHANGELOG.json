@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.11.7",
+      "tag": "@modern-js/libuild_v0.11.7",
+      "date": "Tue, 28 Mar 2023 11:36:26 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix: remove default chunkNames"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.6",
       "tag": "@modern-js/libuild_v0.11.6",
       "date": "Tue, 21 Mar 2023 07:44:54 GMT",

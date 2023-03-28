@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Tue, 21 Mar 2023 07:44:54 GMT and should not be manually modified.
+This log was last generated on Tue, 28 Mar 2023 11:36:26 GMT and should not be manually modified.
+
+## 0.11.7
+Tue, 28 Mar 2023 11:36:26 GMT
+
+### Updates
+
+- fix: remove default chunkNames
 
 ## 0.11.6
 Tue, 21 Mar 2023 07:44:54 GMT
