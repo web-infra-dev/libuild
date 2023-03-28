@@ -95,7 +95,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
 
   const sourceDir = path.resolve(root, config.sourceDir ?? 'src');
   const entryNames = config.entryNames ?? (bundle ? '[name]' : '[dir]/[name]');
-  const chunkNames = config.chunkNames ?? entryNames;
+  const { chunkNames } = config;
   const clean = config.clean ?? false;
   const jsx = config.jsx ?? 'automatic';
   const esbuildOptions = config.esbuildOptions ?? ((config) => config);

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix: remove default chunkNames",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
