@@ -33,6 +33,15 @@ type Platform = 'node' | 'browser';
 
 export type SideEffects = RegExp[] | boolean | ((id: string, external: boolean) => boolean);
 
+/**
+ * @experimental
+ */
+export type Redirect = {
+  alias?: boolean;
+  style?: boolean;
+  asset?: boolean;
+};
+
 export interface UserConfig {
   /**
    * @default true
@@ -183,6 +192,10 @@ export interface UserConfig {
    * Module sideEffects, it will invalidate the sideEffects field in package.json
    */
   sideEffects?: SideEffects;
+  /**
+   * Redirect id when bundle is false
+   */
+  redirect?: Redirect;
 }
 
 export interface CLIConfig extends UserConfig {
