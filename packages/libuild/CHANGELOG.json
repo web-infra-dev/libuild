@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.11.8",
+      "tag": "@modern-js/libuild_v0.11.8",
+      "date": "Fri, 31 Mar 2023 08:34:50 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "feat: support close redirect"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.7",
       "tag": "@modern-js/libuild_v0.11.7",
       "date": "Tue, 28 Mar 2023 11:36:26 GMT",

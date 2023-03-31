@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Tue, 28 Mar 2023 11:36:26 GMT and should not be manually modified.
+This log was last generated on Fri, 31 Mar 2023 08:34:50 GMT and should not be manually modified.
+
+## 0.11.8
+Fri, 31 Mar 2023 08:34:50 GMT
+
+### Updates
+
+- feat: support close redirect
 
 ## 0.11.7
 Tue, 28 Mar 2023 11:36:26 GMT
