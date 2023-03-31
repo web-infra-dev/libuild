@@ -196,7 +196,8 @@ export interface CLIConfig extends UserConfig {
   configFile?: string;
 }
 
-export interface BuildConfig extends Required<Omit<CLIConfig, 'sideEffects'>> {
+export interface BuildConfig extends Required<Omit<CLIConfig, 'sideEffects' | 'chunkNames'>> {
+  chunkNames?: string;
   sideEffects?: SideEffects;
   logger: ILogger;
   resolve: ResolveNormalized;
