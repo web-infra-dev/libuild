@@ -99,8 +99,14 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
   const clean = config.clean ?? false;
   const jsx = config.jsx ?? 'automatic';
   const esbuildOptions = config.esbuildOptions ?? ((config) => config);
+  const redirect = {
+    alias: config.redirect?.alias ?? true,
+    style: config.redirect?.style ?? true,
+    asset: config.redirect?.asset ?? true,
+  };
 
   return {
+    redirect,
     esbuildOptions,
     jsx,
     chunkNames,

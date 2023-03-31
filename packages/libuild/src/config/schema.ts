@@ -238,6 +238,20 @@ const UserConfig = {
       },
     ],
   },
+  redirect: {
+    type: 'object',
+    properties: {
+      alias: {
+        typeof: 'boolean',
+      },
+      style: {
+        typeof: 'boolean',
+      },
+      asset: {
+        typeof: 'boolean',
+      },
+    },
+  },
 };
 
 const CLIConfig = {

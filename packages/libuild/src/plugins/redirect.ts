@@ -42,84 +42,94 @@ async function redirectImport(
       const { start, end } = module;
       let { name } = module;
 
-      // redirect alias
-      let absoluteImportPath = matchPath ? matchPath(name, undefined, undefined, extensions) : undefined;
-      for (const alias of Object.keys(aliasRecord)) {
-        // prefix
-        if (name.startsWith(`${alias}/`)) {
-          absoluteImportPath = join(aliasRecord[alias], name.slice(alias.length + 1));
-          break;
+      const { alias, style, asset } = compiler.config.redirect;
+
+      if (alias) {
+        // redirect alias
+        let absoluteImportPath = matchPath ? matchPath(name, undefined, undefined, extensions) : undefined;
+        for (const alias of Object.keys(aliasRecord)) {
+          // prefix
+          if (name.startsWith(`${alias}/`)) {
+            absoluteImportPath = join(aliasRecord[alias], name.slice(alias.length + 1));
+            break;
+          }
+          // full path
+          if (name === alias) {
+            absoluteImportPath = aliasRecord[alias];
+            break;
+          }
         }
-        // full path
-        if (name === alias) {
-          absoluteImportPath = aliasRecord[alias];
-          break;
+
+        if (absoluteImportPath) {
+          const relativePath = relative(dirname(filePath), absoluteImportPath);
+          const relativeImportPath = normalizeSlashes(
+            relativePath.startsWith('..') ? relativePath : `./${relativePath}`
+          );
+          str.overwrite(start, end, relativeImportPath);
+          name = relativeImportPath;
         }
       }
 
-      if (absoluteImportPath) {
-        const relativePath = relative(dirname(filePath), absoluteImportPath);
-        const relativeImportPath = normalizeSlashes(relativePath.startsWith('..') ? relativePath : `./${relativePath}`);
-        str.overwrite(start, end, relativeImportPath);
-        name = relativeImportPath;
-      }
+      if (style) {
+        // redirect style path
+        const { originalFilePath, query } = resolvePathAndQuery(name);
+        const ext = extname(name);
 
-      // redirect style path
-      const { originalFilePath, query } = resolvePathAndQuery(name);
-      const ext = extname(name);
-
-      if (query.css_virtual) {
-        // css module
-        const replacedName = basename(originalFilePath, extname(originalFilePath)).replace('.', '_');
-        const base = `${replacedName}.css`;
-        const contents = compiler.virtualModule.get(originalFilePath)!;
-        const fileName = join(outputDir, base);
-        compiler.emitAsset(fileName, {
-          type: 'asset',
-          contents,
-          fileName,
-          originalFileName: originalFilePath,
-          entryPoint: originalFilePath,
-        });
-        const relativeImportPath = normalizeSlashes(`./${base}`);
-        str.overwrite(start, end, relativeImportPath);
-      }
-
-      if (!name.startsWith('.')) {
-        return;
-      }
-
-      if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
-        // less sass
-        if (isCssModule(name!, compiler.config.style?.autoModules ?? true)) {
-          str.overwrite(start, end, `${name.slice(0, -ext.length)}`);
-        } else {
-          str.overwrite(start, end, `${name.slice(0, -ext.length)}.css`);
-        }
-        return;
-      }
-
-      if (assetExt.filter((ext) => name.endsWith(ext)).length) {
-        // asset
-        const absPath = resolve(dirname(filePath), name);
-        const svgrResult = await compiler.loadSvgr(absPath);
-        if (svgrResult) {
-          // svgr
-          const { outdir, outbase } = compiler.config;
-          const ext = extname(name);
-          const outputName = `${name.slice(0, -ext.length)}.js`;
-          const outputFilePath = join(outdir, relative(outbase, dirname(absPath)), basename(outputName));
-          compiler.emitAsset(outputFilePath, {
+        if (query.css_virtual) {
+          // css module
+          const replacedName = basename(originalFilePath, extname(originalFilePath)).replace('.', '_');
+          const base = `${replacedName}.css`;
+          const contents = compiler.virtualModule.get(originalFilePath)!;
+          const fileName = join(outputDir, base);
+          compiler.emitAsset(fileName, {
             type: 'asset',
-            fileName: outputFilePath,
-            contents: svgrResult.contents,
-            originalFileName: absPath,
+            contents,
+            fileName,
+            originalFileName: originalFilePath,
+            entryPoint: originalFilePath,
           });
-          str.overwrite(start, end, outputName);
-        } else {
-          // other assets
-          const { contents: relativeImportPath } = await getAssetContents.apply(compiler, [absPath, outputDir]);
-          str.overwrite(start, end, `${relativeImportPath}`);
+          const relativeImportPath = normalizeSlashes(`./${base}`);
+          str.overwrite(start, end, relativeImportPath);
+        }
+
+        if (!name.startsWith('.')) {
+          return;
+        }
+
+        if (ext === '.less' || ext === '.sass' || ext === '.scss' || ext === '.css') {
+          // less sass
+          if (isCssModule(name!, compiler.config.style.autoModules ?? true)) {
+            str.overwrite(start, end, `${name.slice(0, -ext.length)}`);
+          } else {
+            str.overwrite(start, end, `${name.slice(0, -ext.length)}.css`);
+          }
+          return;
+        }
+      }
+
+      if (asset) {
+        if (assetExt.filter((ext) => name.endsWith(ext)).length) {
+          // asset
+          const absPath = resolve(dirname(filePath), name);
+          const svgrResult = await compiler.loadSvgr(absPath);
+          if (svgrResult) {
+            // svgr
+            const { outdir, outbase } = compiler.config;
+            const ext = extname(name);
+            const outputName = `${name.slice(0, -ext.length)}.js`;
+            const outputFilePath = join(outdir, relative(outbase, dirname(absPath)), basename(outputName));
+            compiler.emitAsset(outputFilePath, {
+              type: 'asset',
+              fileName: outputFilePath,
+              contents: svgrResult.contents,
+              originalFileName: absPath,
+            });
+            str.overwrite(start, end, outputName);
+          } else {
+            // other assets
+            const { contents: relativeImportPath } = await getAssetContents.apply(compiler, [absPath, outputDir]);
+            str.overwrite(start, end, `${relativeImportPath}`);
+          }
         }
       }
     })

@@ -44,6 +44,11 @@ Object {
   "outdir": "configFile/argv/dist",
   "platform": "node",
   "plugins": Array [],
+  "redirect": Object {
+    "alias": true,
+    "asset": true,
+    "style": true,
+  },
   "resolve": Object {
     "alias": Object {},
     "mainFields": Array [
@@ -110,6 +115,11 @@ Object {
   "outdir": "ignore-dts-files/index.test.ts/dist",
   "platform": "node",
   "plugins": Array [],
+  "redirect": Object {
+    "alias": true,
+    "asset": true,
+    "style": true,
+  },
   "resolve": Object {
     "alias": Object {},
     "mainFields": Array [
@@ -176,6 +186,11 @@ Object {
   "outdir": "ignore-dts-files/src/dist",
   "platform": "node",
   "plugins": Array [],
+  "redirect": Object {
+    "alias": true,
+    "asset": true,
+    "style": true,
+  },
   "resolve": Object {
     "alias": Object {},
     "mainFields": Array [
@@ -244,6 +259,11 @@ Object {
   "outdir": "merge/input/config-path",
   "platform": "node",
   "plugins": Array [],
+  "redirect": Object {
+    "alias": true,
+    "asset": true,
+    "style": true,
+  },
   "resolve": Object {
     "alias": Object {},
     "mainFields": Array [
@@ -315,6 +335,11 @@ Object {
   "outdir": "minify-terser/custom/dist",
   "platform": "node",
   "plugins": Array [],
+  "redirect": Object {
+    "alias": true,
+    "asset": true,
+    "style": true,
+  },
   "resolve": Object {
     "alias": Object {},
     "mainFields": Array [
@@ -381,6 +406,11 @@ Object {
   "outdir": "minify-terser/default/dist",
   "platform": "node",
   "plugins": Array [],
+  "redirect": Object {
+    "alias": true,
+    "asset": true,
+    "style": true,
+  },
   "resolve": Object {
     "alias": Object {},
     "mainFields": Array [
