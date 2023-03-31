@@ -13,4 +13,16 @@ export default defineConfig([
     target: 'es2015',
     sourceMap: true,
   },
+  {
+    target: 'esnext',
+    format: 'esm',
+    input: ['./src/mock/*'],
+    outdir: 'dist/mock',
+  },
+  {
+    target: 'esnext',
+    format: 'esm',
+    input: ['./src/globals.js'],
+    outdir: 'dist',
+  },
 ]);
