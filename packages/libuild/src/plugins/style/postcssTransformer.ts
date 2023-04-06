@@ -89,7 +89,11 @@ export const postcssTransformer = async (
   if (Object.values(modules).length) {
     // add hash query for same path, let esbuild cache invalid
     compilation.virtualModule.set(entryPath, code);
-    code = `import "${entryPath}?css_virtual&hash=${getHash(code, 'utf-8')}";export default ${JSON.stringify(modules)}`;
+    const doubleBackslashesPath = entryPath.replace(/\\/g, '\\\\');
+    code = `import "${doubleBackslashesPath}?css_virtual&hash=${getHash(
+      code,
+      'utf-8'
+    )}";export default ${JSON.stringify(modules)}`;
     loader = 'js';
   }
 
