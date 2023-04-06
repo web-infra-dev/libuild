@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix: use doubleBackslashes in virtual module path to fix resolve error in windows",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
