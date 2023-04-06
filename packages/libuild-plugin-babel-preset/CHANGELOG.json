@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild-plugin-babel-preset",
   "entries": [
     {
+      "version": "0.11.9",
+      "tag": "@modern-js/libuild-plugin-babel-preset_v0.11.9",
+      "date": "Thu, 06 Apr 2023 06:40:37 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.11.8",
       "tag": "@modern-js/libuild-plugin-babel-preset_v0.11.8",
       "date": "Fri, 31 Mar 2023 08:34:50 GMT",
