@@ -13,7 +13,7 @@ export * from './asset';
 
 type Minify = 'esbuild' | 'terser' | false | TerserMinifyOptions;
 
-type Format = 'esm' | 'cjs' | 'umd' | 'iife';
+export type Format = 'esm' | 'cjs' | 'umd' | 'iife';
 
 type Input =
   | {

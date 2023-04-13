@@ -1,13 +1,27 @@
 import type { LibuildPlugin } from '@modern-js/libuild';
 import { Compiler } from '@modern-js/swc-plugins';
+import chalk from 'chalk';
+import { getSwcTarget } from './utils';
 
 export const umdPlugin = (filename?: string | ((filename: string) => string)): LibuildPlugin => {
   const pluginName = 'libuild:swc-umd';
   return {
     name: pluginName,
     apply(compiler) {
+      // check bundle value
+      compiler.hooks.initialize.tap(pluginName, () => {
+        if (compiler.config.format === 'umd' && !compiler.config.bundle) {
+          console.warn(chalk.yellowBright('libuild:swc-umd-plugin is only work in bundle!'));
+        }
+      });
+
       compiler.hooks.processAsset.tapPromise({ name: pluginName }, async (chunk) => {
-        if (chunk.fileName.endsWith('.js') && chunk.type === 'chunk') {
+        if (
+          compiler.config.format === 'umd' &&
+          compiler.config.bundle &&
+          chunk.fileName.endsWith('.js') &&
+          chunk.type === 'chunk'
+        ) {
           const name = typeof filename === 'function' ? filename(chunk.fileName) : filename ?? chunk.fileName;
           const swcCompiler = new Compiler({
             filename: name,
@@ -16,7 +30,8 @@ export const umdPlugin = (filename?: string | ((filename: string) => string)): L
             swcrc: false,
             configFile: false,
             extensions: {},
-            jsc: { target: 'es2022' },
+            // transform by user-target
+            jsc: { target: getSwcTarget(compiler.config.target) },
             module: {
               type: 'umd',
             },
