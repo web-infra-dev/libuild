@@ -21,7 +21,7 @@ var __spreadValues = (a, b) => {
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 
-// svg/logo.svg
+// src/svg/logo.svg
 import * as React from \\"react\\";
 import { jsx, jsxs } from \\"react/jsx-runtime\\";
 var SvgLogo = (props) => /* @__PURE__ */ jsx(\\"svg\\", __spreadProps(__spreadValues({ xmlns: \\"http://www.w3.org/2000/svg\\", viewBox: \\"0 0 841.9 595.3\\" }, props), { children: /* @__PURE__ */ jsxs(\\"g\\", { fill: \\"#61DAFB\\", children: [
@@ -31,10 +31,10 @@ var SvgLogo = (props) => /* @__PURE__ */ jsx(\\"svg\\", __spreadProps(__spreadVa
 ] }) }));
 var logo_default = SvgLogo;
 
-// index.ts
-var svgr_default = logo_default;
+// src/index.ts
+var src_default = logo_default;
 export {
-  svgr_default as default
+  src_default as default
 };
 "
 `;

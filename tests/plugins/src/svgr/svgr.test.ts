@@ -6,10 +6,10 @@ describe('fixture:plugin:svgr', function () {
     const bundler = await getLibuilderTest({
       root: __dirname,
       input: {
-        bundle: './index.ts',
+        bundle: './src/index.ts',
       },
       plugins: [svgrPlugin()],
-      external: [new RegExp(`^react($|\\/|\\\\)`)]
+      external: [new RegExp(`^react($|\\/|\\\\)`)],
     });
     await bundler.build();
 
@@ -21,13 +21,10 @@ describe('fixture:plugin:svgr', function () {
     const bundler = await getLibuilderTest({
       root: __dirname,
       bundle: false,
-      input: {
-        bundleless: './index.ts',
-      },
+      input: ['src'],
       format: 'esm',
       plugins: [svgrPlugin()],
       external: [new RegExp(`^react($|\\/|\\\\)`)],
-      outbase: '.',
     });
     await bundler.build();
 
