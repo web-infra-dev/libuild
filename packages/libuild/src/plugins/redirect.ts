@@ -114,16 +114,8 @@ async function redirectImport(
           const svgrResult = await compiler.loadSvgr(absPath);
           if (svgrResult) {
             // svgr
-            const { outdir, outbase } = compiler.config;
             const ext = extname(name);
             const outputName = `${name.slice(0, -ext.length)}.js`;
-            const outputFilePath = join(outdir, relative(outbase, dirname(absPath)), basename(outputName));
-            compiler.emitAsset(outputFilePath, {
-              type: 'asset',
-              fileName: outputFilePath,
-              contents: svgrResult.contents,
-              originalFileName: absPath,
-            });
             str.overwrite(start, end, outputName);
           } else {
             // other assets

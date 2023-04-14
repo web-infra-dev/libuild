@@ -22,16 +22,21 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     }
     throw new Error('The content of `input` must be a string.');
   };
+  const plugins: LibuildPlugin[] = config.plugins ?? [];
   let input: BuildConfig['input'];
+  const extensions = ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs', 'mts', 'cts', 'css', 'sass', 'scss', 'less', 'json'];
+  if (plugins.some((plugin) => plugin.name === 'libuild:svgr')) {
+    extensions.push('svg');
+  }
   if (Array.isArray(config.input)) {
-    const jsFiles = await globby(config.input, {
+    const inputFiles = await globby(config.input, {
       expandDirectories: {
-        extensions: ['js', 'ts', 'jsx', 'tsx', 'mjs', 'cjs', 'mts', 'cts', 'css', 'sass', 'scss', 'less', 'json'],
+        extensions,
       },
       ignore: ['**/*.d.ts'],
       cwd: root,
     });
-    input = jsFiles;
+    input = inputFiles;
   } else {
     input = mapValue(config.input ?? defaultInput, resolveInputPath);
   }
@@ -46,7 +51,6 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     mainFields: config.resolve?.mainFields ?? defaultMainFields,
     preferRelative: config.resolve?.preferRelative ?? false,
   };
-  const plugins: LibuildPlugin[] = config.plugins ?? [];
   const sourceMap = config.sourceMap ?? false;
   const target = config.target ?? 'es6';
 
