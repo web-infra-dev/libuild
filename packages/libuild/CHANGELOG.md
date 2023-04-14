@@ -1,6 +1,14 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Thu, 06 Apr 2023 06:40:37 GMT and should not be manually modified.
+This log was last generated on Fri, 14 Apr 2023 08:59:19 GMT and should not be manually modified.
+
+## 0.11.10
+Fri, 14 Apr 2023 08:59:19 GMT
+
+### Updates
+
+- fix: svg will be transform to js not jsx  when bundle is false and enable svgr
+- fix: support node protocol
 
 ## 0.11.9
 Thu, 06 Apr 2023 06:40:37 GMT

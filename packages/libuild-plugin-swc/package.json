@@ -1,6 +1,6 @@
 {
   "name": "@modern-js/libuild-plugin-swc",
-  "version": "0.11.9",
+  "version": "0.11.10",
   "description": "A plugin for libuild to transform your code with swc",
   "keywords": [
     "libuild",
