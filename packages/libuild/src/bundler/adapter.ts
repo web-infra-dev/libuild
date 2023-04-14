@@ -129,6 +129,16 @@ export const adapterPlugin = (compiler: ILibuilder): Plugin => {
             };
           }
         }
+        /**
+         * The node: protocol was added to require in Node v14.18.0
+         * https://nodejs.org/api/esm.html#node-imports
+         */
+        if (/^node:/.test(args.path)) {
+          return {
+            path: args.path.slice(5),
+            external: true,
+          };
+        }
         const result = await compiler.hooks.resolve.promise(args);
 
         if (
