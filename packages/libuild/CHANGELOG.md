@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Fri, 14 Apr 2023 08:59:19 GMT and should not be manually modified.
+This log was last generated on Tue, 18 Apr 2023 07:18:02 GMT and should not be manually modified.
+
+## 0.11.11
+Tue, 18 Apr 2023 07:18:02 GMT
+
+### Updates
+
+- feat: add config to enable or unable transform cache
 
 ## 0.11.10
 Fri, 14 Apr 2023 08:59:19 GMT

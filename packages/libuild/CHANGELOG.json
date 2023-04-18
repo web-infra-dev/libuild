@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.11.11",
+      "tag": "@modern-js/libuild_v0.11.11",
+      "date": "Tue, 18 Apr 2023 07:18:02 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "feat: add config to enable or unable transform cache"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.10",
       "tag": "@modern-js/libuild_v0.11.10",
       "date": "Fri, 14 Apr 2023 08:59:19 GMT",
