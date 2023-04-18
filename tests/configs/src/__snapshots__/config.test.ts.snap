@@ -67,6 +67,7 @@ Object {
   "splitting": false,
   "style": Object {},
   "target": "es6",
+  "transformCache": true,
   "watch": false,
 }
 `;
@@ -138,6 +139,7 @@ Object {
   "splitting": false,
   "style": Object {},
   "target": "es6",
+  "transformCache": true,
   "watch": false,
 }
 `;
@@ -209,6 +211,7 @@ Object {
   "splitting": false,
   "style": Object {},
   "target": "es6",
+  "transformCache": true,
   "watch": false,
 }
 `;
@@ -282,6 +285,7 @@ Object {
   "splitting": false,
   "style": Object {},
   "target": "es6",
+  "transformCache": true,
   "watch": false,
 }
 `;
@@ -358,6 +362,7 @@ Object {
   "splitting": false,
   "style": Object {},
   "target": "es6",
+  "transformCache": true,
   "watch": false,
 }
 `;
@@ -429,6 +434,7 @@ Object {
   "splitting": false,
   "style": Object {},
   "target": "es6",
+  "transformCache": true,
   "watch": false,
 }
 `;

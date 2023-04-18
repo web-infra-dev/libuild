@@ -108,8 +108,10 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     style: config.redirect?.style ?? true,
     asset: config.redirect?.asset ?? true,
   };
+  const transformCache = config.transformCache ?? true;
 
   return {
+    transformCache,
     redirect,
     esbuildOptions,
     jsx,

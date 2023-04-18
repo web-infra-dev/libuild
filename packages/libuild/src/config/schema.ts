@@ -252,6 +252,9 @@ const UserConfig = {
       },
     },
   },
+  transformCache: {
+    type: 'boolean',
+  },
 };
 
 const CLIConfig = {

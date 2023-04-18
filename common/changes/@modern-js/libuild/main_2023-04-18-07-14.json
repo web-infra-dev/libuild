@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "feat: add config to enable or unable transform cache",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

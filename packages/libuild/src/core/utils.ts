@@ -5,9 +5,9 @@ import { Source, ILibuilder, Chunk } from '../types';
 export function createTransformHook(compiler: ILibuilder) {
   const hook = new tapable.AsyncSeriesWaterfallHook<Source>(['args']);
 
-  // if (!compiler.config.cache.transform && !compiler.config.sourceMap) {
-  //   return hook;
-  // }
+  if (!compiler.config.transformCache) {
+    return hook;
+  }
 
   const originTapPromise = hook.tapPromise;
 

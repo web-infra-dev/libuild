@@ -196,6 +196,11 @@ export interface UserConfig {
    * Redirect id when bundle is false
    */
   redirect?: Redirect;
+  /**
+   * Cache for transform hooks, accelerate incremental build
+   * @default true
+   */
+  transformCache?: boolean;
 }
 
 export interface CLIConfig extends UserConfig {
