@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild-plugin-swc",
+      "comment": "add useJscParser config",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild-plugin-swc"
+}
