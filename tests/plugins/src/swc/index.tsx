@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'antd';
 
 function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
   return class extends constructor {
@@ -16,5 +17,5 @@ export class Greeter {
   }
 }
 
-export const value = <h1></h1>;
+export const value = <h1><Button></Button></h1>;
 

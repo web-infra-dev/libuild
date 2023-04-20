@@ -25,6 +25,7 @@
     "@modern-js/libuild-plugin-svgr": "workspace:*",
     "@modern-js/libuild-node-rig": "workspace:*",
     "@types/react": "17.0.33",
-    "antd": "4.17.2"
+    "antd": "4.17.2",
+    "@swc/helpers": "0.5.0"
   }
 }
