@@ -3,6 +3,7 @@ import type { LibuildPlugin, Source } from '@modern-js/libuild';
 import { Compiler } from '@modern-js/swc-plugins';
 import { resolvePathAndQuery, isJsExt, isJsLoader } from '@modern-js/libuild-utils';
 import { getSwcTarget, getModuleConfig } from './utils';
+import { swcTransformPluginName as pluginName } from './constants';
 
 // libuild-plugin-swc options
 export interface SwcTransformOptions {
@@ -15,7 +16,6 @@ export const swcTransformPlugin = (
   options: SwcTransformOptions = {}
   // swcCompilerOptions?: TransformConfig
 ): LibuildPlugin => {
-  const pluginName = 'libuild:swc-transform';
   return {
     name: pluginName,
     apply(compiler) {

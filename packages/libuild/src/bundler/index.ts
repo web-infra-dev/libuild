@@ -7,6 +7,7 @@ import { adapterPlugin } from './adapter';
 import { jsExtensions } from '../core/resolve';
 import { ErrorCode } from '../constants/error';
 import type { Format } from '../types/config';
+import { swcTransformPluginName, es5PluginName, umdPluginName } from '../constants/plugins';
 
 function convertLogLevel(level: BuildConfig['logLevel']): esbuildLogLevel {
   if (getLogLevel(level) < getLogLevel('debug')) {
@@ -196,9 +197,9 @@ export class EsbuildBuilder implements IBuilderBase {
     } = compiler.config;
 
     // if have libuild:swc-transform, so enable swc-transform
-    const enableSwcTransform = !!compiler.plugins.find((plugin) => plugin.name === 'libuild:swc-transform');
-    const haveUmdPlugin = !!compiler.plugins.find((plugin) => plugin.name === 'libuild:swc-transform');
-    const haveEs5Plugin = !!compiler.plugins.find((plugin) => plugin.name === 'libuild:swc-es5');
+    const enableSwcTransform = !!compiler.plugins.find((plugin) => plugin.name === swcTransformPluginName);
+    const haveUmdPlugin = !!compiler.plugins.find((plugin) => plugin.name === umdPluginName);
+    const haveEs5Plugin = !!compiler.plugins.find((plugin) => plugin.name === es5PluginName);
 
     const esbuildFormat = getEsbuildFormat({ enableSwcTransform, bundle, format, splitting });
     const esbuildTarget = getEsbuildTarget({

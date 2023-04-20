@@ -1,17 +1,17 @@
 import type { LibuildPlugin } from '@modern-js/libuild';
 import { Compiler } from '@modern-js/swc-plugins';
-import chalk from 'chalk';
+import { chalk } from '@modern-js/utils';
 import { getSwcTarget } from './utils';
+import { umdPluginName as pluginName } from './constants';
 
 export const umdPlugin = (filename?: string | ((filename: string) => string)): LibuildPlugin => {
-  const pluginName = 'libuild:swc-umd';
   return {
     name: pluginName,
     apply(compiler) {
       // check bundle value
       compiler.hooks.initialize.tap(pluginName, () => {
         if (compiler.config.format === 'umd' && !compiler.config.bundle) {
-          console.warn(chalk.yellowBright('libuild:swc-umd-plugin is only work in bundle!'));
+          console.warn(chalk.yellowBright(`The ${pluginName} plugin is only work in bundle!`));
         }
       });
 

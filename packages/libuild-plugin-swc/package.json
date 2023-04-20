@@ -22,11 +22,11 @@
     "@modern-js/libuild": "workspace:*",
     "@modern-js/libuild-utils": "workspace:*",
     "@modern-js/libuild-node-rig": "workspace:*",
-    "chalk": "4.1.0",
     "eslint": "7.32.0"
   },
   "dependencies": {
-    "@modern-js/swc-plugins": "0.3.1"
+    "@modern-js/swc-plugins": "0.3.1",
+    "@modern-js/utils": "2.13.4"
   },
   "files": [
     "dist",

@@ -4,7 +4,7 @@ import { isJsExt, resolvePathAndQuery, isJsLoader, deepMerge } from '@modern-js/
 
 /** @deprecated  */
 export const transformPlugin = (options?: TransformConfig): LibuildPlugin => {
-  const pluginName = 'libuild:swc-transform';
+  const pluginName = 'libuild:swc-transform-legacy';
   return {
     name: pluginName,
     apply(compiler) {
