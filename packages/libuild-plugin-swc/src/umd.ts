@@ -1,6 +1,6 @@
 import type { LibuildPlugin } from '@modern-js/libuild';
 import { Compiler } from '@modern-js/swc-plugins';
-import { chalk } from '@modern-js/utils';
+import chalk from 'chalk';
 import { getSwcTarget } from './utils';
 import { umdPluginName as pluginName } from './constants';
 

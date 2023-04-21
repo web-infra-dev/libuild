@@ -53,7 +53,7 @@ export const swcTransformPlugin = (
               externalHelpers,
               target: getSwcTarget(target),
             },
-            isModule: true,
+            isModule: 'unknown',
             module,
             extensions: {
               pluginImport,

@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@modern-js/swc-plugins": "0.3.1",
-    "@modern-js/utils": "2.13.4"
+    "chalk": "4.1.0"
   },
   "files": [
     "dist",
