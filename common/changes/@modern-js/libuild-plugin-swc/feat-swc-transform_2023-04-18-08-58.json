@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild-plugin-swc",
+      "comment": "add swc-transform plugin, optimize umd-plugin, rename original transform-plugin, add `@deprecated` comment",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild-plugin-swc"
+}

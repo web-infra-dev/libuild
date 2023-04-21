@@ -52,7 +52,7 @@ export async function normalizeConfig(config: CLIConfig): Promise<BuildConfig> {
     preferRelative: config.resolve?.preferRelative ?? false,
   };
   const sourceMap = config.sourceMap ?? false;
-  const target = config.target ?? 'es6';
+  const target = config.target ?? 'es2015';
 
   const globals = config.globals ?? {};
 

@@ -6,12 +6,80 @@ import { Callback, ILibuilder, BuildConfig, IBuilderBase, EsbuildResultInfo, Esb
 import { adapterPlugin } from './adapter';
 import { jsExtensions } from '../core/resolve';
 import { ErrorCode } from '../constants/error';
+import type { Format } from '../types/config';
+import { swcTransformPluginName, es5PluginName, umdPluginName } from '../constants/plugins';
 
 function convertLogLevel(level: BuildConfig['logLevel']): esbuildLogLevel {
   if (getLogLevel(level) < getLogLevel('debug')) {
     return 'silent';
   }
   return level;
+}
+
+function getEsbuildTarget(options: {
+  enableSwcTransform: boolean;
+  haveUmdPlugin: boolean;
+  haveEs5Plugin: boolean;
+  target: string;
+  format: Format;
+}) {
+  const { enableSwcTransform, haveUmdPlugin, haveEs5Plugin, target, format } = options;
+  if (format === 'umd' && haveUmdPlugin) {
+    // umd-plugin will transform syntax by user-target.
+    return undefined;
+  }
+
+  if (enableSwcTransform) {
+    // swc-transform will transform syntax by user-target
+    // when esbuild target is undefined. esbuild will transform nothing about syntax.
+    return undefined;
+  }
+
+  // default case, use esbuild-transform target or es5-plugin.
+  return haveEs5Plugin ? 'esnext' : target;
+}
+
+function getEsbuildFormat(options: {
+  enableSwcTransform: boolean;
+  bundle: boolean;
+  format?: Format;
+  splitting: boolean;
+}) {
+  const { enableSwcTransform, format, bundle, splitting } = options;
+
+  // cjs splitting
+  // with ./plugins/format-cjs
+  if (bundle && splitting && format === 'cjs') {
+    return 'esm';
+  }
+
+  if (format === 'esm' || format === 'cjs') {
+    // swc transform and bundleless build
+    if (enableSwcTransform && !bundle) {
+      return undefined;
+    }
+
+    // case1: default transform
+    // case2: swc transform and bundle build
+    return format;
+  }
+
+  // when format is umd, disable swc-transform and use umd-plugin,
+  // so esbuild format should be `esm`.
+  if (format === 'umd') {
+    // https://esbuild.github.io/api/#format
+    // When no output format is specified, esbuild picks an output format for you if bundling is enabled (as described below),
+    // or **doesn't do any format conversion if bundling is disabled**.
+    return bundle ? 'esm' : undefined;
+  }
+
+  // when format is iife, swc-transform only transform syntax, esbuild transform js format.
+  if (format === 'iife') {
+    return 'iife';
+  }
+
+  // fallback
+  return format;
 }
 
 export class EsbuildBuilder implements IBuilderBase {
@@ -128,11 +196,19 @@ export class EsbuildBuilder implements IBuilderBase {
       asset,
     } = compiler.config;
 
-    let esbuildFormat = format === 'umd' ? 'esm' : format;
-    const esbuildTarget = compiler.plugins.find((plugin) => plugin.name === 'libuild:swc-es5') ? 'esnext' : target;
-    if (bundle && splitting && format === 'cjs') {
-      esbuildFormat = 'esm';
-    }
+    // if have libuild:swc-transform, so enable swc-transform
+    const enableSwcTransform = !!compiler.plugins.find((plugin) => plugin.name === swcTransformPluginName);
+    const haveUmdPlugin = !!compiler.plugins.find((plugin) => plugin.name === umdPluginName);
+    const haveEs5Plugin = !!compiler.plugins.find((plugin) => plugin.name === es5PluginName);
+
+    const esbuildFormat = getEsbuildFormat({ enableSwcTransform, bundle, format, splitting });
+    const esbuildTarget = getEsbuildTarget({
+      enableSwcTransform,
+      haveUmdPlugin,
+      haveEs5Plugin,
+      format,
+      target,
+    });
 
     const esbuildConfig: BuildOptions = {
       entryPoints: input,

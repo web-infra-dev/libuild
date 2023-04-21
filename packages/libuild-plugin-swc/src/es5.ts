@@ -1,8 +1,8 @@
 import type { LibuildPlugin } from '@modern-js/libuild';
 import { Compiler } from '@modern-js/swc-plugins';
+import { es5PluginName as pluginName } from './constants';
 
 export const es5Plugin = (filename?: string | ((filename: string) => string)): LibuildPlugin => {
-  const pluginName = 'libuild:swc-es5';
   return {
     name: pluginName,
     apply(compiler) {

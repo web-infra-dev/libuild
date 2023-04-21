@@ -66,7 +66,7 @@ Object {
   "sourceMap": false,
   "splitting": false,
   "style": Object {},
-  "target": "es6",
+  "target": "es2015",
   "transformCache": true,
   "watch": false,
 }
@@ -138,7 +138,7 @@ Object {
   "sourceMap": false,
   "splitting": false,
   "style": Object {},
-  "target": "es6",
+  "target": "es2015",
   "transformCache": true,
   "watch": false,
 }
@@ -210,7 +210,7 @@ Object {
   "sourceMap": false,
   "splitting": false,
   "style": Object {},
-  "target": "es6",
+  "target": "es2015",
   "transformCache": true,
   "watch": false,
 }
@@ -284,7 +284,7 @@ Object {
   "sourceMap": false,
   "splitting": false,
   "style": Object {},
-  "target": "es6",
+  "target": "es2015",
   "transformCache": true,
   "watch": false,
 }
@@ -361,7 +361,7 @@ Object {
   "sourceMap": false,
   "splitting": false,
   "style": Object {},
-  "target": "es6",
+  "target": "es2015",
   "transformCache": true,
   "watch": false,
 }
@@ -433,7 +433,7 @@ Object {
   "sourceMap": false,
   "splitting": false,
   "style": Object {},
-  "target": "es6",
+  "target": "es2015",
   "transformCache": true,
   "watch": false,
 }
