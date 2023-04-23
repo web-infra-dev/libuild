@@ -2,7 +2,7 @@
   "changes": [
     {
       "packageName": "@modern-js/libuild",
-      "comment": "add swc-transform feature",
+      "comment": "bump version 0.12.0",
       "type": "none"
     }
   ],

@@ -2,7 +2,7 @@
   "changes": [
     {
       "packageName": "@modern-js/libuild-plugin-swc",
-      "comment": "add swc-transform plugin, optimize umd-plugin, rename original transform-plugin, add `@deprecated` comment",
+      "comment": "bump version 0.12.0",
       "type": "none"
     }
   ],
