@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild-plugin-swc",
   "entries": [
     {
+      "version": "0.12.0",
+      "tag": "@modern-js/libuild-plugin-swc_v0.12.0",
+      "date": "Sun, 23 Apr 2023 03:34:59 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "add swc-transform plugin, optimize umd-plugin, rename original transform-plugin, add `@deprecated` comment"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.11",
       "tag": "@modern-js/libuild-plugin-swc_v0.11.11",
       "date": "Tue, 18 Apr 2023 07:18:02 GMT",
