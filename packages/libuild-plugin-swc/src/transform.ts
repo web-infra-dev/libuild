@@ -1,7 +1,7 @@
 import type { TransformConfig, ImportItem } from '@modern-js/swc-plugins';
 import type { LibuildPlugin, Source } from '@modern-js/libuild';
 import { Compiler } from '@modern-js/swc-plugins';
-import { resolvePathAndQuery, isJsExt, isJsLoader } from '@modern-js/libuild-utils';
+import { resolvePathAndQuery, isJsExt, isJsLoader, isTsExt, isTsLoader } from '@modern-js/libuild-utils';
 import { getSwcTarget, getModuleConfig } from './utils';
 import { swcTransformPluginName as pluginName } from './constants';
 
@@ -22,7 +22,8 @@ export const swcTransformPlugin = (
       compiler.hooks.transform.tapPromise(pluginName, async (source): Promise<Source> => {
         const { originalFilePath } = resolvePathAndQuery(source.path);
         const { emitDecoratorMetadata = false, externalHelpers = false, pluginImport = [] } = options;
-        const enableTsx = source.loader === 'tsx' || source.loader === 'jsx' || /\.tsx$|\.jsx$/i.test(originalFilePath);
+        const isTs = isTsLoader(source.loader) || isTsExt(originalFilePath);
+        const enableJsx = source.loader === 'tsx' || source.loader === 'jsx' || /\.tsx$|\.jsx$/i.test(originalFilePath);
 
         // format is umd, disable swc-transform
         if (compiler.config.format === 'umd') {
@@ -40,11 +41,17 @@ export const swcTransformPlugin = (
             swcrc: false,
             configFile: false,
             jsc: {
-              parser: {
-                syntax: 'typescript',
-                tsx: enableTsx,
-                decorators: true,
-              },
+              parser: isTs
+                ? {
+                    syntax: 'typescript',
+                    tsx: enableJsx,
+                    decorators: true,
+                  }
+                : {
+                    syntax: 'ecmascript',
+                    jsx: enableJsx,
+                    decorators: true,
+                  },
               transform: {
                 react: {
                   runtime: jsx === 'transform' ? 'classic' : 'automatic',

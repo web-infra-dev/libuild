@@ -1,6 +1,6 @@
 import type { LibuildPlugin } from '@modern-js/libuild';
 import { Compiler, TransformConfig } from '@modern-js/swc-plugins';
-import { isJsExt, resolvePathAndQuery, isJsLoader, deepMerge } from '@modern-js/libuild-utils';
+import { isJsExt, resolvePathAndQuery, isJsLoader, deepMerge, isTsExt, isTsLoader } from '@modern-js/libuild-utils';
 
 /** @deprecated  */
 export const transformPlugin = (options?: TransformConfig): LibuildPlugin => {
@@ -10,7 +10,7 @@ export const transformPlugin = (options?: TransformConfig): LibuildPlugin => {
     apply(compiler) {
       compiler.hooks.transform.tapPromise({ name: pluginName }, async (args) => {
         const { originalFilePath } = resolvePathAndQuery(args.path);
-        const isTs = args.loader === 'tsx' || args.loader === 'ts' || /\.tsx?$/i.test(originalFilePath);
+        const isTs = isTsExt(originalFilePath) || isTsLoader(args.loader);
         if (isJsExt(originalFilePath) || isJsLoader(args.loader)) {
           const mergeOptions: TransformConfig = deepMerge(
             {

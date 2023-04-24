@@ -31,7 +31,7 @@ export const umdPlugin = (filename?: string | ((filename: string) => string)): L
             configFile: false,
             extensions: {},
             // transform by user-target
-            jsc: { target: getSwcTarget(compiler.config.target) },
+            jsc: { target: getSwcTarget(compiler.config.target), parser: { syntax: 'ecmascript' } },
             module: {
               type: 'umd',
             },

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild-plugin-swc",
+      "comment": "fix: change swc's jsc.parser.syntax with a reasonable value",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild-plugin-swc"
+}
