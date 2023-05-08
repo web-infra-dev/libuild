@@ -32,6 +32,13 @@ function getEsbuildTarget(options: {
   if (enableSwcTransform) {
     // swc-transform will transform syntax by user-target
     // when esbuild target is undefined. esbuild will transform nothing about syntax.
+
+    // but es5 is special, must be set to 'es5'.
+    // eg: when esbuild target is not 'es5'. swc-transform result is {value: value}, esbuild will transform it to {value}
+    if (target === 'es5') {
+      return 'es5';
+    }
+
     return undefined;
   }
 
