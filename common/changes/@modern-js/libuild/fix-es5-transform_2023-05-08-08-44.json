@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "when target is es5 and use swc transform, set esbuild target is es5",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}
