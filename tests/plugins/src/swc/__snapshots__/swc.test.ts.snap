@@ -17,7 +17,7 @@ function _define_property(obj, key, value2) {
   }
   return obj;
 }
-var __decorate = function(decorators, target, key, desc) {
+function _ts_decorate(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === \\"object\\" && typeof Reflect.decorate === \\"function\\")
     r = Reflect.decorate(decorators, target, key, desc);
@@ -26,7 +26,7 @@ var __decorate = function(decorators, target, key, desc) {
       if (d = decorators[i])
         r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
   return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+}
 function classDecorator(constructor) {
   return class extends constructor {
     constructor(...args) {
@@ -43,7 +43,7 @@ var Greeter = class Greeter2 {
     this.hello = m;
   }
 };
-Greeter = __decorate([
+Greeter = _ts_decorate([
   classDecorator
 ], Greeter);
 var value = /* @__PURE__ */ _jsx(\\"h1\\", {
@@ -73,7 +73,7 @@ function _define_property(obj, key, value2) {
   }
   return obj;
 }
-var __decorate = function(decorators, target, key, desc) {
+function _ts_decorate(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === \\"object\\" && typeof Reflect.decorate === \\"function\\")
     r = Reflect.decorate(decorators, target, key, desc);
@@ -82,11 +82,11 @@ var __decorate = function(decorators, target, key, desc) {
       if (d = decorators[i])
         r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
   return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = function(k, v) {
+}
+function _ts_metadata(k, v) {
   if (typeof Reflect === \\"object\\" && typeof Reflect.metadata === \\"function\\")
     return Reflect.metadata(k, v);
-};
+}
 function classDecorator(constructor) {
   return class extends constructor {
     constructor(...args) {
@@ -103,10 +103,10 @@ var Greeter = class Greeter2 {
     this.hello = m;
   }
 };
-Greeter = __decorate([
+Greeter = _ts_decorate([
   classDecorator,
-  __metadata(\\"design:type\\", Function),
-  __metadata(\\"design:paramtypes\\", [
+  _ts_metadata(\\"design:type\\", Function),
+  _ts_metadata(\\"design:paramtypes\\", [
     String
   ])
 ], Greeter);
@@ -197,7 +197,7 @@ function _define_property(obj, key, value2) {
   }
   return obj;
 }
-var __decorate = function(decorators, target, key, desc) {
+function _ts_decorate(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === \\"object\\" && typeof Reflect.decorate === \\"function\\")
     r = Reflect.decorate(decorators, target, key, desc);
@@ -206,7 +206,7 @@ var __decorate = function(decorators, target, key, desc) {
       if (d = decorators[i])
         r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
   return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+}
 function classDecorator(constructor) {
   return class extends constructor {
     constructor(...args) {
@@ -223,7 +223,7 @@ var Greeter = class Greeter2 {
     this.hello = m;
   }
 };
-Greeter = __decorate([
+Greeter = _ts_decorate([
   classDecorator
 ], Greeter);
 var value = /* @__PURE__ */ _jsx(\\"h1\\", {

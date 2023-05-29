@@ -52,7 +52,7 @@ describe('fixture:plugin:swc', function () {
     await bundler.build();
 
     const jsOutput = Object.values(bundler.getJSOutput());
-    expect(jsOutput[0].contents.includes('__metadata')).to.be.true;
+    expect(jsOutput[0].contents.includes('_metadata')).to.be.true;
     expect(jsOutput[0].contents).toMatchSnapshot();
   });
 

@@ -15,7 +15,9 @@ exports[`fixture:format:umd format umd 1`] = `
     });
     Object.defineProperty(exports, \\"a\\", {
         enumerable: true,
-        get: ()=>a
+        get: function() {
+            return a;
+        }
     });
     function a() {
         console.log(1);
