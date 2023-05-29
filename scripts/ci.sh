@@ -7,7 +7,7 @@ if [ "$command" = "init" ] ; then
   npm install -g pnpm@6.22
 elif [ "$command" = "install" ] ; then
   npm run install
-elif [ "$command" = "check" ] ; then
+elif [ "$command" = "check" ] && [ "$github.ref_type" = "tag" ] ; then
   rush change -v
 elif [ "$command" = "build" ] ; then
   npm run build
