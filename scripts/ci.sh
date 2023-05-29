@@ -8,7 +8,7 @@ if [ "$command" = "init" ] ; then
 elif [ "$command" = "install" ] ; then
   npm run install
 elif [ "$command" = "check" ] ; then
-  rush change -v
+  node ./scripts/check.js ${GITHUB_HEAD_REF}
 elif [ "$command" = "build" ] ; then
   npm run build
 elif [ "$command" = "test" ] ; then
