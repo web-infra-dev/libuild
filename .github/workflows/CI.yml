@@ -6,12 +6,6 @@ on:
   pull_request:
     branches:
       - main
-    tags-ignore:
-      - '**'
-    paths-ignore:
-      - LICENSE
-      - '**/*.gitignore'
-      - .editorconfig
 jobs:
   setup-public:
     name: CI
