@@ -64,6 +64,10 @@ export const swcTransformPlugin = (
             module,
             extensions: {
               pluginImport,
+              lodash: {
+                cwd: process.cwd(),
+                ids: ['lodash', 'lodash-es'],
+              },
             },
             // extensions:
             //   bundle && injectHelperToDist
