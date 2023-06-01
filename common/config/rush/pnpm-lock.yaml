@@ -12,7 +12,7 @@ importers:
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-plugin-svgr': workspace:*
       '@modern-js/libuild-plugin-swc': workspace:*
-      '@swc/helpers': 0.5.0
+      '@swc/helpers': 0.5.1
       eslint: 7.32.0
       less: 4.1.3
       react: 17.0.2
@@ -20,7 +20,7 @@ importers:
       sass: 1.54.5
       typescript: 4.4.4
     dependencies:
-      '@swc/helpers': 0.5.0
+      '@swc/helpers': 0.5.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -335,12 +335,12 @@ importers:
       '@modern-js/libuild': workspace:*
       '@modern-js/libuild-node-rig': workspace:*
       '@modern-js/libuild-utils': workspace:*
-      '@modern-js/swc-plugins': 0.3.3
+      '@modern-js/swc-plugins': 0.3.5
       chalk: 4.1.0
       eslint: 7.32.0
       typescript: 4.4.4
     dependencies:
-      '@modern-js/swc-plugins': 0.3.3
+      '@modern-js/swc-plugins': 0.3.5
       chalk: 4.1.0
     devDependencies:
       '@modern-js/eslint-config': link:../../tools/eslint-config
@@ -440,6 +440,7 @@ importers:
       '@modern-js/libuild-utils': workspace:*
       '@types/convert-source-map': 1.5.2
       '@types/detect-port': 1.3.1
+      '@types/lodash': 4.14.195
       '@types/lodash-es': 4.17.5
       '@types/mocha': 9.0.0
       '@types/node': 12.20.42
@@ -454,6 +455,7 @@ importers:
       eslint: 7.32.0
       foundation: 4.2.1-1
       less: 4.1.3
+      lodash: 4.17.21
       lodash-es: 4.17.21
       mocha: 9.1.3
       normalize.css: 8.0.1
@@ -482,6 +484,7 @@ importers:
       '@modern-js/libuild-utils': link:../../packages/libuild-utils
       '@types/convert-source-map': 1.5.2
       '@types/detect-port': 1.3.1
+      '@types/lodash': 4.14.195
       '@types/lodash-es': 4.17.5
       '@types/mocha': 9.0.0
       '@types/node': 12.20.42
@@ -496,6 +499,7 @@ importers:
       eslint: 7.32.0
       foundation: 4.2.1-1
       less: 4.1.3
+      lodash: 4.17.21
       lodash-es: 4.17.21
       mocha: 9.1.3
       normalize.css: 8.0.1
@@ -522,7 +526,7 @@ importers:
       '@modern-js/libuild-plugin-svgr': workspace:*
       '@modern-js/libuild-plugin-swc': workspace:*
       '@modern-js/libuild-test-toolkit': workspace:*
-      '@swc/helpers': 0.5.0
+      '@swc/helpers': 0.5.1
       '@types/mocha': 9.0.0
       '@types/node': 12.20.42
       '@types/react': 17.0.33
@@ -541,7 +545,7 @@ importers:
       '@modern-js/libuild-plugin-svgr': link:../../packages/libuild-plugin-svgr
       '@modern-js/libuild-plugin-swc': link:../../packages/libuild-plugin-swc
       '@modern-js/libuild-test-toolkit': link:../toolkit
-      '@swc/helpers': 0.5.0
+      '@swc/helpers': 0.5.1
       '@types/mocha': 9.0.0
       '@types/node': 12.20.42
       '@types/react': 17.0.33
@@ -2449,8 +2453,8 @@ packages:
     resolution: {integrity: sha512-WrHvO8PDL8wd8T2+zBGKrMwVL5IyzR3ryWUsl0PXgEV0QHup4mTLi0QcATefGI6Gx9Anu7vthPyyyLpY0EpiQg==}
     dev: true
 
-  /@modern-js/swc-plugins-darwin-arm64/0.3.3:
-    resolution: {integrity: sha512-1yOSwh/5ENHZcy0TuzecrJWMay3YqalqZD/n85T/hyz1kypMi+Q4nm0h5nqRiPvscbMJnHzUPhZ/BK1MsSkoRw==}
+  /@modern-js/swc-plugins-darwin-arm64/0.3.5:
+    resolution: {integrity: sha512-mh0wLirnxUozTVTwXuvEbOTBs6rwEGovlvdEVcbFQiN27hhoal+NpokqsYBVkwyHe0aZ0uxsipRQnd0GuH9hMA==}
     engines: {node: '>=14.12'}
     cpu: [arm64]
     os: [darwin]
@@ -2458,8 +2462,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-darwin-x64/0.3.3:
-    resolution: {integrity: sha512-bjQGKNL+Zstlng1nEoifx1K7TjEVlDdCl6WhTNQrOa29JfvHIMMctUJamv25girQ0PC1f49zt9PKTrG6aA1NAw==}
+  /@modern-js/swc-plugins-darwin-x64/0.3.5:
+    resolution: {integrity: sha512-rTpj1PMKWfWxM1rHIeRCr2eTgaOYGiKb1XzoLEHVMQmZUMs6+ofG5fsBG8FnymIQxcyMHv87ACvaSpF2nBzULQ==}
     engines: {node: '>=14.12'}
     cpu: [x64]
     os: [darwin]
@@ -2467,8 +2471,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-linux-arm64-gnu/0.3.3:
-    resolution: {integrity: sha512-6f0Afp7gIoNQIWYS+hpu5dB0m+tNGWmj4V/3typniGb5svVaQ5VjeNnK8MLC7IM1l7gYdJlvhgSKRiX1fR5mKQ==}
+  /@modern-js/swc-plugins-linux-arm64-gnu/0.3.5:
+    resolution: {integrity: sha512-YDdvxE4UMN2XH1hmLkXwnnDiUbNEg+KQwTcZ8kbNRhnQfP50vioAESBsW2Ld2OkgmIG707qSaCqOxTuhrNNs+Q==}
     engines: {node: '>=14.12'}
     cpu: [arm64]
     os: [linux]
@@ -2476,8 +2480,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-linux-arm64-musl/0.3.3:
-    resolution: {integrity: sha512-MHEsvSpdLJWfQ9rvi+ypDgcdhWhn3s0dpNkUBXIjEk4/fNluojWwtR8A9RbGGKN45y4qrmxoEAIfCoXcuOzAYw==}
+  /@modern-js/swc-plugins-linux-arm64-musl/0.3.5:
+    resolution: {integrity: sha512-nJZOD2fSW7jRJBr7uReaQyxmiC4dmopCN7bWBmkOKMPiw46GkUmE6aIK/Xtf+SVGohBSiqbW1XJX7pOQKZaIXQ==}
     engines: {node: '>=14.12'}
     cpu: [arm64]
     os: [linux]
@@ -2485,8 +2489,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-linux-x64-gnu/0.3.3:
-    resolution: {integrity: sha512-NocCWnDeOp5BD+Ix0URwmSIc5VAm1gl/KQzeu2IzFPA9RJsLMtWYmE2UPOtQHuD2hm/iz1N9wZiR3pAkvgKf4w==}
+  /@modern-js/swc-plugins-linux-x64-gnu/0.3.5:
+    resolution: {integrity: sha512-hCH/raVmh+Kmb/bhcm9wHijIPiVj9B8lvJw0ZpbijXst+thEfQtskXW0RKBGBUCb5p19qSo8+Ql7ylG2ua+8cg==}
     engines: {node: '>=14.12'}
     cpu: [x64]
     os: [linux]
@@ -2494,8 +2498,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-linux-x64-musl/0.3.3:
-    resolution: {integrity: sha512-GvQjoxH9L65fG3AbhIk7llnMOXTgTNR6xeQVxubSrU1tyMtuApAZOGfZvgH3PcyVgME/38HJJkveA+FqRqeSbQ==}
+  /@modern-js/swc-plugins-linux-x64-musl/0.3.5:
+    resolution: {integrity: sha512-EdJvtcV3ui8v63JDAdlFsMDz2buUzYTVNzkaLCQmJjXonnT2LfYvVTPfVQrN+lv0spLDDBrT+EBSZ8t3hMCaGQ==}
     engines: {node: '>=14.12'}
     cpu: [x64]
     os: [linux]
@@ -2503,8 +2507,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-win32-arm64-msvc/0.3.3:
-    resolution: {integrity: sha512-z3a2OVO8Ag2AOSm77WgUd0EN7+McJAdwjhJ3vpfcrhikFqjP0io+k0JrVsvUzJeOsQiDGrLA3oSi6Szb28QLbA==}
+  /@modern-js/swc-plugins-win32-arm64-msvc/0.3.5:
+    resolution: {integrity: sha512-fbaJC7NPgC4Wii0Bx6RhL+Q7z0y3UTrsq7sMWOV2uodNo2yxF7A5PC4dLUgM4Ds1rKhr+u2BXWHbWNOS5ttiaQ==}
     engines: {node: '>=14.12'}
     cpu: [arm64]
     os: [win32]
@@ -2512,8 +2516,8 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins-win32-x64-msvc/0.3.3:
-    resolution: {integrity: sha512-qvAFjFrIn2E14yEcTuw8qTJGNuqHPOWv+nG79XLvQWTIO8EKfr7gvjzLpCR9nry2DBkpc/aOcowmykwAXZd57g==}
+  /@modern-js/swc-plugins-win32-x64-msvc/0.3.5:
+    resolution: {integrity: sha512-UkyfQxBh70vGAqhTntKfbzIHxqrWwqP7unJXlofqQszy8vzMT6EiRnjSMT/RLh0PhsQ/YmWMyI7Dc4lVLAFtqg==}
     engines: {node: '>=14.12'}
     cpu: [x64]
     os: [win32]
@@ -2521,20 +2525,20 @@ packages:
     dev: false
     optional: true
 
-  /@modern-js/swc-plugins/0.3.3:
-    resolution: {integrity: sha512-jjw/VAyZv24NQiVdJzZJA89yi7QU62TK5rz+KB0ZZ2BSD57KktQV3QK0c/LUE4D0BvHimH+EPv7v4ykK4mEMbg==}
+  /@modern-js/swc-plugins/0.3.5:
+    resolution: {integrity: sha512-ES4xFk78ueXA3rgCHQfmGUxXC4j2ZOvTMUe7v/Nhib2p5cwsEYgLU4+6XCa11GVL1cMWHRnzRZlAKGrY3xpjnA==}
     engines: {node: '>=14.12'}
     peerDependencies:
       '@swc/helpers': 0.5.1
     optionalDependencies:
-      '@modern-js/swc-plugins-darwin-arm64': 0.3.3
-      '@modern-js/swc-plugins-darwin-x64': 0.3.3
-      '@modern-js/swc-plugins-linux-arm64-gnu': 0.3.3
-      '@modern-js/swc-plugins-linux-arm64-musl': 0.3.3
-      '@modern-js/swc-plugins-linux-x64-gnu': 0.3.3
-      '@modern-js/swc-plugins-linux-x64-musl': 0.3.3
-      '@modern-js/swc-plugins-win32-arm64-msvc': 0.3.3
-      '@modern-js/swc-plugins-win32-x64-msvc': 0.3.3
+      '@modern-js/swc-plugins-darwin-arm64': 0.3.5
+      '@modern-js/swc-plugins-darwin-x64': 0.3.5
+      '@modern-js/swc-plugins-linux-arm64-gnu': 0.3.5
+      '@modern-js/swc-plugins-linux-arm64-musl': 0.3.5
+      '@modern-js/swc-plugins-linux-x64-gnu': 0.3.5
+      '@modern-js/swc-plugins-linux-x64-musl': 0.3.5
+      '@modern-js/swc-plugins-win32-arm64-msvc': 0.3.5
+      '@modern-js/swc-plugins-win32-x64-msvc': 0.3.5
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:
@@ -2764,8 +2768,8 @@ packages:
       svgo: 3.0.2
     dev: false
 
-  /@swc/helpers/0.5.0:
-    resolution: {integrity: sha512-SjY/p4MmECVVEWspzSRpQEM3sjR17sP8PbGxELWrT+YZMBfiUyt1MRUNjMV23zohwlG2HYtCQOsCwsTHguXkyg==}
+  /@swc/helpers/0.5.1:
+    resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.5.0
 
@@ -2921,11 +2925,11 @@ packages:
   /@types/lodash-es/4.17.5:
     resolution: {integrity: sha512-SHBoI8/0aoMQWAgUHMQ599VM6ZiSKg8sh/0cFqqlQQMyY9uEplc0ULU5yQNzcvdR4ZKa0ey8+vFmahuRbOCT1A==}
     dependencies:
-      '@types/lodash': 4.14.184
+      '@types/lodash': 4.14.195
     dev: true
 
-  /@types/lodash/4.14.184:
-    resolution: {integrity: sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==}
+  /@types/lodash/4.14.195:
+    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
     dev: true
 
   /@types/micromatch/4.0.2:

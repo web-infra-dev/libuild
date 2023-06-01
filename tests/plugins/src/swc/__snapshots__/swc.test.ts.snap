@@ -121,7 +121,7 @@ export {
 `;
 
 exports[`fixture:plugin:swc plugin:swc-transform:externalHelpers 1`] = `
-"// ../../../../common/temp/node_modules/.pnpm/@swc+helpers@0.5.0/node_modules/@swc/helpers/esm/_define_property.js
+"// ../../../../common/temp/node_modules/.pnpm/@swc+helpers@0.5.1/node_modules/@swc/helpers/esm/_define_property.js
 function _define_property(obj, key, value2) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
