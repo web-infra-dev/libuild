@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.13.0",
+      "tag": "@modern-js/libuild_v0.13.0",
+      "date": "Wed, 14 Jun 2023 09:09:34 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "bump esbuild to 0.17.19"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.12.4",
       "tag": "@modern-js/libuild_v0.12.4",
       "date": "Thu, 01 Jun 2023 06:14:35 GMT",
