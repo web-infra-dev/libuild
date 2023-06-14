@@ -8,6 +8,8 @@ import { swcTransformPluginName as pluginName } from './constants';
 // libuild-plugin-swc options
 export interface SwcTransformOptions {
   emitDecoratorMetadata?: boolean;
+  // https://www.typescriptlang.org/tsconfig#useDefineForClassFields
+  useDefineForClassFields?: boolean;
   externalHelpers?: boolean;
   pluginImport?: ImportItem[];
 }
@@ -21,7 +23,13 @@ export const swcTransformPlugin = (
     apply(compiler) {
       compiler.hooks.transform.tapPromise(pluginName, async (source): Promise<Source> => {
         const { originalFilePath } = resolvePathAndQuery(source.path);
-        const { emitDecoratorMetadata = false, externalHelpers = false, pluginImport = [] } = options;
+        const {
+          emitDecoratorMetadata = false,
+          externalHelpers = false,
+          pluginImport = [],
+          useDefineForClassFields,
+        } = options;
+        // Todo: emitDecoratorMetadata default value
         const isTs = isTsLoader(source.loader) || isTsExt(originalFilePath);
         const enableJsx = source.loader === 'tsx' || source.loader === 'jsx' || /\.tsx$|\.jsx$/i.test(originalFilePath);
 
@@ -56,6 +64,7 @@ export const swcTransformPlugin = (
                 react: {
                   runtime: jsx === 'transform' ? 'classic' : 'automatic',
                 },
+                useDefineForClassFields,
               },
               externalHelpers,
               target: getSwcTarget(target),
