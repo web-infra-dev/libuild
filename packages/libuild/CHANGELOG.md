@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Thu, 01 Jun 2023 06:14:35 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Jun 2023 09:09:34 GMT and should not be manually modified.
+
+## 0.13.0
+Wed, 14 Jun 2023 09:09:34 GMT
+
+### Updates
+
+- bump esbuild to 0.17.19
 
 ## 0.12.4
 Thu, 01 Jun 2023 06:14:35 GMT
