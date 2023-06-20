@@ -1,6 +1,14 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Wed, 14 Jun 2023 09:09:34 GMT and should not be manually modified.
+This log was last generated on Tue, 20 Jun 2023 07:34:25 GMT and should not be manually modified.
+
+## 0.13.1
+Tue, 20 Jun 2023 07:34:25 GMT
+
+### Updates
+
+- change compatible codes for global pkg in umd mode
+- fix: change asset chunk contents from string to buffer when normalize esbuild output, and fix broken png which is copied
 
 ## 0.13.0
 Wed, 14 Jun 2023 09:09:34 GMT
