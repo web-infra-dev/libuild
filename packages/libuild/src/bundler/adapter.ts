@@ -196,7 +196,8 @@ export const adapterPlugin = (compiler: ILibuilder): Plugin => {
           };
         }
 
-        if (!result.contents) {
+        // file don't need transform when loader is copy
+        if (!result.contents || result.loader === 'copy') {
           return result;
         }
 
@@ -323,7 +324,7 @@ async function normalizeOutput(compiler: ILibuilder, result: BuildResult, entryP
     } else {
       compiler.emitAsset(absPath, {
         type: 'asset',
-        contents: item.text,
+        contents: Buffer.from(item.contents),
         entryPoint: entryPoint ? normalizeEntryPoint(entryPoint, root) : undefined,
         fileName: absPath,
       });

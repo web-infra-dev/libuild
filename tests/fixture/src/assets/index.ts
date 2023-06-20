@@ -1,3 +1,4 @@
 import svg from './logo.svg';
+import png from './modern.png';
 
-console.log(svg);
+export { svg, png };

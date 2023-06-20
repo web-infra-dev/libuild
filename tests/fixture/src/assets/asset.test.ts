@@ -8,9 +8,11 @@ describe('fixture:assets bundle', () => {
     });
     await bundler.build();
     bundler.expectJSOutputMatchSnapshot();
-    const jsOutput = bundler.getJSOutput();
-    const jsChunk = Object.values(jsOutput);
+    const jsChunk = Object.values(bundler.getJSOutput());
+    const pngChunk = Object.values(bundler.getOutputByCondition((output) => output.endsWith('.png')));
     expect(jsChunk[0].contents.includes('import')).to.be.true;
+    expect(Buffer.isBuffer(pngChunk[0].contents)).to.be.true;
+    expect(pngChunk[0].contents).toMatchSnapshot();
   });
   it('rebase is false, support publicPath', async () => {
     const bundler = await getLibuilderTest({
