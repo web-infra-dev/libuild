@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild",
+      "comment": "fix: change asset chunk contents from string to buffer when normalize esbuild output, and fix broken png which is copied",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild"
+}

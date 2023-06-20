@@ -61,7 +61,7 @@ export const getLibuilderTest = async (params: CLIConfig, name?: string): Promis
 
   bundler.expectCSSOutputMatchSnapshot = function () {
     Object.values(bundler.getCSSOutput()).forEach(({ contents }) => {
-      expect(contents).toMatchSnapshot();
+      expect(contents.toString()).toMatchSnapshot();
     });
   };
 

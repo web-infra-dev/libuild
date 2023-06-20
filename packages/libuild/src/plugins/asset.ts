@@ -93,7 +93,7 @@ export async function getAssetContents(
     typeof publicPath === 'function' ? publicPath(assetPath) : publicPath
   }${outdir}/${outputFileName}`;
   let emitAsset = true;
-  let contents = normalizedPublicPath;
+  let contents: string | Buffer = normalizedPublicPath;
   let loader: Loader = 'text';
   if (bundle) {
     // inline base64
@@ -106,8 +106,9 @@ export async function getAssetContents(
       loader = 'text';
       emitAsset = false;
     } else if (rebase) {
-      contents = calledOnLoad ? fileContent.toString() : normalizedRelativePath;
+      contents = calledOnLoad ? fileContent : normalizedRelativePath;
       loader = calledOnLoad ? 'copy' : 'text';
+      emitAsset = !calledOnLoad;
     }
   } else {
     contents = normalizedRelativePath;
