@@ -3,7 +3,7 @@
 exports[`fixture:assets bundle default, copy asset 1`] = `
 "// index.ts
 import svg from \\"./assets/logo.PGX3QVVN.svg\\";
-import png from \\"./assets/modern.YPZQ5BUC.png\\";
+import png from \\"./assets/modern.7F7OIPZU.png\\";
 export {
   png,
   svg
