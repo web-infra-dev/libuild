@@ -1,6 +1,13 @@
 # Change Log - @modern-js/libuild
 
-This log was last generated on Tue, 20 Jun 2023 07:34:25 GMT and should not be manually modified.
+This log was last generated on Wed, 28 Jun 2023 11:55:36 GMT and should not be manually modified.
+
+## 0.13.2
+Wed, 28 Jun 2023 11:55:36 GMT
+
+### Updates
+
+- fix: print filePath undefined when transformNormalError
 
 ## 0.13.1
 Tue, 20 Jun 2023 07:34:25 GMT
