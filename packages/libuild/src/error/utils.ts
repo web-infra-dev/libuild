@@ -125,12 +125,15 @@ function transformEsbuildError(err: any, opt?: LibuildErrorParams) {
 }
 
 function transformNormalError(err: any, opt?: LibuildErrorParams) {
-  if (err instanceof Error) {
+  if ((err instanceof Error) as any) {
     const stacks = stackParse(err);
+
+    // err.filename is Non-standard, so filePath may be undefined yet.
+    const filePath = stacks[0]?.getFileName?.() || err.filename;
     return new LibuildError(err.name, clearMessage(err.message), {
       ...opt,
       codeFrame: {
-        filePath: stacks[0]?.getFileName(),
+        filePath,
       },
       stack: err.stack && clearStack(err.stack),
     });
