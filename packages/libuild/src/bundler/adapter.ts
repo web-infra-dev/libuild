@@ -171,7 +171,9 @@ export const adapterPlugin = (compiler: ILibuilder): Plugin => {
         if (args.namespace === LibuildGlobalNamespace) {
           const value = compiler.config.globals[args.path];
           return {
-            contents: `module.exports = (Function('return this')())[${JSON.stringify(value)}]`,
+            contents: `module.exports = (typeof globalThis !== "undefined" ? globalThis : Function('return this')() || global || self)[${JSON.stringify(
+              value
+            )}]`,
           };
         }
         if (args.suffix) {

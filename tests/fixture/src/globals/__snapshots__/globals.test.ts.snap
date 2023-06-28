@@ -30,7 +30,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 // libuild:globals:react
 var require_react = __commonJS({
   \\"libuild:globals:react\\"(exports, module) {
-    module.exports = Function(\\"return this\\")()[\\"React\\"];
+    module.exports = (typeof globalThis !== \\"undefined\\" ? globalThis : Function(\\"return this\\")() || global || self)[\\"React\\"];
   }
 });
 
