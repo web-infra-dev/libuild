@@ -15,7 +15,7 @@ export const watchPlugin = (): LibuildPlugin => {
       compiler.hooks.initialize.tap(pluginName, () => {
         watch = chokidar.watch([compiler.config.root], {
           useFsEvents: false, // disable fsevents due to fsevents hoist problem
-          ignored: ['node_modules', '.gitignore', '.git', compiler.config.outdir],
+          ignored: ['**/node_modules', '**/.gitignore', '**/.git', compiler.config.outdir],
           cwd: compiler.config.root,
         });
         compiler.watcher = watch as FSWatcher;
