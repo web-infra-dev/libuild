@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fixture:target es5 1`] = `
-"\\"use strict\\";
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+"function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
         var value = info.value;
