@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.14.0",
+      "tag": "@modern-js/libuild_v0.14.0",
+      "date": "Wed, 12 Jul 2023 11:18:38 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix: include node_modules as watched files"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.13.2",
       "tag": "@modern-js/libuild_v0.13.2",
       "date": "Wed, 28 Jun 2023 11:55:36 GMT",
