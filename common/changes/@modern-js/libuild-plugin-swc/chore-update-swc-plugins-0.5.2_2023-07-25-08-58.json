@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild-plugin-swc",
+      "comment": "update @modern-js/swc-plugins 0.5.2",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild-plugin-swc"
+}
