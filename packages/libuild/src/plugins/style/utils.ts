@@ -72,15 +72,26 @@ export async function rebaseUrls(
 
 export function rewriteCssUrls(css: string, type: false | string, replacer: CssUrlReplacer): Promise<string> {
   return asyncReplace(css, cssUrlRE, async (match) => {
-    const [matched, rawUrl] = match;
+    const matched = match[0];
+    let rawUrl = match[1];
+    let wrap = '';
+    const first = rawUrl[0];
+    if (first === `"` || first === `'`) {
+      wrap = first;
+      rawUrl = rawUrl.slice(1, -1);
+    }
     if (
       (type === 'less' && rawUrl.startsWith('@')) ||
-      ((type === 'sass' || type === 'scss') && rawUrl.startsWith('$'))
+      ((type === 'sass' || type === 'scss') && rawUrl.startsWith('$')) ||
+      isExternalUrl(rawUrl) ||
+      isDataUrl(rawUrl) ||
+      rawUrl.startsWith('#')
     ) {
-      return `url(${rawUrl})`;
+      // do not rewrite
+      return matched;
     }
-    const result = await doUrlReplace(rawUrl, matched, replacer);
-    return result;
+
+    return `url(${wrap}${await replacer(rawUrl)}${wrap})`;
   });
 }
 
@@ -99,18 +110,4 @@ async function asyncReplace(
   }
   rewritten += remaining;
   return rewritten;
-}
-
-async function doUrlReplace(rawUrl: string, matched: string, replacer: CssUrlReplacer) {
-  let wrap = '';
-  const first = rawUrl[0];
-  if (first === `"` || first === `'`) {
-    wrap = first;
-    rawUrl = rawUrl.slice(1, -1);
-  }
-  if (isExternalUrl(rawUrl) || isDataUrl(rawUrl) || rawUrl.startsWith('#')) {
-    return matched;
-  }
-
-  return `url(${wrap}${await replacer(rawUrl)}${wrap})`;
 }
