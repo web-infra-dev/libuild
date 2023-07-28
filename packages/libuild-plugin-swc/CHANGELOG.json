@@ -2,6 +2,12 @@
   "name": "@modern-js/libuild-plugin-swc",
   "entries": [
     {
+      "version": "0.14.2",
+      "tag": "@modern-js/libuild-plugin-swc_v0.14.2",
+      "date": "Fri, 28 Jul 2023 05:59:15 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.14.1",
       "tag": "@modern-js/libuild-plugin-swc_v0.14.1",
       "date": "Fri, 28 Jul 2023 03:03:14 GMT",
