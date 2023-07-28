@@ -2,6 +2,18 @@
   "name": "@modern-js/libuild",
   "entries": [
     {
+      "version": "0.14.1",
+      "tag": "@modern-js/libuild_v0.14.1",
+      "date": "Fri, 28 Jul 2023 03:03:14 GMT",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix: remove wrap when determining if rawUrl is a variable"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.14.0",
       "tag": "@modern-js/libuild_v0.14.0",
       "date": "Wed, 12 Jul 2023 11:18:38 GMT",
