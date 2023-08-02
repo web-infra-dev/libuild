@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@modern-js/libuild-plugin-swc",
+      "comment": "fix: bump swc-plugins 0.5.5 to fix pnpm engine issue",
+      "type": "none"
+    }
+  ],
+  "packageName": "@modern-js/libuild-plugin-swc"
+}
