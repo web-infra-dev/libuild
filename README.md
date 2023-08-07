@@ -1,3 +1,5 @@
+# This repo has been moved to the Modern.js repo, see: https://github.com/web-infra-dev/libuild/discussions/70
+
 The home for various projects about libuild
 
 ## What is Libuild
